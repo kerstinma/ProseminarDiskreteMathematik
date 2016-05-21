@@ -1,0 +1,101 @@
+\subsection{Einleitung}
+\begin{mslide}{Einleitung}
+
+\begin{definition}
+Die \textcolor{blue}{k-Färbung} eines Graphen ist eine Abbildung $f: V(G) \rightarrow S$ mit $xy \in E(G): f(x) \neq f(y)$, wobei S Menge der Farben und $\vert S \vert = k$. 
+\end{definition}
+
+\begin{figure}[htp]
+\begin{center}
+\resizebox{.4\linewidth}{!}{
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+                    semithick]
+  \tikzstyle{every state}=[draw=black,text=black]
+	\tikzstyle{every edge} = [draw,thick,-]
+
+  \node[state,fill=red] 	(0)              	{1};
+  \node[state,fill=blue]  (1) [above right of=0] 	{2};
+  \node[state,fill=yellow] 	(2) [right of=0]  {3};
+  \node[state,fill=blue]  (3) [below of=0] 	{4};
+  \node[state,fill=yellow] 	(4) [right of=3]  {5};
+  \node[state,fill=red]  (5) [right of=2] 	{6};
+ 
+
+  
+  \path[draw=black,thick] 
+  		%% drone 1
+  		(0)  edge node {} (2)
+  		(3)  edge  node {} (4)
+  		(5)  edge  node {} (4)
+  		(1)  edge  node {} (0)
+  		(2)  edge  node {} (3)
+  		(1)  edge  node {} (5)
+			(2)  edge  node {} (5)
+			(3)  edge  node {} (5)
+  		;
+\end{tikzpicture}
+}
+\caption[3-Färbung]{3-Färbung}
+  \label{Faerbung}
+\end{center}
+\end{figure}
+
+\framebreak 
+
+Sei $G = (V, E)$ ein Graph
+\begin{align*}
+&x_i^k - 1 = 0 \quad \forall i \in V, \\
+& \sum_{s = 0}^{k-1} x_i^{k-1-s}x_j^s = 0 \quad \forall (i,j) \in E.
+\end{align*} 
+
+\begin{thm}
+Graph G ist k-färbbar $\Leftrightarrow$ System besitzt eine komplexe Lösung
+\end{thm}
+\begin{thm}
+G ist k-färbbar und k ungerade $\Leftrightarrow$ System besitzt gemeinsame Nullstelle über $\overline{\mathbb{F}_2}$, wobei  $\overline{\mathbb{F}_2}$ algebraische Abschluss über dem endlichen Körper mit zwei Elementen
+\end{thm}
+\nocite{*}
+
+\framebreak
+
+\begin{proof}
+Angenommen die Aussage ist wahr über den komplexen Zahlen $\mathbb{C}$. \\
+ "`$\Rightarrow$"' Sei G k-färbbar, ordne jeder Farbe die k-te Einheitswurzel zu. Sei die j-te Farbe $\beta_j = e^{2\Pi j/k}$; substituiere alle $x_l$ mit der zugehörigen Einheitswurzel der Farbe des l-ten Knotens. Also haben wir eine Lösung des Systems: Die Gleichungen $x_i^k-1 = 0$ sind trivialerweise erfüllt. \\Wir betrachten nun die Kantengleichungen: Wir nehmen eine Kante $ij$, da $x_i$ und $x_j$ durch Einheitswurzeln substituiert wurden, gilt $x_i^k - x_j^k = 0$. Des Weiteren gilt: 
+\begin{align*}
+x_i^k-x_j^k = (x_i-x_j)(x_i^{k-1}+x_i^{k-2}x_j+x_i^{k-3}x_j^2+\ldots+x_j^{k-1}) = 0;
+\end{align*}   
+Durch die Substitution mit unterschiedlichen Einheitswurzeln gilt $x_i - x_j \neq 0$, also muss der andere Faktor, der den Kantengleichungen entspricht, 0 sein.
+\end{proof}
+
+\framebreak 
+
+\begin{proof}
+"`$\Leftarrow$"' Angenommen die Gleichungen seien erfüllt, d.h. der Lösungspunkt muss aus k-ten Einheitswurzeln bestehen. Den benachbarten Knoten müssen verschiedene Einheitswurzeln zugeordnet werden, da: \\
+Angenommen einem Paar benachbarter Knoten $ij$ wird die selbe Einheitswurzel zugewiesen. Die Gleichung $x_i^{k-1}+x_i^{k-2}x_j+x_i^{k-3}x_j^2+\ldots+x_j^{k-1} = 0$ wird dann zu $\beta^{k-1}+\beta^{k-1}+\ldots+\beta^{k-1} = k\beta^{k-1} = 0$, jedoch $\beta \neq 0 \lightning$ 
+\end{proof}
+
+\end{mslide}
+
+\subsection{Hilberts Nullstellensatz}
+\begin{mslide}{Hilberts Nullstellensatz}
+
+\begin{block}{Problemdarstellung}
+Gegeben: $f_1,\ldots,f_m \in \mathbb{K}[x_1,\ldots,x_n]$ \\
+Gesucht: Lösung $x$ für das System $f_1(x) = 0, f_2(x) = 0, \ldots f_m(x) = 0$ (wird auch geschrieben als $F(x) = 0$) \\
+Ziel ist es eine Lösung zu diesem System zu finden beziehungsweise zu zeigen, dass es keine Lösung gibt. \\
+\end{block}
+
+
+\begin{theorem}[Fredholm's Alternativtheorem] 
+Das Lineare Gleichungssystem $Ax=b$ besitzt genau dann eine Lösung, wenn ein Vektor $y$ mit der Eigenschaft $y^TA=0^T$ und $y^Tb\neq 0^T$ existiert. 
+\end{theorem}
+
+\framebreak
+
+\begin{theorem}[Hilbert's Nullstellensatz] 
+Sei F = $\{f_1,\ldots,f_m\} \subseteq \mathbb{K}[x_1,\ldots,x_n]$.\\
+Die Varietät $\{x \in \overline{\mathbb{K}^n} : f_1(x)=0,\ldots,f_s(x)=0\}$ ist genau dann leer, wenn 1 zum Ideal $\left\langle F \right\rangle$, das aus F generiert wurde, gehört. Man beachte $1 \in \left\langle F \right\rangle$ bedeutet, dass Polynome $\beta_1,\ldots,\beta_m$ im Ring $\mathbb{K}[x_1,\ldots,x_n]$ existieren, sodass $1 = \sum_{i=1}^m \beta_i f_i$. Diese polynomielle Identität ist ein Zertifikat für die Unlösbarkeit von $F(x) = 0$. 
+\end{theorem}
+
+
+\end{mslide}

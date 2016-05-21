@@ -1,0 +1,391 @@
+
+\part*{Nullstellensatz}
+
+
+\section{Einleitung}
+
+Zu Beginn möchten wir auf einige Grundbegriffe in der Graphentheorie und der (Linearen) Algebra eingehen. Dieses Kapitel soll als Nachschlagewerk für die restlichen Kapitel dieser Arbeit dienen. Hierbei werden auch die Begriffe Stable Set, k-Färbbarkeit und Maximaler Schnitt eingeführt, das Finden solcher graphentheoretischer Probleme fällt in die Klasse der NP-vollständigen Probleme. Des Weiteren werden wir in \ref{Grundbegriffe} diese drei Probleme in Polynomialdarstellung  bringen, was dazu führt, dass wir den Hilbertschen Nullstellensatz darauf anwenden können. Wir werden in dieser Arbeit auf dieses zentrale Resultat der Algebraischen Geometrie eingehen und zeigen, dass sich daraus ein Algorithmus ableiten lässt, der entscheidet, ob die angegebenen Probleme lösbar oder unlösbar sind. 
+
+\section{Grundbegriffe}  \label{Grundbegriffe}
+
+\subsection{Grundbegriffe aus der (Linearen) Algebra}
+
+\begin{definition}
+Es sei H eine Menge mit einer inneren Verknüpfung $\cdot : H \times H \rightarrow H$. Es heißt $(H,\cdot)$ eine \textcolor{blue}{Halbgruppe}, wenn $\forall a,b,c \in H$ gilt \cite{Karpfinger}: 
+\begin{align*}
+(a \cdot b) \cdot c = a \cdot ( b \cdot c ).
+\end{align*}
+\end{definition}
+
+\begin{definition}
+Es sei G eine nichtleere Menge mit einer inneren Verknüpfung $\cdot : G \times G \rightarrow G$. Es heißt $(G,\cdot)$ eine \textcolor{blue}{Gruppe}, wenn $\forall a,b,c \in G$ gilt \cite{Karpfinger}: 
+\begin{enumerate}
+\item $(a \cdot b) \cdot c = a \cdot ( b \cdot c ).$
+\item $\exists e \in G$ mit $ e \cdot a = a = a \cdot e. $
+\item $\forall a \in G :\,\exists a' \in G $ mit $ a' \cdot a = e = a \cdot a'.$
+\end{enumerate}
+\end{definition}
+
+
+\begin{definition}
+Es sei R eine Menge mit den inneren Verknüpfung $+ : R \times R \rightarrow R$ und $\cdot : R \times R \rightarrow R$. Es heißt $(R,+,\cdot)$ ein \textcolor{blue}{Ring}, wenn $\forall a,b,c \in R$ gilt \cite{Karpfinger}: 
+\begin{enumerate}
+\item $a+b=b+a.$
+\item $a+(b+c)=(a+b)+c$.
+\item $\exists 0 $ (Nullelement) in $ R : 0+a= a \quad \forall a \in R$.
+\item $\forall a \in R :\,\exists -a \in R$ (inverses Element) $: a + (-a) = 0$.
+\item $(a \cdot b) \cdot c = a \cdot ( b \cdot c ).$
+\item $a(b+c)=ab+ac$ und $(a+b)c = ac+bc$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Es sei K eine Menge mit den inneren Verknüpfung $+ : K \times K \rightarrow K$ und $\cdot : K \times K \rightarrow K$. Es heißt $(K,+,\cdot)$ ein \textcolor{blue}{Körper}, wenn $\forall a,b,c \in K$ gilt \cite{Karpfinger}: 
+\begin{enumerate}
+\item $a+b=b+a.$
+\item $a+(b+c)=(a+b)+c$.
+\item $\exists 0 $ (Nullelement) in $ K : 0+a= a \quad \forall a \in K$.
+\item $\forall a \in K :\,\exists -a \in K$ (inverses Element) $: a + (-a) = 0$.
+\item $ab=ba$.
+\item $(a \cdot b) \cdot c = a \cdot ( b \cdot c ).$
+\item $\exists 1 \neq 0$ (Einselement) in $ K: 1a=a \quad \forall a \in K$.
+\item $\forall a \in K \textbackslash \{ 0 \} :\quad \exists a^{-1}\in K $ (inverses Element) $: aa^{-1}=1.$
+\item $a(b+c)=ab+ac$ und $(a+b)c = ac+bc$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Es sei 
+\begin{align*}
+R[X] = \{\sum_{i\in\mathbb{N}_0} a_i X^i |a_i \in R \text{ und} a_i = 0 \text{ für fast alle i} \,\in \mathbb{N}_0 \}
+\end{align*}
+ein kommutativer Ring mit Einselement 1. \\
+Man nennt R[X] den \textcolor{blue}{Polynomring} in der Unbestimmten X über R. \cite{Karpfinger}
+\end{definition}
+
+\begin{definition}
+Man nennt $K \subseteq E$ einen \textcolor{blue}{Teilkörper} von E und E einen \textcolor{blue}{Erweiterungskörper} von K sowie E/K eine \textcolor{blue}{Körpererweiterung}, wenn K ein Teilring von E und als solcher ein Körper ist, d.h. wenn gilt\cite{Karpfinger}:
+\begin{align*}
+a, b, c\in K, \quad c \neq 0 \quad \Rightarrow \quad a-b,ab,c^{-1}\in K. 
+\end{align*} 
+\end{definition}
+
+\begin{definition}
+Es sei L/K eine Körpererweiterung. Ein Element $a \in L$ heißt:
+\begin{itemize}
+\item \textcolor{blue}{algebraisch über} K, wenn es ein von 0 verschiedenes Polynom $P \in K[X]$ gibt mit $P(a) = 0$.
+\item \textcolor{blue}{transzendent über} K, wenn es nicht algebraisch ist, d.h. für $P \in K[X]$ gilt $P(a) = 0$ nur für das Nullpolynom $P = 0$. \cite{Karpfinger}  
+\end{itemize} 
+\end{definition}
+
+\begin{definition}
+Der Körper K heißt \textcolor{blue}{algebraisch abgeschlossen}, wenn jedes nicht konstante Polynom aus K[X] eine Wurzel in K hat. \cite{Karpfinger}
+\end{definition}
+
+\begin{definition}
+Ein Erweiterungskörper von K wird \textcolor{blue}{algebraischer Abschluss} von K genannt, wenn er algebraisch über K und algebraisch abgeschlossen ist. \cite{Karpfinger}
+\end{definition}
+
+\begin{definition}
+Sei F = $\{f_1,\ldots,f_m\} \subseteq \mathbb{K}[x_1,\ldots,x_n]$ eine Menge von Polynomen. Ein Vector $\overline{x} \in \overline{\mathbb{K}^n}$ ist eine \textcolor{blue}{Lösung des Systems} $f_1 = f_2 = \ldots = f_k=0$ ($F = 0$), wenn $f_i(\overline{x})=0 \quad \forall i=1,\dots,k$.\\
+Die \textcolor{blue}{Varietät} $V(f_1,f_2,\ldots,f_k)$ ($V(F)$) ist die Menge aller Lösungen von $F=0$ in $\overline{\mathbb{K}^n}$.\cite{Ausgangsartikel}
+\end{definition}
+
+\begin{definition}
+Die Menge von Polynomen beschreibt ein Ideal $I \subseteq \mathbb{K}[x_1,\ldots,x_n]$, wenn die folgenden Eigenschaften erfüllt sind \cite{Ausgangsartikel}:
+\begin{enumerate}
+\item $0 \in I$
+\item $f,g \in I \Rightarrow f+g \in I$
+\item $f \in I, g \in \mathbb{K}[x_1,\ldots,x_n] \Rightarrow fg \in I$
+\end{enumerate}
+Sei $F = \{f_1,\ldots,f_m\} \subseteq \mathbb{K}[x_1,\ldots,x_n]$, dann ist
+\begin{align*}
+\left\langle F \right\rangle = \left\{f = \sum_{i=1}^k h_if_i: \quad f_i \in F, h_i \in \mathbb{K}[x_1,\ldots,x_n] \quad \forall i = 1,\ldots,k\right\} \subseteq \mathbb{K}[x_1,\ldots,x_n]
+\end{align*}
+das \textcolor{blue}{polynomielle Ideal} erzeugt von F in $\mathbb{K}[x_1,\ldots,x_n]$.
+\end{definition}
+%\begin{definition}
+%Für einen endlichen Körper $\Bbb F_p$ der Primzahl-Ordnung $p$ ist der algebraische Abschluss ein abzählbarer unendlicher Körper %der Charakteristik $p$ und enthält für jede natürliche Zahl n einen Teilkörper der Ordnung $p^n$, er besteht sogar aus der Vereinigung dieser Teilkörper. \cite{Karpfinger}
+%\end{definition}
+
+%\begin{definition}
+%Charakteristik 
+%\end{definition}
+
+\subsection{Grundbegriffe der Graphentheorie} 
+
+\begin{definition}
+Ein \textcolor{blue}{Graph} G ist ein Paar G = (V,E) disjunkter Mengen mit $E \subseteq V\times V$. Die Elemente von $V$ nennt man Knoten und die Elemente von $E$ Kanten. \cite{Diestel}
+\end{definition}
+
+\begin{definition}
+Zwei Knoten $x,y \in V(G)$ sind \textcolor{blue}{adjazent} in G und heißen \textcolor{blue}{Nachbarn} von einander, wenn $xy \in E(G)$. \cite{Diestel}
+\end{definition}
+
+\subsubsection{Stable Set}
+
+\begin{definition}
+Paarweise nicht benachbarte Knoten oder Kanten nennt man \textcolor{blue}{unabhängig}. Eine Teilmenge von V oder E heißt unabhängig, wenn ihre Elemente paarweise nicht benachbart sind. Unabhängige Knotenmengen nennt man auch \textcolor{blue}{stabil}. \cite{Diestel}
+\end{definition}
+
+\begin{definition}
+Ein \textcolor{blue}{Stable Set} ist eine unabhängige Knotenmenge.
+\end{definition}
+
+\begin{figure}[h]
+\begin{center}
+\resizebox{.5\linewidth}{!}{
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+                    semithick]
+  \tikzstyle{every state}=[draw=black,text=black]
+	\tikzstyle{every edge} = [draw,thick,-]
+
+  \node[state] 	(0)              	{1};
+  \node[state,fill=red]  (1) [above right of=0] 	{2};
+  \node[state,fill=red] 	(2) [right of=0]  {3};
+  \node[state]  (3) [below of=0] 	{4};
+  \node[state,fill=red] 	(4) [right of=3]  {5};
+  \node[state]  (5) [right of=2] 	{6};
+ 
+
+  
+  \path[draw=black,thick] 
+  		%% drone 1
+  		(0)  edge node {} (2)
+  		(3)  edge  node {} (4)
+  		(5)  edge  node {} (4)
+  		(1)  edge  node {} (0)
+  		(2)  edge  node {} (3)
+  		(1)  edge  node {} (5)
+			(2)  edge  node {} (5)
+			(3)  edge  node {} (5)
+  		;
+\end{tikzpicture}
+}
+\caption[Stable Set]{Stable Set}
+  \label{StableSet}
+\end{center}
+\end{figure}
+
+\subsubsection{k-Färbbarkeit}
+
+\begin{definition}
+Die \textcolor{blue}{k-Färbung} eines Graphen ist eine Abbildung $f: V(G) \rightarrow S$ mit $xy \in E(G): f(x) \neq f(y)$, wobei S Menge der Farben und $\vert S \vert = k$. \cite{Diestel, West}
+\end{definition}
+
+\begin{figure}[htp]
+\begin{center}
+\resizebox{.5\linewidth}{!}{
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+                    semithick]
+  \tikzstyle{every state}=[draw=black,text=black]
+	\tikzstyle{every edge} = [draw,thick,-]
+
+  \node[state,fill=red] 	(0)              	{1};
+  \node[state,fill=blue]  (1) [above right of=0] 	{2};
+  \node[state,fill=yellow] 	(2) [right of=0]  {3};
+  \node[state,fill=blue]  (3) [below of=0] 	{4};
+  \node[state,fill=yellow] 	(4) [right of=3]  {5};
+  \node[state,fill=red]  (5) [right of=2] 	{6};
+ 
+
+  
+  \path[draw=black,thick] 
+  		%% drone 1
+  		(0)  edge node {} (2)
+  		(3)  edge  node {} (4)
+  		(5)  edge  node {} (4)
+  		(1)  edge  node {} (0)
+  		(2)  edge  node {} (3)
+  		(1)  edge  node {} (5)
+			(2)  edge  node {} (5)
+			(3)  edge  node {} (5)
+  		;
+\end{tikzpicture}
+}
+\caption[3-Färbung]{3-Färbung}
+  \label{Faerbung}
+\end{center}
+\end{figure}
+
+
+\subsubsection{Maximaler Schnitt}
+
+\begin{definition}
+Eine Menge $\mathcal{A} = \{A_1,\ldots,A_k\}$ disjunkter Teilmengen einer Menge A ist eine \textcolor{blue}{Partition} von A, wenn $\bigcup \mathcal{A} := \bigcup_{i=1}^k A_i = A$ ist und $A_i \neq \emptyset \quad \forall i$. \cite{Diestel}  
+\end{definition}
+
+\begin{definition}
+Ist ${V_1,V_2}$ eine Partition von V, so nennen wir die Menge $E(V_1,V_2)$ aller dieser Partitionen verbindenden Kanten von G einen \textcolor{blue}{Schnitt}.  \cite{Diestel} 
+\end{definition}
+
+\begin{definition}
+Ein \textcolor{blue}{Maximaler Schnitt} ist jener Schnitt $F \neq \emptyset$, wo die Summe der Gewichte der verbindenden Kanten maximal ist. 
+\end{definition}
+
+
+\begin{figure}[htp]
+\begin{center}
+\resizebox{.5\linewidth}{!}{
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+                    semithick]
+  \tikzstyle{every state}=[draw=black,text=black]
+	\tikzstyle{every edge} = [draw,thick,-]
+
+  \node[state,fill=blue] 	(0)              	{1};
+  \node[state,fill=yellow]  (1) [above right of=0] 	{2};
+  \node[state,fill=yellow] 	(2) [right of=0]  {3};
+  \node[state,fill=blue]  (3) [below of=0] 	{4};
+  \node[state,fill=yellow] 	(4) [right of=3]  {5};
+  \node[state,fill=yellow]  (5) [right of=2] 	{6};
+ 
+
+  
+  \path[draw=black,thick] 
+  		%% drone 1
+  		(0)  edge node {5} (2)
+  		(3)  edge  node {4} (4)
+  		(5)  edge  node {1} (4)
+  		(1)  edge  node {1} (0)
+  		(2)  edge  node {3} (3)
+  		(1)  edge  node {3} (5)
+			(2)  edge  node {1} (5)
+			(3)  edge  node {2} (5)
+  		;
+\end{tikzpicture}
+}
+\caption[Maximaler Schnitt]{Maximaler Schnitt}
+  \label{MaxCut}
+\end{center}
+\end{figure}
+
+
+\subsection{Polynomdarstellung kombinatorischer Probleme}
+
+\subsubsection{Stable Set}
+
+Sei $G = (V, E)$ ein Graph. Für ein gegebenes $k \in \mathbb{N}$ betrachten wir folgendes polynomielles System:
+\begin{align*}
+&x_i^2 - x_i = 0 \quad \forall i \in V, \\
+&x_i x_j = 0 \quad \forall (i,j) \in E, \\
+& \sum_{i \in V} x_i = k.
+\end{align*} 
+
+\noindent Dieses System ist genau dann lösbar, wenn $G$ ein Stable Set der Größe k besitzt. 
+
+\subsubsection{k-Färbbarkeit}
+
+Sei $G = (V, E)$ ein Graph. Für ein gegebenes $k \in \mathbb{N}$ betrachten wir folgendes polynomielles System mit $\vert V \vert + \vert E \vert$ Gleichungen:
+\begin{align*}
+&x_i^k - 1 = 0 \quad \forall i \in V, \\
+& \sum_{s = 0}^{k-1} x_i^{k-1-s}x_j^s = 0 \quad \forall (i,j) \in E.
+\end{align*} 
+
+\noindent Der Graph G ist genau dann k-färbbar, wenn dieses System eine komplexe Lösung besitzt. Des Weiteren gilt, wenn k ungerade , dann ist G genau dann k-färbbar, wenn das System eine Lösung über $\overline{\mathbb{F}_2}$ besitzt. $\overline{\mathbb{F}_2}$ ist der algebraische Abschluss über dem endlichen Körper mit zwei Elementen.
+
+\begin{proof}
+Angenommen die Aussage ist wahr über den komplexen Zahlen $\mathbb{C}$. 
+\\ $"`\Rightarrow"'$ Sei G k-färbbar, ordne jeder Farbe die k-te Einheitswurzel zu. Sei die j-te Farbe $\beta_j = e^{2\Pi j/k}$; substituiere alle $x_l$ mit der zugehörigen Einheitswurzel der Farbe des l-ten Knotens. \\Also haben wir eine Lösung des Systems: Die Gleichungen $x_i^k-1 = 0$ sind trivialerweise erfüllt. \\Wir betrachten nun die Kantengleichungen: Wir nehmen eine Kante $ij$, da $x_i$ und $x_j$ durch Einheitswurzeln substituiert wurden, gilt $x_i^k - x_j^k = 0$. Des Weiteren gilt: 
+\begin{align*}
+x_i^k-x_j^k = (x_i-x_j)(x_i^{k-1}+x_i^{k-2}x_j+x_i^{k-3}x_j^2+\ldots+x_j^{k-1}) = 0;
+\end{align*}   
+Durch die Substitution mit unterschiedlichen Einheitswurzeln gilt $x_i - x_j \neq 0$, also muss der andere Faktor, der den Kantengleichungen entspricht, 0 sein.  
+\\ $"`\Leftarrow"'$ Angenommen die Gleichungen seien erfüllt, d.h. der Lösungspunkt muss aus k-ten Einheitswurzeln bestehen. Den benachbarten Knoten müssen verschiedene Einheitswurzeln zugeordnet werden, da: \\
+Angenommen einem Paar benachbarter Knoten $ij$ wird die selbe Einheitswurzel zugewiesen. Die Gleichung $x_i^{k-1}+x_i^{k-2}x_j+x_i^{k-3}x_j^2+\ldots+x_j^{k-1} = 0$ wird dann zu $\beta^{k-1}+\beta^{k-1}+\ldots+\beta^{k-1} = k\beta^{k-1} = 0$, jedoch $\beta \neq 0 \lightning$ 
+Es verbleibt zu zeigen, dass das gleiche Argument wie wir oben über die komplexen Zahlen gezeigt haben, auch für $\overline{\mathbb{F}_2}$ gilt. Obwohl $x_i^k - 1$ nur eine Nullstelle über $\mathbb{F}_2$ besitzt, nämlich 1, erhält man über $\overline{\mathbb{F}_2}$ verschiedene Nullstellen $1,\beta_i,\ldots,\beta_{k-1}$ (in diesem Fall keine komplexen Zahlen). Damit gilt das gleiche Argument wie oben. Wir müssen nur bei der Rückrichtung aufpassen, da $k\beta_i^{k-1} \neq 0$ sein muss. Diese Bedingung ist jedoch erfüllt, da $k$ ungerade und durch die Konstruktion $\beta_i^k$. 
+\end{proof}
+
+
+
+
+\subsubsection{Maximaler Schnitt}
+Sei $G = (V, E)$ ein Graph. Wir können die Menge der Schnitte $SG$ von G als 0-1 Inzidenzvektoren darstellen.
+
+\begin{align*}
+&SG := \{ \mathcal{X}^F:F \subseteq E \, ist \, in \, einem \, Schnitt \, von \, G \, enthalten \} \subseteq  \{0,1\}^{\vert E \vert}.
+\end{align*} 
+
+\noindent Somit kann der Maximale Schnitt mit den Kantengewichten $w_e \in \mathbb{R}^+$ und $e \in E(G)$ folgend definiert werden:
+
+\begin{align*}
+\max\{\sum_{e \in E(G)} w_e x_e : x \in SG\}. 
+\end{align*} 
+
+Die Vektoren $\mathcal{X}^F$ sind Lösungen des polynomiellen Systems 
+
+\begin{align*}
+&x_e^2 - x_e = 0 \quad \forall e \in E(G),\\
+&\prod_{e\in T\cap E(G)}x_e = 0 \quad \forall T \, ungerader \, Kreis \, in \, G
+\end{align*}
+
+
+\section{Hilberts Nullstellensatz} \label{HilbertNull}
+
+Zunächst möchten wir auf die allgemeine Problemdarstellung eingehen. \\
+Gegeben: $f_1,\ldots,f_m \in \mathbb{K}[x_1,\ldots,x_n]$ \\
+Gesucht: Lösung $x$ für das System $f_1(x) = 0, f_2(x) = 0, \ldots f_m(x) = 0$ (wird auch geschrieben als $F(x) = 0$) \\
+Ziel ist es eine Lösung zu diesem System zu finden beziehungsweise zu zeigen, dass es keine Lösung gibt. \\
+\\
+Bevor wir nun das Theorem für den Hilbertschen Nullstellensatz einführen, möchten wir noch das Fredholm's Alternativtheorem betrachten.
+
+\begin{theorem}[Fredholm's Alternativtheorem] \label{Fredi}
+Das Lineare Gleichungssystem (LGS) $Ax=b$ besitzt genau dann eine Lösung, wenn ein Vektor $y$ mit der Eigenschaft $y^TA=0^T$ und $y^Tb\neq 0^T$ existiert. 
+\end{theorem}
+
+\noindent Der Hilbertsche Nullstellensatz stellt eine strengere und weitreichendere Verallgemeinerung für nichtlineare Polynomialgleichungen dar.
+
+\begin{theorem}[Hilbert's Nullstellensatz] 
+Sei F = $\{f_1,\ldots,f_m\} \subseteq \mathbb{K}[x_1,\ldots,x_n]$.\\
+Die Varietät $\{x \in \overline{\mathbb{K}^n} : f_1(x)=0,\ldots,f_s(x)=0\}$ ist genau dann leer, wenn 1 zum Ideal $\left\langle F \right\rangle$, das aus F generiert wurde, gehört. Man beachte $1 \in \left\langle F \right\rangle$ bedeutet, dass Polynome $\beta_1,\ldots,\beta_m$ im Ring $\mathbb{K}[x_1,\ldots,x_n]$ existieren, sodass $1 = \sum_{i=1}^m \beta_i f_i$. Diese polynomielle Identität ist ein Zertifikat für die Unlösbarkeit von $F(x) = 0$. 
+\end{theorem}
+
+\noindent Wir können leicht erkennen, dass das Fredholm's Theorem eine lineare Variante des Hilbertschen Nullstellensatzes mit linearen Polynomen und Konstanten $\beta_i$'s ist. 
+
+\subsection{Relaxierungen mit Hilfe der Linearen Algebra}
+
+Die Hauptidee besteht darin, das gegebene System in eine Reihe Probleme der Linearen Algebra zu relaxieren und dann diese linearen Probleme zu lösen. \\
+Aus dem Hilbertschen Nullstellensatz lässt sich folgendes Korollar ableiten: 
+\begin{corollary}
+Falls numerische Vektoren $\mu \in \mathbb{K}^m$ existieren, sodass $\sum_{i=1}^m \mu_i f_i = 1 \Rightarrow $ das polynomielle System $F(x) = 0$ ist unlösbar. 
+\end{corollary}
+Das Entscheiden, ob ein $\mu \in \mathbb{K}^m$ existiert, sodass $\sum_{i=1}^m \mu_i f_i = 1$ ist nur mehr ein Problem der Linearen Algebra über dem Körper $\mathbb{K}$. \\
+Es herrscht ein starker Zusammenspiel zwischen dem System der nichtlinearen Gleichungen $F(x) = 0$, dem Ideal $\langle F \rangle$ und der Linearen Hülle von F über $\mathbb{K}$. \todo[inline]{definieren in den Grundbegriffen}
+Im Folgenden möchten wir auf ein Beispiel eingehen, dass uns zeigt, dass wir nicht immer Unlösbarkeit gezeigt werden kann, auch wenn das System tatsächlich unlösbar ist.
+\begin{example}
+Wir betrachten folgende Menge von Polynomen:
+\begin{align*}
+F := \left\{f_1 := x_1^2-1, f_2 := 2x_1x_2+x_3,f_3:=x_1+x_2,f_4:=x_1+x_3 \right\}
+\end{align*}
+Wir können zeigen, dass das System $F(x)=0$ unlösbar ist, falls wir ein $\mu \in \mathbb{R}^4$ finden, das die folgende Bedingung erfüllt:
+\begin{align*}
+&\mu_1 f_1 + \mu_2 f_2 + \mu_3 f_3 + \mu_4 f_4 = 1 \\
+\Leftrightarrow \quad &\mu_1(x_1^2-1)+\mu_2(2x_1x_2+x_3)+\mu_3(x_1+x_2)+\mu_4(x_1+x_3)=1 \\
+\Leftrightarrow \quad &\mu_1x_1^2+2\mu_2x_1x_2+(\mu_2+\mu_4)x_3+\mu_3x_2+(\mu_3+\mu_4)x_1-\mu_1 = 1
+\end{align*}
+Mit Hilfe von Koeffizientenvergleich erhalten wir das folgende LGS:
+\begin{align*}
+-\mu_1=1 \qquad \mu_3+\mu_4=0 \qquad \mu_3=0 \\
+\mu_2+\mu_4=0 \qquad 2\mu_2=0 \qquad \mu_1=0 
+\end{align*}
+$F(x)= 0$ ist zwar nicht lösbar, aber da wir für das obere System auch keine Lösung finden, gibt es somit auch keinen Beweis für die Unlösbarkeit von F(x).
+\end{example}
+
+\noindent Um die Anwendung zu vereinfachen, führen wir nun eine Matrixschreibweise ein. Wir konstruieren die Matrix $M_F$, wobei die Spalten die Monome und die Zeilen die Polynome des Systems $F$ repräsentieren. Die Einträge der Matrix entsprechen somit den Koeffizienten der Monome des zugehörigen Polynoms.  Wir definieren den Vektor $\mu := (\mu_1,\mu_2,\ldots,\mu_m)$ und den Vektor $(\textbf{0},1)^T:=(0,\ldots,0,1)^T$ mit genau der Anzahl der Monome an Einträgen. Wir können nun das LGS als $\mu M_F = (\textbf{0},1)^T$ schreiben. 
+\begin{note}
+Im Fall, dass $F(x)=0$ ein LGS ist, können wir das Theorem \ref{Fredi} anwenden: 
+\begin{align*}
+F(x)=0 \text{ unlösbar} \Leftrightarrow \mu M_F = (\textbf{0},1)^T \text{ ist lösbar}
+\end{align*}
+\end{note}  
+
+\section{Algorithmus Nullstellensatz in der Linaren Algebra (NulLa)}
+
+\section{Vergleich mit anderen Algorithmen zur 3-Färbbarkeit}
+
+
+\section{Beweis Nullstellensatz}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "master"
+%%% End: 

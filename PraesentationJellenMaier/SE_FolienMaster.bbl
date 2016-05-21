@@ -1,0 +1,36 @@
+\begin{thebibliography}{LLMM11}
+
+\bibitem[Die06]{Diestel}
+R.~Diestel.
+\newblock {\em Graphentheorie}.
+\newblock Springer, 2006.
+
+\bibitem[KM13]{Karpfinger}
+C.~Karpfinger and K.~Meyberg.
+\newblock {\em Algebra. Gruppen - Ringe - Körper}.
+\newblock Springer, 2013.
+
+\bibitem[LLHK13]{Ausgangsartikel}
+J.~a. Loera, J.~Lee, R.~Hemmecke, and M.~Köppe.
+\newblock {\em Algebraic and Geometric Ideas in the Theory of Discrete
+  Optimization}.
+\newblock Society for Industriell and Applied Mathematics, 2013.
+
+\bibitem[LLMM11]{Loera2011}
+J.~a. Loera, J.~Lee, P.~N. Malkin, and S.~Margulies.
+\newblock Computing infeasibility certificates for combinatorial problems
+  through hilbert's nullstellensatz.
+\newblock {\em Journal of Symbolic Computation}, 2011.
+
+\bibitem[LLMO09]{Loera2009}
+J.~a. Loera, J.~Lee, S.~Margulies, and S.~Onn.
+\newblock Expressing combinatorial problems by systems of polynomial equations
+  and hilbert's nullstellensatz.
+\newblock {\em Comb. Probab. Comput.}, 18(4):551--582, 2009.
+
+\bibitem[Wes01]{West}
+D.~B. West.
+\newblock {\em Introduction to Graph Theory}.
+\newblock Prentice Hall, 2001.
+
+\end{thebibliography}

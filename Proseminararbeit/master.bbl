@@ -1,0 +1,43 @@
+\begin{thebibliography}{6}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Diestel(2006)]{Diestel}
+R.~Diestel.
+\newblock \emph{Graphentheorie}.
+\newblock Springer, 2006.
+
+\bibitem[Karpfinger and Meyberg(2013)]{Karpfinger}
+C.~Karpfinger and K.~Meyberg.
+\newblock \emph{Algebra. Gruppen - Ringe - Körper}.
+\newblock Springer, 2013.
+
+\bibitem[Loera et~al.(2009)Loera, Lee, Margulies, and Onn]{Loera2009}
+J.~a. Loera, J.~Lee, S.~Margulies, and S.~Onn.
+\newblock Expressing combinatorial problems by systems of polynomial equations
+  and hilbert's nullstellensatz.
+\newblock \emph{Comb. Probab. Comput.}, 18\penalty0 (4):\penalty0 551--582,
+  2009.
+\newblock ISSN 0963-5483.
+
+\bibitem[Loera et~al.(2011)Loera, Lee, Malkin, and Margulies]{Loera2011}
+J.~a. Loera, J.~Lee, P.~N. Malkin, and S.~Margulies.
+\newblock Computing infeasibility certificates for combinatorial problems
+  through hilbert's nullstellensatz.
+\newblock \emph{Journal of Symbolic Computation}, 2011.
+
+\bibitem[Loera et~al.(2013)Loera, Lee, Hemmecke, and Köppe]{Ausgangsartikel}
+J.~a. Loera, J.~Lee, R.~Hemmecke, and M.~Köppe.
+\newblock \emph{Algebraic and Geometric Ideas in the Theory of Discrete
+  Optimization}.
+\newblock Society for Industriell and Applied Mathematics, 2013.
+
+\bibitem[West(2001)]{West}
+D.~B. West.
+\newblock \emph{Introduction to Graph Theory}.
+\newblock Prentice Hall, 2001.
+
+\end{thebibliography}

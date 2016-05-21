@@ -1,0 +1,210 @@
+%PDFTexify
+\RequirePackage{atbegshi}
+\documentclass[envcountsect]{beamer}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{beamerthemesplit}
+\usepackage[german]{babel} 
+\usepackage[utf8]{inputenc} %ACHTUNG: ALLE .tex-Dateien müssen UTF8-Codiert sein!
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps}
+\usepackage{subfigure,graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{color}
+\usepackage{rotating}
+\usepackage{pgfplots}
+\usepackage{textpos}
+\usepackage{xspace}
+\usepackage{dsfont}
+\usepackage{ifthen}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{eurosym}
+\usepackage{etoolbox}
+\usepackage{calc}
+\usepackage[export]{adjustbox}
+\usepackage{xargs}
+\usepackage{fancyvrb}
+\newboolean{printlogo}
+
+%widerspruchsblitz
+\usepackage{stmaryrd}
+
+%tikz
+\usepackage{pgf}
+\usepackage{graphics}
+\usepackage[margin=1in]{geometry}
+\usetikzlibrary{arrows,automata}
+ %to enable backgrounds in tikz graphics -> edges do not overlay vertices
+\usetikzlibrary{backgrounds}
+\pgfdeclarelayer{myback}
+\pgfsetlayers{background,myback,main}
+
+
+%----------------------------------------------------------------------------
+\newcommand{\vortragstitel}{Der Nullstellensatz in der Diskreten Mathematik} %Hier den Vortragstitel einfügen
+\newcommand{\currentsemester}{SS 2016}  %aktuelles Semester
+\newcommand{\lecturetitle}{Proseminar Diskrete Mathematik} % LV-Titel
+\newcommand{\lecturesubtitle}{}
+\newcommand{\lecturer}{Anna Jellen, Kerstin Maier} % Vortragender
+\newcommand{\email}{kerstinma@edu.aau.at} % email-Kontakt
+\newcommand{\tocTitle}{Inhalt} % Beschriftung (Titel) der Inhaltsfolien
+\newcommand{\refTitle}{Literatur} % Beschriftung Literaturfolien
+\setboolean{printlogo}{true}    % Logo auf den Folien ein/ausschalten
+%----------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------
+% Farben für die Folien (blaue und rote) in RGB-Notation
+\definecolor{UniBlue}{RGB}{0,0,128}
+\definecolor{UniRed}{RGB}{128,0,0}
+%----------------------------------------------------------------------------
+
+%input "literatur.bib"
+\setbeamertemplate{bibliography item}[text]
+
+\newcommand{\uebung}{\blau{Übung}}
+\newcommand{\rb}[1]{\raisebox{1.5ex}[-1.5ex]{#1}}
+\newcommand{\MOD}{\mathop{\text{MOD}}}
+\newcommand{\TO}{\Rightarrow}
+\newcommand{\DIV}{\mathop{\text{DIV}}}
+%\newcommand{\ggt}{\text{ggT}}
+\newcommand{\dividesnot}{\!\!\not|}
+\newcommand{\R}{\mathds{R}}
+\newcommand{\Z}{\mathds{Z}}
+\newcommand{\N}{\mathds{N}}
+\newcommand{\To}{\rightarrow}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\compl}[1]{\overline{#1}}
+
+\newcommand{\rot}[1]{\textcolor[rgb]{1.00,0.00,0.00}{#1}\xspace}
+\newcommand{\blau}[1]{\textcolor[rgb]{0.00,0.00,1.00}{#1}\xspace}
+\newcommand{\gruen}[1]{\textcolor[rgb]{0.00,1.00,0.00}{#1}\xspace}
+\newcommand{\grau}[1]{\textcolor[rgb]{0.50,0.50,0.50}{#1}\xspace}
+\newcommand{\blueColor}{
+    \setbeamercolor{title}{fg=UniBlue}
+    \setbeamercolor{frametitle}{fg=UniBlue}
+    \setbeamercolor{structure}{fg=UniBlue}
+}
+\newcommand{\redColor}{
+    \setbeamercolor{title}{fg=UniRed}
+    \setbeamercolor{frametitle}{fg=UniRed}
+    \setbeamercolor{structure}{fg=UniRed}
+}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
+\newboolean{onlyonerefslide}
+\newcommand{\singlerefslide}{\setboolean{onlyonerefslide}{true}}
+\newenvironment{lect}[2]
+{
+\setcounter{framenumber}{0}
+\addtocounter{section}{1}
+\part{#1}
+\lecture{#1}{#2}
+\addtocounter{section}{-1}
+\section{#1}\label{#2}
+\begin{slide}{\tocTitle}\tableofcontents[currentsubsection,subsectionstyle=show]\end{slide}
+\setboolean{onlyonerefslide}{false}
+}
+{
+\bibliographystyle{alpha}
+\ifthenelse{\boolean{onlyonerefslide}}{\begin{slide}{\refTitle}
+\bibliography{literatur}
+\end{slide}}{\begin{mslide}{\refTitle}
+\bibliography{literatur}
+\end{mslide}}
+}
+
+\newcommand{\emptypage}{\frame{}}
+\newtheorem{satz}{Satz}[section]
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{kor}{Korollar}[section]
+\newtheorem{lem}{Lemma}[section]
+
+\newcounter{bsp}
+\newenvironment{bsp}[1][]{\refstepcounter{bsp}\par\medskip\noindent%
+   \blau{Beispiel~\thebsp #1:}}{\hfill$\diamond$\medskip}
+\numberwithin{bsp}{section}
+
+\renewcommand{\qed}{\hfill$\square$}
+\newcommand{\bew}{\underline{Beweis}:~}
+\newenvironmentx{beweis}[1][1=\empty]{\ifthenelse{\equal{#1}{\empty}}{\par\medskip\noindent\bew}
+{\par\medskip\noindent\underline{Beweis} (#1):~}}{\qed}
+
+\newenvironment{slide}[1]{\blueColor\begin{frame}\frametitle{#1}}{\end{frame}}
+\newenvironment{mslide}[1]{\blueColor\begin{frame}[allowframebreaks]\frametitle{#1}}{\end{frame}}
+\newenvironment{redslide}[1]{\redColor\begin{frame}\frametitle{#1}}{\end{frame}}
+\newenvironment{redmslide}[1]{\redColor\begin{frame}[allowframebreaks]\frametitle{#1}}{\end{frame}}
+
+\usetheme{Boadilla}
+\usecolortheme{seahorse}
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{caption}[numbered]
+
+
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.7\paperwidth,ht=2.25ex,dp=1ex,left]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\space\hspace{1cm}\lecturer\hspace{1cm}\lecturetitle%\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1ex,right]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\currentsemester%\insertshorttitle
+    \hspace*{3em}
+    \insertframenumber{}%/ \inserttotalframenumber
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+
+\ifthenelse{\boolean{printlogo}}{
+\addtobeamertemplate{frametitle}{}{%
+\begin{textblock*}{100mm}(.85\textwidth,-0.75cm)
+\includegraphics[width=2cm]{aaulogo}
+\end{textblock*}
+}
+}{}
+
+\AtBeginLecture{\author{\thesection\quad\insertlecture}\frame{\titlepage}}
+
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{caption}[numbered]
+\numberwithin{figure}{section}
+
+\title[\lecturetitle]{\lecturetitle}
+\ifthenelse{\equal{\lecturesubtitle}{}}{
+\author{\phantom{Yg}\lecturer\phantom{Yg}}
+\institute{Institut für Mathematik\\Alpen-Adria Universität Klagenfurt}
+%\\\texttt{\email}}
+\date{\currentsemester}
+}
+{%non-empty subtitle
+\author{\phantom{Yg}\lecturesubtitle\phantom{Yg}}
+\institute{\lecturer\\Institut für Mathematik \\Alpen-Adria Universität Klagenfurt}
+%\\\texttt{\email}}
+\date{\currentsemester}
+}
+
+\begin{document}
+
+\blueColor
+
+%\frame{\titlepage}
+
+\begin{lect}{\vortragstitel}{lec:vortrag}
+\include{folien}
+%Falls mehr als eine Literaturfolie benötigt wird, bitte die folgende Anweisung entfernen oder auskommentieren
+\singlerefslide
+\end{lect}
+
+\end{document}

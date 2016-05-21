@@ -1,0 +1,223 @@
+\part{Conclusions \& Outlook}
+
+\chapter{Conclusion}\label{cha:conclusion}
+
+In this thesis we presented ... % the comparison of existing and the design of
+% new modelling approaches for several well-known
+% problems in facility layout and logistics. We demonstrated that semidefinite
+% relaxations provide theoretically and practically substantially tighter bounds
+% than the corresponding linear programming relaxations. Although computing 
+% SDP relaxations is more time consuming, our experiments
+% demonstrate that using them often pays off in
+% practice. Hence we were able to compute optimal solutions for many layout
+% problems, which have been considered in the literature for years, for the
+% first time. The approaches presented in this thesis are the
+% strongest exact methods to date for most row layout problems including the
+% Single-Row (Equidistant) Facility 
+% Layout Problem, the Multi-Row Equidistant Facility Layout Problem and several
+% variants of the general Multi-Row Facility Layout Problem. 
+
+% This strong practical results were possible due to the following reasons:
+% \begin{itemize}
+% \item The derivation of new theoretical results that facilitated
+% the handling of spaces: In Theorem \ref{thm:space} we showed that although the lengths
+% of the spaces are in general continuous quantities, every multi-row problem
+% has an optimal solution on the grid. In Theorem \ref{mrthm:numcol} we proved exact
+% expressions for the minimum number of spaces that need to be added so as to
+% preserve at least one optimal solution of multi-row equidistant layout problems.  
+% We demonstrated that both theoretical results have a significant impact for a
+% computational perspective.  
+% \item The execution of polyhedral studies for the different layout problems
+%   yielding tight semidefinite relaxations containing the most 
+%   important constraint classes.
+%  \item The usage of the appropriate algorithmic approach, namely bundle
+%    methods, for solving these semidefinite relaxations with a large number of constraints.
+% \end{itemize}
+
+% While there exist quite diverse exact integer linear programming approaches to the various
+% layout problems discussed (due to the different structures of the
+% underlying polytopes and the different cost functions), the presented
+% semidefinite model based on products of ordering variables is uniformly applicable to
+% all considered row and circular layout problems as it builds on the more general
+% quadratic ordering polytope. This generality 
+% distinguishes the semidefinite approach and allowed us to tackle an arbitrary
+% combination of row and circular layout problems that we denoted as Combined
+% Cell Layout Problem. Considering multiple machine cells we were able to solve
+% instances with up to 200 departments to optimality which is quite remarkable
+% for facility layout problems that are known to be notoriously difficult.
+
+% Additionally we designed new facility layout problems and appropriate algorithmic
+%   approaches thereto. On the one hand we introduced the Directed Circular
+%   Facility Layout Problem. We showed that it contains several other
+% relevant layout problems as special cases and can be solved by both heuristic and
+% exact methods as a Linear Ordering Problem. On the other hand we proposed
+% the Checkpoint Ordering Problem and the weighted Linear Ordering Problem that
+% have several interesting connections to well-known combinatorial optimization problems. 
+
+% In the logistic part of the thesis we tackled the Target
+% Visitation Problem, which is a variant of the famous Traveling Salesman
+% Problem, via a semidefinite formulation and demonstrated the
+% efficiency of our approach on a variety of benchmark instances with up to 50
+% targets. We also conducted a polyhedral study of the corresponding polytope,
+% improving a semidefinite relaxation proposed by \citet{new04}. We related our relaxation to
+% other linear and semidefinite relaxations for the Linear Ordering Problem and
+% for the Traveling Salesman Problem and
+% elaborated on its connection to the Max Cut problem. While the Target
+% Visitation Problem has
+% applications in environmental assessment, combat search and rescue and
+% disaster relief, we suggested another variant of the Traveling Salesman
+% Problem with applications in
+% beam melting. We examined the length and structure of the optimal 
+% traveling salesman tours considering different types of forbidden
+% neighborhoods on grid graphs.
+
+In a nutshell/ in summary we did this and that ... % extended the application area of
+% semidefinite optimization and combinatorial optimization in facility layout
+% and logistics through the design of 
+% new optimization problems and the development of efficient algorithmic frameworks based
+% on semidefinite (and linear) programming. 
+
+% Furthermore we demonstrated that our SDP algorithm outperforms some other semidefinite methods proposed for special ordering problems. This is due to the interaction of the following three advancements
+% \begin{itemize}
+% \item the usage of a stronger semidefinite relaxation,
+% \item the appropriate algorithmic approach for solving this relaxation,
+% \item the usage of a strong SDP based heuristic.
+% \end{itemize}
+
+% While there exist quite diverse exact ILP approaches to the various
+% ordering problems (due to the different structures of the
+% underlying polytopes and the different cost functions), the
+% semidefinite approach is uniformly applicable to all of these problems, as it works on the more general linear-quadratic ordering polytope. This generality distinguishes the semidefinite approach. We only have to adapt the cost function to compute all kinds of ordering problems with linear or quadratic cost structure.
+ 
+% In this thesis, we also introduced a new drawing paradigm for layered graphs.
+% We presented the concept of verticality as a novel optimization goal. Using our non-proper drawing scheme, we can vastly reduce the size of the according Multi-level Verticality Optimization Problem and
+% consequently obtain (near-)optimal, (well-)readable drawings of graphs
+% much too large for other approaches available. We also proposed
+% several heuristic and exact approaches to solve Multi-level
+% Verticality Optimization, compared them theoretically and practically
+% and designed a drawing algorithm to visually illustrate the (near-)optimal solutions.
+
+
+\chapter{Outlook}\label{cha:outlook}
+
+We want to conclude by pointing out several research directions that emerged
+during the work on ... % the projects connected to this thesis. Proposing
+% semidefinite models to (combinatorial) optimization problems in facility
+% layout and logistics is a very new and fruitful area of research, hence there
+% are plenty of unexploited ideas building on the findings and results presented
+% here. First we want to refer to the concluding sections of the papers collected in 
+% this thesis, where several possible extensions and generalizations of the
+% current models and approaches are pointed out. Furthermore Chapter \ref{cha:ext}
+% contains three new current projects.
+% At the moment we are also working on incorporating the SDP based bounds for the
+% various row layout problems in a Branch-and-Bound framework. In the
+% following few paragraphs we would like to give an outlook on some additional plans.
+
+% There exist various integer linear programming and mixed integer programming
+% models for single- and multi-row layout 
+% problems that have been reviewed in Chapters \ref{cha:srflp} and \ref{cha:mrf}
+% respectively. In the future we aim to develop alternative SDP models for various layout 
+% problems that are not only based on products of ordering variables. A first step into
+% that direction has already been taken by the 
+% semidefinite model for the Multi-Row Equidistant Facility Layout Problem % \MREFLP 
+% that allows to optimize simultaneously over
+% the row assignments and the positions of the departments within each
+% row. Extending this idea to the general multi-row case is planned.
+
+
+% Concerning circular layouts we think that the papers included in this
+% thesis open up several further worthwhile fields of research:
+% \begin{itemize}
+% % \item exact LOP approaches
+% \item We would like to extend the Directed Circular Facility Layout Problem %\DCF 
+% to the case,
+% where more than one circle is present and hence 
+% % simultaneous optimization over 
+% the assignment of departments to the different circles and the arrangement of
+% the departments within each circle are part of the optimization problem.
+% \item A first step into that direction could be the investigation of the
+%   equidistant special case, % with departments of equal length, 
+%   i.e.\ the extension of the analysis from Chapter \ref{cha:dref} to circular
+%   layouts.
+% \item Furthermore circular layouts also allow for assembling more complex
+%   structures like e.g. overlapping circles. Designing appropriate models for
+%   such layouts is for sure another challenging task.
+% \end{itemize}
+
+% The paper dealing with the Combined Cell Layout Problem %\CL 
+% in Chapter \ref{cha:cli} can be viewed as a
+% first step towards approximating general two-dimensional layouts (that are
+% extremely hard to solve, see e.g. \cite{jach11}) through a
+% combination of row and circular layouts. The next step into this direction 
+% would be the definition of an appropriate transformation routine that converts two
+% dimensional departments from a general
+% two dimensional facility into an appropriate number of machine cells with row or circular
+% layouts, i.e. to an input of the Combined Cell Layout Problem. %\CL.
+
+% Finally we plan to analyze so-called comb structures, i.e.\ the arrangement of
+% departments along 
+% horizontal and vertical rows that are allowed to overlap. A related layout
+% problem that has been studied in the literature is the 
+% Multi-Bay Manufacturing Facility Layout Problem \cite{me97,cape04}. 
+% Designing %extending 
+% optimization problems with an underlying
+% combinatorial structure (and of course also the corresponding %efficient
+% exact optimization approaches) for this problem type is another possibility to tackle
+% more and more general layout structures in an efficient way, which is
+% obviously the ultimate goal of our research.
+
+
+% We want to conclude by pointing out several research questions and
+% plans that arose during the development of the material of this
+% thesis. Regarding the theoretical part we plan to provide further results
+% comparing the strength of SDP and ILP approaches, e.g.\ for the minimum
+% Linear Arrangement Problem. We also want to investigate if some of the
+% constraint classes that we deduced for tightening the basic
+% semidefinite relaxation are facet defining for the linear-quadratic
+% ordering polytope. Additionally we plan to conduct a polyhedral study
+% of the multi-level quadratic ordering polytopes in small dimensions.
+
+% With respect to the practical part we plan to apply our SDP approach
+% to further ordering problems mentioned in this thesis, like the
+% Physical Mapping Problem with End Probes or Crossing Minimization in
+% Tanglegrams. 
+% % We want to apply the tightening strategies proposed in
+% % Chapter \ref{cha:gqop} to several ordering problems, studying their
+% % practical merits and computational costs. 
+
+% We also came across a very challenging problem in graph drawing. We
+% want to design an exact semidefinite approach for minimizing the
+% number of crossings (or also maximizing the verticality) in extended
+% level graphs, i.e.\ level graphs with both inter-level and intra-level
+% edges. Drawing extended level graphs, e.g.\ for displaying centrality
+% values of actors, was addressed as one of the open problems in social
+% network visualization \cite{brra01}. Bachmaier et al.\ \cite{babu10a}
+% proposed several heuristics for this problem, but there does not exist
+% any exact approach yet. In extended level graphs intra-level edges are
+% drawn as semicircles with different 
+% radii on one side of the level lines. Thus minimizing intra-level edge
+% crossings is equivalent to crossing minimization on the circle, where
+% the vertices lie on a circle and edges are drawn as straight lines
+% within the circle. We can formulate this problem as an IQP in
+% betweenness variables. Hence matrix liftings and semidefinte
+% relaxations seem to be the appropriate tools to design an efficient
+% exact method for crossings minimization in extended level graphs. 
+
+% Therefore it seems to be worthwhile to think about ways to further
+% improve the presented approach. There are three (combinable)
+% directions to enhance the presented SDP based relaxations of ordering
+% problems. First we could include additional constraint classes to
+% further tighten the relaxation (we already presented several ideas to
+% do so and provided encouraging preliminary computational
+% results). Secondly we could incorporate the SDP based bounds in a
+% Branch-and-Bound framework and thirdly we could speed up the
+% computations over the elliptope, which constitute the computational
+% bottleneck of our algorithm, by using first-order methods instead of
+% interior-point methods.
+
+% the semidefinite betweenness approach is maybe also applicable for
+% Zarankiewicz
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "master"
+%%% End: 

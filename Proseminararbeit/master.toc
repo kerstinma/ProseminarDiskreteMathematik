@@ -1,0 +1,18 @@
+\select@language {german}
+\contentsline {section}{Abstract}{1}{Doc-Start}
+\contentsline {section}{\numberline {1}Einleitung}{3}{section.1}
+\contentsline {section}{\numberline {2}Grundbegriffe}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Grundbegriffe aus der (Linearen) Algebra}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Grundbegriffe der Graphentheorie}{5}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Stable Set}{5}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}k-F\IeC {\"a}rbbarkeit}{5}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Maximaler Schnitt}{5}{subsubsection.2.2.3}
+\contentsline {subsection}{\numberline {2.3}Polynomdarstellung kombinatorischer Probleme}{7}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Stable Set}{7}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}k-F\IeC {\"a}rbbarkeit}{7}{subsubsection.2.3.2}
+\contentsline {subsubsection}{\numberline {2.3.3}Maximaler Schnitt}{7}{subsubsection.2.3.3}
+\contentsline {section}{\numberline {3}Hilberts Nullstellensatz}{8}{section.3}
+\contentsline {subsection}{\numberline {3.1}Relaxierungen mit Hilfe der Linearen Algebra}{8}{subsection.3.1}
+\contentsline {section}{\numberline {4}Algorithmus Nullstellensatz in der Linaren Algebra (NulLa)}{9}{section.4}
+\contentsline {section}{\numberline {5}Vergleich mit anderen Algorithmen zur 3-F\IeC {\"a}rbbarkeit}{9}{section.5}
+\contentsline {section}{\numberline {6}Beweis Nullstellensatz}{9}{section.6}

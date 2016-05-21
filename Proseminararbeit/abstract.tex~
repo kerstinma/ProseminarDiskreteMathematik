@@ -1,0 +1,108 @@
+\vspace*{0.2cm}\section*{Abstract}
+
+Semidefinite Programming (SDP), Facility Layout and Logistics have been very
+active research areas over the last decades. SDP is the extension of 
+linear programming to linear optimization over 
+the cone of symmetric positive semidefinite matrices.
+Facility layout is concerned with the optimal location of departments inside a plant 
+according to a given objective function and logistics is the management of the
+flow of goods between the point of origin and the point of consumption in
+order to meet some requirements, for example, of customers or corporations. 
+
+The main contributions of this thesis are the comparison of existing and the
+design of new exact approaches based on linear, quadratic and
+semidefinite relaxations for several 
+facility layout and logistic problems. Facility layout problems discussed in
+this thesis are the Single-Row Facility Layout Problem, the
+$k$-Parallel Row Ordering Problem % , 
+%the Space-Free Multi-Row Facility Layout Problem 
+and the Multi-Row
+Facility Layout Problem. These layout problems are of special interest for
+optimizing flexible manufacturing systems. But they can also
+be successfully applied to areas like sever design and typewriter keyboard
+design. Additionally these layout problems arise in a large number of
+applications in other diverse fields as logistics and scheduling. 
+
+Up to now there existed quite diverse exact approaches to the various problem
+types mentioned above. We
+aim to highlight their connections and to  
+present a unifying approach by showing that the proposed semidefinite model
+based on products of ordering variables
+can be successfully applied to many different layout problems. 
+We show the
+efficiency of our algorithm by providing extensive computational results for a
+large variety of problem classes, solving many instances that have been
+considered in the literature for years to optimality for the first
+time. In particular we demonstrate that our semidefinite approach is the
+strongest exact method to date for most row layout problems including the
+Single-Row (Equidistant) Facility 
+Layout Problem, the Multi-Row Equidistant Facility Layout Problem and several
+variants of the general Multi-Row Facility Layout Problem. 
+
+% As our semidefinite approach is applicable to both row and circular layout
+% problems, we propose to optimize the layout of different cells Combined Cell
+% Layout Problem 
+
+Due to the generality of our SDP method, we can also use it to
+simultaneously optimize over multiple machine cells exhibiting different
+layout types. We formally define the corresponding Combined Cell Layout Problem
+and indicate its theoretical and practical advantages.
+
+Additionally three
+new layout problems are introduced, namely the Directed Circular Facility
+Layout Problem, the Checkpoint Ordering Problem and the weighted Linear
+Ordering Problem. We indicate the relevance and applications of these new
+problems and suggest both heuristic and exact methods for solving them.
+
+% On the
+% one hand we show 
+% that the Directed Circular Facility Layout Problem contains several other
+% relevant layout 
+% problems as special cases and that it can be solved by both heuristic and
+% exact methods more efficiently than the Single-Row Facility
+% Layout Problem. On the other hand we reveal that the seemingly very easy
+% Checkpoint Ordering Problem is in fact very hard to solve in practice.
+
+Furthermore we concern ourselves with two variants of the famous Traveling Salesman
+Problem. The Target Visitation Problem considers, additionally to the
+distances travelled, preferences for visiting the different targets. We
+propose a semidefinite formulation and demonstrate the 
+efficiency of our approach on a variety of benchmark instances.
+We also conduct a polyhedral study of the corresponding polytope,
+improving a semidefinite relaxation proposed by Newman. While the Target
+Visitation Problem  has
+applications in environmental assessment, combat search and rescue and
+disaster relief, we suggest another variant of the Traveling Salesman
+Problem with applications in 
+beam melting. We examine the length and structure of the optimal 
+traveling salesman tours considering different types of forbidden
+neighborhoods on grid graphs.
+
+From an algorithmic point of view the core of the approach used most
+frequently in this thesis is to approximately 
+solve tight SDP 
+relaxations for the different layout and logistic problems mentioned above by 
+using a dynamic version of the bundle method
+in conjunction with interior point 
+methods. The resulting fractional solutions 
+constitute lower bounds for the problems. 
+By the use of the hyperplane rounding algorithm of
+Goemans-Williamson together with an appropriate repair strategy,
+we can exploit such fractional solutions to 
+obtain upper bounds, i.e., integer 
+feasible solutions that describe a feasible layout of the departments or
+feasible tours respectively. Hence, in
+the end we have some feasible solution, 
+together with a certificate of how far this solution could possibly be from
+the true optimum. 
+
+In summary we extend the application area of
+semidefinite and combinatorial optimization in facility layout
+and logistics through the design of 
+new optimization problems and the development of efficient algorithmic frameworks based
+on semidefinite (and linear) programming. 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "master"
+%%% End: 

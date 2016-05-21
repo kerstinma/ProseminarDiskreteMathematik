@@ -1,0 +1,176 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[german]{babel} 
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{stmaryrd}
+%\usepackage{hyperref}
+\usepackage{xspace}
+\usepackage{url}
+\usepackage{comment}
+\newcommand{\say}[1]{\marginpar{#1}}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{colortbl}
+\usepackage{subfigure}
+\usepackage{appendix}
+\usepackage{sidecap}
+\usepackage{capt-of}
+\usepackage{savefnmark}
+ \usepackage{longtable}
+\usepackage[pdftex]{lscape}
+\usepackage{afterpage}
+\usepackage{tikz}
+\usepackage[pdfborder={0 0 0}]{hyperref}
+\usepackage{dsfont}
+%\usepackage{enumitem} 
+\usepackage{morefloats}
+\usepackage{setspace}
+%\usepackage{slashbox}
+\usepackage[oldenum,olditem]{paralist}
+\usepackage[final]{pdfpages}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{here}
+
+%tikz graphics
+\usepackage{pgf}
+\usepackage{graphics}
+\usepackage[margin=1in]{geometry}
+\usetikzlibrary{arrows,automata}
+ %to enable backgrounds in tikz graphics -> edges do not overlay vertices
+\usetikzlibrary{backgrounds}
+\pgfdeclarelayer{myback}
+\pgfsetlayers{background,myback,main}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathmorphing,patterns}
+\usetikzlibrary{calc,patterns,decorations.markings}
+\usetikzlibrary{decorations.pathreplacing}
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+
+\newcommand{\vars}[1]{\textsc{#1}}
+\newcommand{\meth}[1]{\texttt{\textbf{#1}}}
+\newcommand{\true}{\textbf{true}}
+\newcommand{\false}{\textbf{false}}
+\usepackage[textsize=tiny]{todonotes}
+\usepackage{enumerate} 
+\usepackage{memhfixc}
+\usepackage{hyphenat} 
+
+\makeatletter
+\let\NAT@parse\undefined
+\makeatother
+
+\usepackage[sort,numbers]{natbib}
+\usepackage{afterpage}
+\usepackage{refcount}
+\usepackage{graphicx}
+
+%pagelayout
+\oddsidemargin -12pt
+\evensidemargin -12pt
+\topmargin -32pt
+\textheight 650pt
+\textwidth 460pt
+\def\baselinestretch{1.1}
+
+\newtheoremstyle{dotless}{}{}{\itshape}{}{\bfseries}{}{ }{}
+\theoremstyle{dotless}
+
+% Theorem definitions
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{corollary}{Korollar}[section]
+%\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{example}{Beispiel}[section]
+\newtheorem{note}{Anmerkung}[section]
+%\newtheorem{lem}[theorem]{Lemma}
+%\newtheorem{fact}[theorem]{Fact}
+%\newtheorem{proposition}[theorem]{Proposition} \newtheorem{rem}{Remark}
+%\newtheorem{obs}[theorem]{Observation}
+%\newtheorem{exam}[theorem]{Example}
+%\newenvironment{example}{%
+%\italicenvfalser
+%\begin{exam}}{\end{exam}\italicenvtrue}
+%\newcommand{\keywords}[1]{\par\noindent
+%{\small{\em Keywords\/}: #1}}
+%\newcommand{\abstract}[1]{\par\noindent
+%{\small{\bf Abstract\/}: #1}}
+%\newcommand{\authors}[1]{\par\noindent
+%{\small{\bf Authors\/}: #1}}
+%\newcommand{\savefootnote}[2]{\footnote{\label{#1}#2}}
+%\newcommand{\repeatfootnote}[1]{\textsuperscript{\ref{#1}}}
+
+\makeindex
+
+\begin{document}
+
+
+%
+% Vorspann
+%
+
+
+\begin{titlepage}
+\vspace*{1cm}
+  \begin{center}   
+	    \LARGE \textbf{Anna Jellen} \\
+      \LARGE \textbf{Kerstin Maier}
+  \end{center}
+\vspace{1cm}
+  \begin{center}
+ \Huge \textbf{Der Nullstellensatz in der Diskreten Mathematik} 
+  \end{center}
+\vspace{1cm}
+\begin{center}
+\huge  \textsc{Proseminararbeit}
+\end{center}
+\vspace{1cm}
+\begin{center}
+\LARGE Alpen-Adria-Universit\"{a}t Klagenfurt\\
+\LARGE Fakult\"{a}t f\"{u}r  Technische Wissenschaften
+\end{center}
+\vspace{1.5cm}
+\Large
+\begin{center}
+ Betreuer:  \= Assoc.Prof. Dipl.-Ing.Dr. Angelika Wiegele 
+ \\ Institut f\"{u}r Mathematik, Universität Klagenfurt\\ \end{center}
+  \begin{flushright} Sommersemester 2016 \end{flushright}
+\end{titlepage}
+
+
+\addcontentsline{toc}{section}{Abstract}
+\include{abstract}
+\nocite{*}
+
+\renewcommand{\contentsname}{Inhaltsverzeichnis}
+
+\tableofcontents
+
+
+
+\include{Nullstellensatz}
+\include{Wermachtwas}
+
+
+\listoffigures
+%\addcontentsline{toc}{chapter}{Literaturverzeichnis} 
+\bibliographystyle{abbrvnat}
+%\renewcommand{\bibfont}{\normalsize} 
+\bibliography{akp}
+% rendl: general purpose huge bib-file
+
+
+\end{document}
+
+
+%%% Local Variables:  
+%%% mode: latex 
+%%% TeX-master: t 
+%%% End: \documentclass[10pt,a4paper]{article}

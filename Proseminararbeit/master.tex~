@@ -1,0 +1,424 @@
+\documentclass{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[german, english]{babel} 
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{makeidx}
+\usepackage{graphicx}
+%\usepackage{hyperref}
+\usepackage{xspace}
+\usepackage{url}
+\usepackage{comment}
+\newcommand{\say}[1]{\marginpar{#1}}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{colortbl}
+\usepackage{subfigure}
+\usepackage{appendix}
+\usepackage{sidecap}
+\usepackage{capt-of}
+\usepackage{savefnmark}
+ \usepackage{longtable}
+\usepackage[pdftex]{lscape}
+\usepackage{afterpage}
+\usepackage{tikz}
+\usepackage[pdfborder={0 0 0}]{hyperref}
+\usepackage{dsfont}
+\usepackage{enumitem} 
+\usepackage{morefloats}
+\usepackage{setspace}
+\usepackage{slashbox}
+\usepackage[oldenum,olditem]{paralist}
+\usepackage[final]{pdfpages}
+
+
+\makeatletter
+\let\NAT@parse\undefined
+\makeatother
+
+\usepackage[sort,numbers]{natbib}
+\usepackage{afterpage}
+\usepackage{refcount}
+\usepackage{graphicx}
+
+\setlength{\bibsep}{0.0pt}
+\newcommand{\LOPs}{{\tt (LOPs)}\xspace}
+\newcommand{\wLOP}{{\tt (wLOP)}\xspace}
+\newcommand{\wLOPN}{{\tt wLOP}\xspace}
+\newcommand{\gwLOP}{{\tt (gwLOP)}\xspace}
+\newcommand{\gwLOPN}{{\tt gwLOP}\xspace}
+\newcommand{\wlo}{w.\,l.\,o.\,g\mbox{.}\xspace}
+\newcommand{\ie}{{i.\,e\mbox{.}}\xspace}
+\newcommand{\eg}{{e.\,g\mbox{.}}\xspace}
+\newcommand{\resp}{resp\mbox{.}\xspace}
+\newcommand{\wrt}{w.\,r.\,t\mbox{.}\xspace}
+\newcommand{\field}[1]{\mathbb{#1}}
+\newcommand{\CL}{{\tt (CCLP)}\xspace}
+\newcommand{\CLs}{{\tt (CCLPs)}\xspace}
+\newcommand{\SFDRF}{{\tt (SF-DRFLP)}\xspace}
+\newcommand{\PROP}{{\tt (PROP)}\xspace}
+\newcommand{\QAP}{{\tt (QAP)}\xspace}
+\newcommand{\DCA}{{\tt (DCAP)}\xspace}
+\newcommand{\DCAN}{{\tt DCAP}\xspace}
+\newcommand{\UCF}{{\tt (UCFLP)}\xspace}
+\newcommand{\UCFN}{{\tt UCFLP}\xspace}
+\newcommand{\BUCF}{{\tt (BUCFLP)}\xspace}
+\newcommand{\BUCFN}{{\tt BUCFLP}\xspace}
+\newcommand{\EUCF}{{\tt (EUCFLP)}\xspace}
+\newcommand{\EUCFN}{{\tt EUCFLP}\xspace}
+\newcommand{\LA}{{\tt (LA)}\xspace}
+\newcommand{\wLA}{{\tt (wLA)}\xspace}
+\newcommand{\LAN}{{\tt LA}\xspace}
+\newcommand{\SREF}{{\tt (SREFLP)}\xspace}
+\newcommand{\SREFN}{{\tt SREFLP}\xspace}
+\newcommand{\MRF}{{\tt (MRFLP)}\xspace}
+\newcommand{\ATSP}[1]{P_{\it ATSP}^{#1}}
+\newcommand{\PolLOP}[1]{{\cal P}_{\text{LOP}}^{#1}}
+\newcommand{\MTV}[1]{MTV(#1)}
+\newcommand{\LPLOP}{{\tt (LP$_{\text{LOP}}$)}\xspace}
+\newcommand{\LPLOPN}{{\tt LP$_{\text{LOP}}$}\xspace}
+\newcommand{\LPML}{{\tt (LP$_{\text{MLCM}}$)}\xspace}
+\newcommand{\LPMLN}{{\tt LP$_{\text{MLCM}}$}\xspace}
+\newcommand{\mLA}{{\tt (minLA)}\xspace}
+\newcommand{\mLAN}{{\tt minLA}\xspace}
+\newcommand{\MLCM}{{\tt (MLCM)}\xspace}
+\newcommand{\MLCMN}{{\tt MLCM}\xspace}
+\newcommand{\MLVO}{{\tt (MLVO)}\xspace}
+\newcommand{\MLVON}{{\tt MLVO}\xspace}
+\newcommand{\MLVAC}{{\tt (MLVAC)}\xspace}
+\newcommand{\MLCVO}{{\tt (MLCVO)}\xspace}
+\newcommand{\MLP}{{\tt (MLP)}\xspace}
+\newcommand{\PMP}{{\tt (PMP)}\xspace}
+\newcommand{\MQOP}{{\tt (MQOP)}\xspace}
+\newcommand{\BCM}{{\tt (BCM)}\xspace}
+\newcommand{\TCM}{{\tt (TCM)}\xspace}
+\newcommand{\QOP}{{\tt (QOP)}\xspace}
+\newcommand{\QOPs}{{\tt (QOPs)}\xspace}
+\newcommand{\LPa}{{\tt (LP$_{1}$)}\xspace}
+\newcommand{\LPb}{{\tt (LP$_{2}$)}\xspace}
+\newcommand{\LP}{{\tt (LP)}\xspace}
+\newcommand{\LPN}{{\tt LP}\xspace}
+\newcommand{\SRF}{{\tt (SRFLP)}\xspace}
+\newcommand{\LOP}{{\tt (LOP)}\xspace}
+\newcommand{\LOPN}{{\tt LOP}\xspace}
+\newcommand{\wBP}{{\tt (wBP)}\xspace}
+\newcommand{\COP}{{\tt (COP)}\xspace}
+\newcommand{\SRFN}{{\tt SRFLP}\xspace}
+\newcommand{\Az} {{\tt (A$_0$)}\xspace}
+\newcommand{\AzN} {{\tt A$_0$}\xspace}
+\newcommand{\SDPz} {{\tt (SDP$_0$)}\xspace}
+\newcommand{\SDPzN} {{\tt SDP$_0$}\xspace}
+\newcommand{\SDPa} {{\tt (SDP$_1$)}\xspace}
+\newcommand{\SDPaN} {{\tt SDP$_1$}\xspace}
+\newcommand{\MCa} {{\tt (MC$_1$)}\xspace}
+\newcommand{\MCaN} {{\tt MC$_1$}\xspace}
+\newcommand{\Aa} {{\tt (A$_1$)}\xspace}
+\newcommand{\AaN} {{\tt A$_1$}\xspace}
+\newcommand{\Pn} {{\tt (P)}\xspace}
+\newcommand{\PN} {{\tt P}\xspace}
+\newcommand{\Dn} {{\tt (D)}\xspace}
+\newcommand{\DN} {{\tt D}\xspace}
+\newcommand{\SDPb} {{\tt (SDP$_2$)}\xspace}
+\newcommand{\SDPbN} {{\tt SDP$_2$}\xspace}
+\newcommand{\MCb} {{\tt (MC$_2$)}\xspace}
+\newcommand{\MCbN} {{\tt MC$_2$}\xspace}
+\newcommand{\MCc} {{\tt (MC$_3$)}\xspace}
+\newcommand{\MCcN} {{\tt MC$_3$}\xspace}
+\newcommand{\MCd} {{\tt (MC$_4$)}\xspace}
+\newcommand{\LPTSP}{{\tt (LP$_{\text{TSP}}$)}\xspace}
+\newcommand{\MCdN} {{\tt MC$_4$}\xspace}
+\newcommand{\Ab} {{\tt (A$_2$)}\xspace}
+\newcommand{\AbN} {{\tt A$_2$}\xspace}
+\newcommand{\LOPCUT} {{\tt (LOPCUT)}\xspace}
+\newcommand{\LOPCUTN} {{\tt LOPCUT}\xspace}
+\newcommand{\SDPoa} {{\tt (SDP$_1^{\text{ord}}$)}\xspace}
+\newcommand{\SDPoaN} {{\tt SDP$_1^{\text{ord}}$}\xspace}
+\newcommand{\SDPob} {{\tt (SDP$_2^{\text{ord}}$)}\xspace}
+\newcommand{\SDPobN} {{\tt SDP$_2^{\text{ord}}$}\xspace}
+\newcommand{\SDPoc} {{\tt (SDP$_3^{\text{ord}}$)}\xspace}
+\newcommand{\SDPocN} {{\tt SDP$_3^{\text{ord}}$}\xspace}
+\newcommand{\SDPod} {{\tt (SDP$_4^{\text{ord}}$)}\xspace}
+\newcommand{\SDPodN} {{\tt SDP$_4^{\text{ord}}$}\xspace}
+\newcommand{\SDPpz} {{\tt (SDP$_0^{\text{cut}}$)}\xspace}
+\newcommand{\SDPpzN} {{\tt SDP$_0^{\text{cut}}$}\xspace}
+\newcommand{\SDPpa} {{\tt (SDP$_1^{\text{cut}}$)}\xspace}
+\newcommand{\SDPpaN} {{\tt SDP$_1^{\text{cut}}$}\xspace}
+\newcommand{\SDPpb} {{\tt (SDP$_2^{\text{cut}}$)}\xspace}
+\newcommand{\SDPpbN} {{\tt SDP$_2^{\text{cut}}$}\xspace}
+\newcommand{\SDPpc} {{\tt (SDP$_3^{\text{cut}}$)}\xspace}
+\newcommand{\SDPpcN} {{\tt SDP$_3^{\text{cut}}$}\xspace}
+\newcommand{\SDPpd} {{\tt (SDP$_4^{\text{cut}}$)}\xspace}
+\newcommand{\SDPpdN} {{\tt SDP$_4^{\text{cut}}$}\xspace}
+\newcommand{\SDPpe} {{\tt (SDP$_5^{\text{cut}}$)}\xspace}
+\newcommand{\SDPpeN} {{\tt SDP$_5^{\text{cut}}$}\xspace}
+\newcommand{\SDPpf} {{\tt (SDP$_6^{\text{cut}}$)}\xspace}
+\newcommand{\SDPpfN} {{\tt SDP$_6^{\text{cut}}$}\xspace}
+\newcommand{\SDPpg} {{\tt (SDP$_7^{\text{cut}}$)}\xspace}
+\newcommand{\SDPpgN} {{\tt SDP$_7^{\text{cut}}$}\xspace}
+\newcommand{\SDPas} {{\tt SDP$^{\text{ass}}$}\xspace}
+\newcommand{\SDPh} {{\tt SDP$^{\text{ham}}$}\xspace}
+\newcommand{\SDPc} {{\tt (SDP$_3$)}\xspace}
+\newcommand{\SDPcN} {{\tt SDP$_3$}\xspace}
+\newcommand{\SDPd} {{\tt (SDP$_4$)}\xspace}
+\newcommand{\SDPdN} {{\tt SDP$_4$}\xspace}
+\newcommand{\SDPah} {{\tt (SDP$_1^{100}$)}\xspace}
+\newcommand{\SDPbh} {{\tt (SDP$_2^{100}$)}\xspace}
+\newcommand{\SDPch} {{\tt (SDP$_3^{100}$)}\xspace}
+\newcommand{\SDPdh} {{\tt (SDP$_4^{100}$)}\xspace}
+\newcommand{\SDPbz} {{\tt SDP$_2^{250}$}\xspace}
+\newcommand{\SDPaf} {{\tt SDP$_1^{25}$}\xspace}
+\newcommand{\SDPbr} {{\tt (SDP$_2^{r}$)}\xspace}
+\newcommand{\SDPe} {{\tt (SDP$_5$)}\xspace}
+\newcommand{\SDPeN} {{\tt SDP$_5$}\xspace}
+\newcommand{\SDPf} {{\tt (SDP$_6$)}\xspace}
+\newcommand{\SDPfN} {{\tt SDP$_6$}\xspace}
+\newcommand{\SDPg} {{\tt (SDP$_7$)}\xspace}
+\newcommand{\SDPgN} {{\tt SDP$_7$}\xspace}
+\newcommand{\SDPi} {{\tt (SDP$_{I}$)}\xspace}
+\newcommand{\SDPiN} {{\tt SDP$_{I}$}\xspace}
+\newcommand{\SDPj} {{\tt (SDP$_{IV}$)}\xspace}
+\newcommand{\SDPjN} {{\tt SDP$_{IV}$}\xspace}
+\newcommand{\SDPk} {{\tt (SDP$_{II}$)}\xspace}
+\newcommand{\SDPl} {{\tt (SDP$_{III}$)}\xspace}
+\newcommand{\SDPq} {{\tt (SDP$_q$)}\xspace}
+\newcommand{\SDPqN} {{\tt SDP$_q$}\xspace}
+\newcommand{\SDPt} {{\tt (SDP$_t$)}\xspace}
+\newcommand{\SDPtN} {{\tt SDP$_t$}\xspace}
+\newcommand{\SDPta} {{\tt (SDP$_{\text{trivial}}$)}\xspace}
+\newcommand{\SDPtaN} {{\tt SDP$_{\text{trivial}}$}\xspace}
+\newcommand{\SDPtb} {{\tt (SDP$_{\text{basic}}$)}\xspace}
+\newcommand{\SDPtbN} {{\tt SDP$_{\text{basic}}$}\xspace}
+\newcommand{\SDPtc} {{\tt (SDP$_{\text{cheap}}$)}\xspace}
+\newcommand{\SDPtcN} {{\tt SDP$_{\text{cheap}}$}\xspace}
+\newcommand{\SDPts} {{\tt (SDP$_{\text{standard}}$)}\xspace}
+\newcommand{\SDPtsN} {{\tt SDP$_{\text{standard}}$}\xspace}
+\newcommand{\SDPtd} {{\tt (SDP$_{\text{full}}$)}\xspace}
+\newcommand{\SDPtdN} {{\tt SDP$_{\text{full}}$}\xspace}
+%\newcommand{\SDPbr} {{\ttfamily (SDP$_{\text{basic}}^m$)}\xspace}
+\newcommand{\SDPbrN} {{\ttfamily SDP$_{\text{basic}}^m$}\xspace}
+\newcommand{\nv}{\mathfrak{d}}
+\newcommand{\IDMp}{{\tt (DM')}\xspace}
+\newcommand{\IDMpN}{{\tt DM'}\xspace}
+\newcommand{\IDM}{{\tt (DM)}\xspace}
+\newcommand{\IDMN}{{\tt DM}\xspace}
+\newcommand{\CDM}{{\tt (cDM)}\xspace}
+\newcommand{\CDMp}{{\tt (cDM')}\xspace}
+\newcommand{\IOMp}{{\tt (OM')}\xspace}
+\newcommand{\IOMpN}{{\tt OM'}\xspace}
+\newcommand{\IOM}{{\tt (OM)}\xspace}
+\newcommand{\COMp}{{\tt (cOM')}\xspace}
+\newcommand{\COM}{{\tt (cOM)}\xspace}
+\newcommand{\thmNum}[1]{\setcounter{thm}{\ref{#1}}\addtocounter{thm}{-1}}
+\newcommand{\QPP} {{\tt (QPP)}\xspace}
+\newcommand{\QPPN} {{\tt QPP}\xspace}
+\newcommand{\MCN} {{\tt MC}\xspace}
+\newcommand{\MC} {{\tt (MC)}\xspace}
+\newcommand{\IPM}{{\tt (IPMs)}\xspace}
+\newcommand{\SDPN} {{\tt SDP}\xspace}
+\newcommand{\DCF}{{\tt (DCFLP)}\xspace}
+\newcommand{\DCFN}{{\tt DCFLP}\xspace}
+\newcommand{\kPROP}{{\tt (kPROP)}\xspace}
+\newcommand{\SFMRF}{{\tt (SF-MRFLP)}\xspace}
+\newcommand{\DRF}{{\tt (DRFLP)}\xspace}
+\newcommand{\wBWP}{{\tt (wBWP)}\xspace}
+\newcommand{\ASP}{{\tt (ASP)}\xspace}
+\newcommand{\FASP}{{\tt (FASP)}\xspace}
+\newcommand{\TSP}{{\tt (TSP)}\xspace}
+\newcommand{\TVP}{{\tt (TVP)}\xspace}
+\newcommand{\TVPs}{{\tt (TVPs)}\xspace}
+\newcommand{\LPTVP}{{\tt (LP$_{\text{TVP}}$)}\xspace}
+\newcommand{\SDP} {{\tt (SDP)}\xspace}
+\newcommand{\kPROPN}{{\tt kPROP}\xspace}
+\newcommand{\SDPba} {{\tt (SDP)}\hspace{-0.08cm}}
+\newcommand{\LPba}{{\tt (LP)}\hspace{-0.08cm}}
+ \setcounter{tocdepth}{1}
+\newcommand{\RMRFN}{{\tt SF-MRFLP}\xspace}
+\newcommand{\COPs}{{\tt (COPs)}\xspace}
+\newcommand{\COPN}{{\tt  COP}\xspace}
+\newcommand{\SRFs}{{\tt (SRFLPs)}\xspace}
+\newcommand{\SDPQPPN} {{\tt SDP-QPP}\xspace}
+\newcommand{\SDPQPP} {{\tt (SDP-QPP)}\xspace}
+\newcommand{\TSPN}{{\tt TSP}\xspace}
+\newcommand{\st}{\mbox{s.t.}}
+\newcommand{\SDPs} {{\tt (SDP$_{\text{standard}}$)}\xspace}
+\newcommand{\SDPsN} {{\tt SDP$_{\text{standard}}$}\xspace}
+\newcommand{\SDPab}{{\tt (SDP)}\hspace{-0.08cm}}
+\newcommand{\DREFLP}{{\ttfamily (DREFLP)}\xspace}
+\newcommand{\MREFLP}{{\ttfamily (MREFLP)}\xspace}
+\newcommand{\DREFLPN}{{\ttfamily DREFLP}\xspace}
+\newcommand{\MREFLPN}{{\ttfamily MREFLP}\xspace}
+\newcommand{\MREF}{{\ttfamily (MREFLP)}\xspace}
+\newcommand{\DREF}{{\ttfamily (DREFLP)}\xspace}
+\newcommand{\MREFN}{{\ttfamily (MREFLP)}\xspace}
+\newcommand{\DREFN}{{\ttfamily (DREFLP)}\xspace}
+%\newcommand{\DRF}{{\ttfamily (DRFLP)}\xspace}
+\newcommand{\DRFN}{{\ttfamily DRFLP}\xspace}
+%\setboolean{@twoside}{false}
+
+%pagelayout
+\oddsidemargin -12pt
+\evensidemargin -12pt
+\topmargin -32pt
+\textheight 650pt
+\textwidth 460pt
+\def\baselinestretch{1.1}
+
+
+\newcommand{\diag}{\mbox{diag}}
+\newcommand{\Diag}{\mbox{Diag}}
+\def\nd{\noindent}
+\newcommand{\all}{\ensuremath{\forall\,}}
+\newcommand{\ex}{\ensuremath{\exists\,}}
+\newcommand{\N}{\ensuremath{\mathds{N}}}
+\newcommand{\R}{\ensuremath{\mathds{R}}}
+%\newcommand{\st}{\ensuremath{\text{subject to}}}
+%\newcommand{\wlo}{w.\,l.\,o.\,g\mbox{.}\xspace}
+% \newcommand{\ie}{{i.\,e\mbox{.}}\xspace}
+% \newcommand{\eg}{{e.\,g\mbox{.}}\xspace}
+% \newcommand{\resp}{resp\mbox{.}\xspace}
+% \newcommand{\wrt}{w.\,r.\,t\mbox{.}\xspace}
+
+
+% \newcommand{\all}{\ensuremath{\forall\,}}
+% \newcommand{\ex}{\ensuremath{\exists\,}}
+% \newcommand{\N}{\ensuremath{\mathds{N}}}
+% \newcommand{\R}{\ensuremath{\mathds{R}}}
+% \newcommand{\st}{\ensuremath{\text{subject to}}}
+
+\newtheoremstyle{dotless}{}{}{\itshape}{}{\bfseries}{}{ }{}
+\theoremstyle{dotless}
+
+% Theorem definitions
+\newtheorem{defn}{Definition} 
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{corollary}[theorem]{Corollary} 
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{lem}[theorem]{Lemma}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{proposition}[theorem]{Proposition} \newtheorem{rem}{Remark}
+\newtheorem{obs}[theorem]{Observation}
+\newtheorem{exam}[theorem]{Example}
+\newenvironment{example}{%
+\italicenvfalser
+\begin{exam}}{\end{exam}\italicenvtrue}
+\newcommand{\keywords}[1]{\par\noindent
+{\small{\em Keywords\/}: #1}}
+\newcommand{\abstract}[1]{\par\noindent
+{\small{\bf Abstract\/}: #1}}
+\newcommand{\authors}[1]{\par\noindent
+{\small{\bf Authors\/}: #1}}
+\newcommand{\savefootnote}[2]{\footnote{\label{#1}#2}}
+\newcommand{\repeatfootnote}[1]{\textsuperscript{\ref{#1}}}
+
+\makeindex
+
+\begin{document}
+
+
+%
+% Vorspann
+%
+
+\frontmatter % Roman-Nummerierung, S. 1
+
+\begin{titlepage}
+\vspace*{1cm}
+  \begin{center}    
+      \LARGE \textbf{Philipp Hungerl\"{a}nder}
+  \end{center}
+\vspace{1cm}
+  \begin{center}
+ \Huge \textbf{Semidefinite Optimization\\ Approaches to Applications in\\
+   Facility Layout and Logistics} 
+  \end{center}
+\vspace{1cm}
+\begin{center}
+\huge  \textsc{Dissertation}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+\LARGE zur Erlangung des akademischen Grades\\
+	\LARGE \textbf{Doktor der Sozial- und Wirtschaftswissenschaften\\}
+\vspace{1cm}
+\LARGE Alpen-Adria-Universit\"{a}t Klagenfurt\\
+\LARGE Fakult\"{a}t f\"{u}r  Wirtschaftswissenschaften
+\end{center}
+\vspace{1cm}
+\Large\begin{flushleft}
+\begin{tabbing} 
+  1. Begutachter:  \= Prof. Miguel F. Anjos, PhD\\
+  \> Canada Research Chair in Discrete\\
+\>  Nonlinear
+    Optimization in Engineering\\
+\> GERAD \& $\mathrm{\acute{E}}$cole Polytechnique de Montr$\mathrm{\acute{e}}$al\\
+  2. Begutachter: \= o.Univ.-Prof. Dr. Reinhard Neck\\
+  \> Institut f\"{u}r Volkwirtschaftslehre\\
+\> Alpen-Adria-Universität  Klagenfurt \end{tabbing} \end{flushleft} 
+  \begin{flushright} Juli 2014 \end{flushright}
+\end{titlepage}
+
+\thispagestyle {empty}
+\cleardoublepage
+\include{dis_erk}
+\thispagestyle {empty}
+\cleardoublepage
+\setcounter{page}{1}
+\addcontentsline{toc}{section}{Abstract}
+\include{abstract}
+\cleardoublepage
+%\include{Zusammenfassung}
+%\cleardoublepage
+\addcontentsline{toc}{section}{Acknowledgements}
+\include{Acknowledgements}
+% \cleardoublepage
+% \addcontentsline{toc}{section}{Notation}
+% \include{Notation}
+
+\tableofcontents
+
+\mainmatter
+\include{Introduction}
+% \include{Ordering}
+% \include{SRFLP}
+% \include{SREFLP}
+% \include{CircularI}
+% \include{CircularII}
+% \include{Parallel}
+% \include{SFMRF}
+% \include{MRF}
+% \include{DREF}
+% \include{COP}
+% %\include{CLII}
+% \include{TVPI}
+% \include{TVPII}
+% \include{CLI}
+% \include{Extensions}
+\include{Outlook}
+
+
+\backmatter
+%\include{CV}
+%\cleardoublepage %neue Seite, damit Link auf Seitenanfang zeigt
+% \phantomsection %notwendig, damit Link nicht unterhalb der Überschrift zeigt
+\addcontentsline{toc}{chapter}{Bibliography} 
+\bibliographystyle{abbrvnat}
+\renewcommand{\bibfont}{\normalsize} 
+\bibliography{/home/phhunger/Desktop/Mathe_Dok/BIB/rendl}
+%\bibliography{/home/sci/phhunger/alles/Doktorate/Mathe_Dok/BIB/rendl}
+%\bibliography{C:/Users/phhunger/Desktop/Mathe_Dok/BIB/rendl}
+%\bibliography{rendl}
+\cleardoublepage
+% \addcontentsline{toc}{chapter}{Index}
+% \printindex
+% \addcontentsline{toc}{chapter}{Curriculum Vitae}
+% \includepdf[pages=-]{cv.pdf}
+
+\end{document}
+
+
+%%% Local Variables:  
+%%% mode: latex 
+%%% TeX-master: t 
+%%% End: \documentclass[10pt,a4paper]{article}
