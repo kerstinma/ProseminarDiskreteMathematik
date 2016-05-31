@@ -122,7 +122,7 @@ Ein \textcolor{blue}{Graph} G ist ein Paar G = (V,E) disjunkter Mengen mit $E \s
 Zwei Knoten $x,y \in V(G)$ sind \textcolor{blue}{adjazent} in G und heißen \textcolor{blue}{Nachbarn} von einander, wenn $xy \in E(G)$. \cite{Diestel}
 \end{definition}
 
-\subsubsection{Stable Set}
+\subsubsection*{Stable Set}
 
 \begin{definition}
 Paarweise nicht benachbarte Knoten oder Kanten nennt man \textcolor{blue}{unabhängig}. Eine Teilmenge von V oder E heißt unabhängig, wenn ihre Elemente paarweise nicht benachbart sind. Unabhängige Knotenmengen nennt man auch \textcolor{blue}{stabil}. \cite{Diestel}
@@ -167,7 +167,7 @@ Ein \textcolor{blue}{Stable Set} ist eine unabhängige Knotenmenge.
 \end{center}
 \end{figure}
 
-\subsubsection{k-Färbbarkeit}
+\subsubsection*{k-Färbbarkeit}
 
 \begin{definition}
 Die \textcolor{blue}{k-Färbung} eines Graphen ist eine Abbildung $f: V(G) \rightarrow S$ mit $xy \in E(G): f(x) \neq f(y)$, wobei S Menge der Farben und $\vert S \vert = k$. \cite{Diestel, West}
@@ -209,7 +209,7 @@ Die \textcolor{blue}{k-Färbung} eines Graphen ist eine Abbildung $f: V(G) \righ
 \end{figure}
 
 
-\subsubsection{Maximaler Schnitt}
+\subsubsection*{Maximaler Schnitt}
 
 \begin{definition}
 Eine Menge $\mathcal{A} = \{A_1,\ldots,A_k\}$ disjunkter Teilmengen einer Menge A ist eine \textcolor{blue}{Partition} von A, wenn $\bigcup \mathcal{A} := \bigcup_{i=1}^k A_i = A$ ist und $A_i \neq \emptyset \quad \forall i$. \cite{Diestel}  
@@ -262,7 +262,7 @@ Ein \textcolor{blue}{Maximaler Schnitt} ist jener Schnitt $F \neq \emptyset$, wo
 
 \subsection{Polynomdarstellung kombinatorischer Probleme}
 
-\subsubsection{Stable Set}
+\subsubsection*{Stable Set}
 
 Sei $G = (V, E)$ ein Graph. Für ein gegebenes $k \in \mathbb{N}$ betrachten wir folgendes polynomielles System:
 \begin{align*}
@@ -273,7 +273,7 @@ Sei $G = (V, E)$ ein Graph. Für ein gegebenes $k \in \mathbb{N}$ betrachten wir
 
 \noindent Dieses System ist genau dann lösbar, wenn $G$ ein Stable Set der Größe k besitzt. 
 
-\subsubsection{k-Färbbarkeit}
+\subsubsection*{k-Färbbarkeit}
 
 Sei $G = (V, E)$ ein Graph. Für ein gegebenes $k \in \mathbb{N}$ betrachten wir folgendes polynomielles System mit $\vert V \vert + \vert E \vert$ Gleichungen:
 \begin{align*}
@@ -298,7 +298,7 @@ Es verbleibt zu zeigen, dass das gleiche Argument wie wir oben über die komplex
 
 
 
-\subsubsection{Maximaler Schnitt}
+\subsubsection*{Maximaler Schnitt}
 Sei $G = (V, E)$ ein Graph. Wir können die Menge der Schnitte $SG$ von G als 0-1 Inzidenzvektoren darstellen.
 
 \begin{align*}
@@ -351,7 +351,7 @@ Falls numerische Vektoren $\mu \in \mathbb{K}^m$ existieren, sodass $\sum_{i=1}^
 Das Entscheiden, ob ein $\mu \in \mathbb{K}^m$ existiert, sodass $\sum_{i=1}^m \mu_i f_i = 1$ ist nur mehr ein Problem der Linearen Algebra über dem Körper $\mathbb{K}$. \\
 Es herrscht ein starker Zusammenspiel zwischen dem System der nichtlinearen Gleichungen $F(x) = 0$, dem Ideal $\langle F \rangle$ und der Linearen Hülle von F über $\mathbb{K}$. \todo[inline]{definieren in den Grundbegriffen}
 Im Folgenden möchten wir auf ein Beispiel eingehen, dass uns zeigt, dass wir nicht immer Unlösbarkeit gezeigt werden kann, auch wenn das System tatsächlich unlösbar ist.
-\begin{example}
+\begin{example} \label{ex1}
 Wir betrachten folgende Menge von Polynomen:
 \begin{align*}
 F := \left\{f_1 := x_1^2-1, f_2 := 2x_1x_2+x_3,f_3:=x_1+x_2,f_4:=x_1+x_3 \right\}
@@ -363,11 +363,17 @@ Wir können zeigen, dass das System $F(x)=0$ unlösbar ist, falls wir ein $\mu \
 \Leftrightarrow \quad &\mu_1x_1^2+2\mu_2x_1x_2+(\mu_2+\mu_4)x_3+\mu_3x_2+(\mu_3+\mu_4)x_1-\mu_1 = 1
 \end{align*}
 Mit Hilfe von Koeffizientenvergleich erhalten wir das folgende LGS:
-\begin{align*}
--\mu_1=1 \qquad \mu_3+\mu_4=0 \qquad \mu_3=0 \\
-\mu_2+\mu_4=0 \qquad 2\mu_2=0 \qquad \mu_1=0 
-\end{align*}
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{rrr}
+$-\mu_1=1$ & $\mu_3+\mu_4=0$ & $\mu_3=0$ \\
+$\mu_2+\mu_4=0$ & $2\mu_2=0$ & $\mu_1=0$ 
+\end{tabular}
+\end{center}
+\end{table}
+\\
 $F(x)= 0$ ist zwar nicht lösbar, aber da wir für das obere System auch keine Lösung finden, gibt es somit auch keinen Beweis für die Unlösbarkeit von F(x).
+
 \end{example}
 
 \noindent Um die Anwendung zu vereinfachen, führen wir nun eine Matrixschreibweise ein. Wir konstruieren die Matrix $M_F$, wobei die Spalten die Monome und die Zeilen die Polynome des Systems $F$ repräsentieren. Die Einträge der Matrix entsprechen somit den Koeffizienten der Monome des zugehörigen Polynoms.  Wir definieren den Vektor $\mu := (\mu_1,\mu_2,\ldots,\mu_m)$ und den Vektor $(\textbf{0},1)^T:=(0,\ldots,0,1)^T$ mit genau der Anzahl der Monome an Einträgen. Wir können nun das LGS als $\mu M_F = (\textbf{0},1)^T$ schreiben. 
@@ -377,6 +383,51 @@ Im Fall, dass $F(x)=0$ ein LGS ist, können wir das Theorem \ref{Fredi} anwenden
 F(x)=0 \text{ unlösbar} \Leftrightarrow \mu M_F = (\textbf{0},1)^T \text{ ist lösbar}
 \end{align*}
 \end{note}  
+
+\begin{example}
+Die Matrix $M_F$ zum Beispiel \ref{ex1} sieht folgendermaßen aus: 
+\begin{align*}
+M_F := \bordermatrix{
+	& 1 & x_{1} & x_2 & x_3 & x_1x_2 & x_1^2 \cr
+	\mu_1 & -1 & 0 & 0 & 0 & 0 & 1 \cr
+	\mu_2 & 0 & 0 & 0 & 1 & 2 & 0 \cr
+	\mu_3 & 0 & 1 & 1 & 0 & 0 & 0 \cr
+	\mu_4 & 0 & 1 & 0 & 1 & 0 & 0 
+}
+\end{align*}
+\end{example}
+
+
+\noindent Leider, wie wir bereits im Beispiel \ref{ex1} gesehen haben, können wir keine Aussage über die Lösbarkeit von $F(x) = 0$ treffen, wenn
+$\mu M_F = (\textbf{0},1)^T \text{ unlösbar}$. Es besteht jedoch weiterhin die Möglichkeit, auf die Unlösbarkeit von $F(x) = 0$ zu kommen. Der Hilbertsche Nullstellensatz sagt aus, dass durch eine Erweiterung von F durch Polynome vom Ideal von F, das System $\mu M_F = (\textbf{0},1)^T$ lösbar werden kann. Dies erkennt man anhand folgendem Beispiel:
+
+\begin{example}
+Das erweiterte System für F aus dem Beispiel \ref{ex1} könnte folgendermaßen aussehen:
+
+\begin{align*}
+F'=\{f_1,f_2,f_3,f_4,x_2f_1,x_1f_2,x_1f_3,x_1f_4\}
+\end{align*}
+Das neue lineare System sieht nach dem Koeffizientenvergleich folgendermaßen aus:
+
+
+\begin{table}[h]%
+\begin{center}
+\begin{tabular}{rrr}
+$-\mu_1=1$ & $\mu_3+\mu_4=0$ & $\mu_3-\mu_5=0$ \\
+$\mu_2+\mu_4=0$ & $2\mu_2+\mu_7=0$ & $\mu_1+\mu_7+\mu_8=0$ \\
+$\mu_6 + \mu_8 = 0$ & $\mu_5+2\mu_6 = 0$
+\end{tabular}
+\label{}
+\end{center}
+\end{table}
+
+\noindent Da dieses System die Lösung $\mu = (-1,-\frac{2}{3},-\frac{2}{3},\frac{2}{3},-\frac{2}{3},\frac{1}{3},\frac{4}{3},-\frac{1}{3})$ besitzt, können wir folgern, dass das nichtlineare System $F(x) = 0$ unlösbar ist.
+\end{example}
+
+
+
+
+
 
 \section{Algorithmus Nullstellensatz in der Linaren Algebra (NulLa)}
 
