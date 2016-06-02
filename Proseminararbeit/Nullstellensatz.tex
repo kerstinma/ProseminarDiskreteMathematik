@@ -79,7 +79,7 @@ Es sei L/K eine Körpererweiterung. Ein Element $a \in L$ heißt:
 \end{definition}
 
 \begin{definition}
-Der Körper K heißt \textcolor{blue}{algebraisch abgeschlossen}, wenn jedes nicht konstante Polynom aus K[X] eine Wurzel in K hat. \cite{Karpfinger}
+Der Körper K heißt \textcolor{blue}{algebraisch abgeschlossen}, wenn jedes nicht konstante Polynom aus K[X] eine Nullstelle in K hat. \cite{Karpfinger}
 \end{definition}
 
 \begin{definition}
@@ -173,6 +173,8 @@ Ein \textcolor{blue}{Stable Set} ist eine unabhängige Knotenmenge.
 Die \textcolor{blue}{k-Färbung} eines Graphen ist eine Abbildung $f: V(G) \rightarrow S$ mit $xy \in E(G): f(x) \neq f(y)$, wobei S Menge der Farben und $\vert S \vert = k$. \cite{Diestel, West}
 \end{definition}
 
+\todo[inline]{chromatische Zahl}
+
 \begin{figure}[htp]
 \begin{center}
 \resizebox{.5\linewidth}{!}{
@@ -260,10 +262,11 @@ Ein \textcolor{blue}{Maximaler Schnitt} ist jener Schnitt $F \neq \emptyset$, wo
 \end{figure}
 
 
-\subsection{Polynomdarstellung kombinatorischer Probleme}
+\subsection{Polynomdarstellung kombinatorischer Probleme} \label{kombPro}
 
 \subsubsection*{Stable Set}
 
+\begin{lemma}
 Sei $G = (V, E)$ ein Graph. Für ein gegebenes $k \in \mathbb{N}$ betrachten wir folgendes polynomielles System:
 \begin{align*}
 &x_i^2 - x_i = 0 \quad \forall i \in V, \\
@@ -271,10 +274,12 @@ Sei $G = (V, E)$ ein Graph. Für ein gegebenes $k \in \mathbb{N}$ betrachten wir
 & \sum_{i \in V} x_i = k.
 \end{align*} 
 
-\noindent Dieses System ist genau dann lösbar, wenn $G$ ein Stable Set der Größe k besitzt. 
+\noindent Dieses System ist genau dann lösbar, wenn $G$ ein Stable Set der Größe k besitzt.
+\end{lemma} 
 
 \subsubsection*{k-Färbbarkeit}
 
+\begin{lemma} \label{3color}
 Sei $G = (V, E)$ ein Graph. Für ein gegebenes $k \in \mathbb{N}$ betrachten wir folgendes polynomielles System mit $\vert V \vert + \vert E \vert$ Gleichungen:
 \begin{align*}
 &x_i^k - 1 = 0 \quad \forall i \in V, \\
@@ -282,6 +287,7 @@ Sei $G = (V, E)$ ein Graph. Für ein gegebenes $k \in \mathbb{N}$ betrachten wir
 \end{align*} 
 
 \noindent Der Graph G ist genau dann k-färbbar, wenn dieses System eine komplexe Lösung besitzt. Des Weiteren gilt, wenn k ungerade , dann ist G genau dann k-färbbar, wenn das System eine Lösung über $\overline{\mathbb{F}_2}$ besitzt. $\overline{\mathbb{F}_2}$ ist der algebraische Abschluss über dem endlichen Körper mit zwei Elementen.
+\end{lemma}
 
 \begin{proof}
 Angenommen die Aussage ist wahr über den komplexen Zahlen $\mathbb{C}$. 
@@ -299,6 +305,8 @@ Es verbleibt zu zeigen, dass das gleiche Argument wie wir oben über die komplex
 
 
 \subsubsection*{Maximaler Schnitt}
+
+\begin{lemma}
 Sei $G = (V, E)$ ein Graph. Wir können die Menge der Schnitte $SG$ von G als 0-1 Inzidenzvektoren darstellen.
 
 \begin{align*}
@@ -311,12 +319,12 @@ Sei $G = (V, E)$ ein Graph. Wir können die Menge der Schnitte $SG$ von G als 0-
 \max\{\sum_{e \in E(G)} w_e x_e : x \in SG\}. 
 \end{align*} 
 
-Die Vektoren $\mathcal{X}^F$ sind Lösungen des polynomiellen Systems 
-
+\noindent Die Vektoren $\mathcal{X}^F$ sind Lösungen des polynomiellen Systems 
 \begin{align*}
 &x_e^2 - x_e = 0 \quad \forall e \in E(G),\\
 &\prod_{e\in T\cap E(G)}x_e = 0 \quad \forall T \, ungerader \, Kreis \, in \, G
 \end{align*}
+\end{lemma}
 
 
 \section{Hilberts Nullstellensatz} \label{HilbertNull}
@@ -336,7 +344,7 @@ Das Lineare Gleichungssystem (LGS) $Ax=b$ besitzt genau dann eine Lösung, wenn 
 
 \begin{theorem}[Hilbert's Nullstellensatz] 
 Sei F = $\{f_1,\ldots,f_m\} \subseteq \mathbb{K}[x_1,\ldots,x_n]$.\\
-Die Varietät $\{x \in \overline{\mathbb{K}^n} : f_1(x)=0,\ldots,f_s(x)=0\}$ ist genau dann leer, wenn 1 zum Ideal $\left\langle F \right\rangle$, das aus F generiert wurde, gehört. Man beachte $1 \in \left\langle F \right\rangle$ bedeutet, dass Polynome $\beta_1,\ldots,\beta_m$ im Ring $\mathbb{K}[x_1,\ldots,x_n]$ existieren, sodass $1 = \sum_{i=1}^m \beta_i f_i$. Diese polynomielle Identität ist ein Zertifikat für die Unlösbarkeit von $F(x) = 0$. 
+Die Varietät $\{x \in \overline{\mathbb{K}^n} : f_1(x)=0,\ldots,f_s(x)=0\}$ ist genau dann leer, wenn 1 zum Ideal $\left\langle F \right\rangle$, das aus F generiert wurde, gehört. Man beachte $1 \in \left\langle F \right\rangle$ bedeutet, dass Polynome $\beta_1,\ldots,\beta_m$ im Ring $\mathbb{K}[x_1,\ldots,x_n]$ existieren, sodass $1 = \sum_{i=1}^m \beta_i f_i$. Diese polynomielle Identität ist ein Nachweis für die Unlösbarkeit von $F(x) = 0$. 
 \end{theorem}
 
 \noindent Wir können leicht erkennen, dass das Fredholm's Theorem eine lineare Variante des Hilbertschen Nullstellensatzes mit linearen Polynomen und Konstanten $\beta_i$'s ist. 
@@ -348,8 +356,8 @@ Aus dem Hilbertschen Nullstellensatz lässt sich folgendes Korollar ableiten:
 \begin{corollary}
 Falls numerische Vektoren $\mu \in \mathbb{K}^m$ existieren, sodass $\sum_{i=1}^m \mu_i f_i = 1 \Rightarrow $ das polynomielle System $F(x) = 0$ ist unlösbar. 
 \end{corollary}
-Das Entscheiden, ob ein $\mu \in \mathbb{K}^m$ existiert, sodass $\sum_{i=1}^m \mu_i f_i = 1$ ist nur mehr ein Problem der Linearen Algebra über dem Körper $\mathbb{K}$. \\
-Es herrscht ein starker Zusammenspiel zwischen dem System der nichtlinearen Gleichungen $F(x) = 0$, dem Ideal $\langle F \rangle$ und der Linearen Hülle von F über $\mathbb{K}$. \todo[inline]{definieren in den Grundbegriffen}
+\noindent Das Entscheiden, ob ein $\mu \in \mathbb{K}^m$ existiert, sodass $\sum_{i=1}^m \mu_i f_i = 1$ ist nur mehr ein Problem der Linearen Algebra über dem Körper $\mathbb{K}$. \\
+Es herrscht ein starkes Zusammenspiel zwischen dem System der nichtlinearen Gleichungen $F(x) = 0$, dem Ideal $\langle F \rangle$ und der Linearen Hülle von F über $\mathbb{K}$. \todo[inline]{definieren in den Grundbegriffen}
 Im Folgenden möchten wir auf ein Beispiel eingehen, dass uns zeigt, dass wir nicht immer Unlösbarkeit gezeigt werden kann, auch wenn das System tatsächlich unlösbar ist.
 \begin{example} \label{ex1}
 Wir betrachten folgende Menge von Polynomen:
@@ -407,7 +415,7 @@ Das erweiterte System für F aus dem Beispiel \ref{ex1} könnte folgendermaßen 
 \begin{align*}
 F'=\{f_1,f_2,f_3,f_4,x_2f_1,x_1f_2,x_1f_3,x_1f_4\}
 \end{align*}
-Das neue lineare System sieht nach dem Koeffizientenvergleich folgendermaßen aus:
+Das neue lineare System lässt sich nach dem Koeffizientenvergleich darstellen als:
 
 
 \begin{table}[h]%
@@ -424,14 +432,181 @@ $\mu_6 + \mu_8 = 0$ & $\mu_5+2\mu_6 = 0$
 \noindent Da dieses System die Lösung $\mu = (-1,-\frac{2}{3},-\frac{2}{3},\frac{2}{3},-\frac{2}{3},\frac{1}{3},\frac{4}{3},-\frac{1}{3})$ besitzt, können wir folgern, dass das nichtlineare System $F(x) = 0$ unlösbar ist.
 \end{example}
 
+\section{Algorithmus Nullstellensatz in der Linearen Algebra (NulLa)}
+
+Im Folgenden stellen wir einen Algorithmus vor, welcher entscheidet, ob $F(x) = 0$ eine Lösung in $\overline{\mathbb{K}}$ besitzt oder nicht. Die Grundidee des Algorithmus liegt darin, dass überprüft wird, ob $\mu M_F = (\textbf{0},1)^T$ lösbar ist. Das ist genau dann der Fall, wenn $1 \in span_\mathbb{K}(F)$. Falls das System nicht lösbar ist wird $F$ mit Polynomen aus $\langle F \rangle$, der Form $x_if$ für alle $x_i$ und für alle $f \in F$, erweitert und erneut überprüft. Aufgrund der Resultate des Nullstellensatzes wissen wir, dass der Algorithmus terminieren muss, wenn $F(x) = 0$ unlösbar ist. Außerdem erhalten wir auch eine obere Schranke $D$: Wenn $F(x) = 0$ ist unlösbar, dann wissen wir, dass ein Polynom existiert für das folgendes gilt: 
+\begin{align*}
+\sum_i \beta_i f_i = 1, \qquad deg(\beta_i)\le D
+\end{align*}
+Daraus folgt, dass dieses Polynom einen Maximalgrad von $deg(F)+D$ besitzt. \\
+Das nachfolgende Lemma wird zeigen, dass dieses $D$ eine obere Schranke der Iterationen für unseren Algorithmus bildet.
+
+\begin{lemma} \label{Kollar}
+Sei $\mathbb{K}$ ein Körper und $f_1,\ldots,f_k$ Polynome aus $\mathbb{K}[x_1,\ldots,x_n]$ mit Graden $d_1\ge d_2 \ge \ldots \ge d_k \ge 2$. Falls diese Polynome keine gemeinsame Nullstelle über $\overline{\mathbb{K}}$ besitzen, dann existieren $g_1,\ldots,g_k$ in $\mathbb{K}[x_1,\ldots,x_n]$, sodass $\sum_{i=1}^k g_if_i=1, deg(g_if_i) \le D$. $D$ setzt sich wie folgt zusammen:
+\begin{align}
+D &= \begin{cases} d_1\cdots d_k, & \text{falls $k \le n$}, \\ d_1\cdots d_{n-1}d_k, &
+  \text{falls $k > n > 1$}, \\ d_1+d_k-1, & \text{falls $k > n = 1$} \end{cases}
+\end{align} 
+Diese Abschätzung für $D$ gilt für beliebige Polynome.
+\end{lemma}
+
+\noindent Mithilfe des obigen Lemmas können wir nun unseren Algorithmus folgend aufschreiben:\\
+\begin{algorithm} [H]
+    \SetKwInOut{Input}{Input}
+    \SetKwInOut{Output}{Output}
+
+    \underline{function NulLA} $(F,D)$\;
+    \Input{Eine endliche Ausgangsmenge von Polynomen $F \subseteq \mathbb{K}[x_1,\ldots,x_n]$ und die maximale Anzahl an Iterationen $D$}
+    \Output{\textsc{lösbar}, wenn $F(x) = 0$ ist lösbar über $\overline{\mathbb{K}}$, sonst \textsc{keine Lösung}}
+		\For{$k = 0,1,\ldots,D$} {
+		\eIf{$1 \in span_\mathbb{K}(F)$}
+      {
+        \textbf{return} \textsc{keine Lösung}\;
+      }
+      {
+        \textbf{return} Ersetze $span_\mathbb{K}(F)$ durch $(span_\mathbb{K}(F))^+$ (hinzufügen der Polynome $x_iF$ zur Menge $F$)\;
+      }
+		}
+		\textbf{return} \textsc{lösbar}
+    \caption{NulLA Algorithmus}
+\end{algorithm}
+
+\noindent Falls $F(x)=0$ unlösbar, findet der Algorithmus einen Nachweis dafür nach höchstens D Iterationen. \\
+Die tatsächliche Anzahl an Iterationen $r$, die der Algorithmus benötigt, definieren wir nun als Rang von NulLA. Für ein unlösbares System $F(x)=0$ ergibt sich nun ein Nachweis $\sum_{i} \beta_if_i=1$ vom Grad $r + deg(F)$. Allerdings sehen wir durch Lemma \ref{Kollar}, dass die Schranke $D$ exponentielles Wachstum aufweist. Bessere Schranken existieren jedoch für bestimmte kombinatorische Problemstellungen, wie z.B. auch jene, die wir im Abschnitt \ref{kombPro} vorgestellt haben. Anhand des folgenden Korollars sehen wir, dass für diese Probleme eine merkbar bessere Schranke gegenüber der Exponentiellen aus \ref{Kollar} erhalten. 
+
+\begin{corollary}
+Für gegebene Polynome $f_1,\ldots,f_s \in \mathbb{K}[x_1,\ldots,x_n]$, wobei $\mathbb{K}$ ein algebraisch abgeschlossener Körper ist und $d = \max\{deg(f_i)\}$, falls $f_1,\ldots,f_s$ keine gemeinsame Nullstelle besitzen (auch nicht im Unendlichen), dann gilt $1 = \sum_{i=1}^s\beta_if_i$ mit $deg(\beta_i) \le n (d-1)$.
+\end{corollary}
+
+\noindent Dadurch erhalten wir eine obere Schranke von $2n$ bzw. $n$ für das 3-Färbbarkeitsproblem bzw. Stable Set-Problem.
+Obwohl wir nun theoretisch eine lineare Laufzeit des Algorithmus gezeigt haben, kann es trotzdem noch Probleme in der praktischen Umsetzung geben. Dies liegt im schnellen Wachstum der Matrizen, die die linearen Systeme repräsentieren, von $O(n^n)$. Glücklicherweise gibt es praktische Resultate, die zeigen, dass das Wachstum des Rangs von NulLA für das Färbbarkeitsproblem oft sehr langsam ist. Dadurch können wir den Algorithmus auch auf große Graphen anwenden, wie wir im folgenden Kapitel sehen werden. \cite{Ausgangsartikel}
+
+
+
+\subsection{3-Färbbarkeit und NulLA}
+
+In diesem Kapitel werden wir unseren Algorithmus verwenden, um zu zeigen, dass ein Graph nicht 3-färbbar ist. Wie wir bereits mit Hilfe des Lemmas \ref{3color} gezeigt haben, ist ein Graph genau dann 3-färbbar, wenn das folgende System eine Lösung über $\overline{\mathbb{F}_2}$ besitzt:
+\begin{align*}
+x_i^3+1=0, \qquad &\forall i \in V(G)\\
+x_i^2+x_ix_j+x_j^2=0, \qquad &\forall{i,j}\in E(G) \tag{$\ast$} 
+\end{align*}
+
+\noindent Nun können wir ein Korollar zur nicht 3-Färbbarkeit aufstellen.
+
+\begin{corollary}
+Ein Graph ist nicht 3-färbbar $\Leftrightarrow$ $\sum_i \beta_if_i = 1, \text{ für } \beta_i \in \mathbb{F}_2[x_1,\ldots,x_n]$ und $f_i \in \mathbb{F}_2[x_1,\ldots,x_n]$ wie in Lemma \ref{3color} definiert. 
+\end{corollary}
+
+\noindent Dieses Lemma ermöglicht uns das Operieren über dem Körper $\mathbb{F}_2$, was für praktische Anwendungen sehr zeiteffizient ist. \cite{Loera2011}
+
+Die nächsten Resultate zeigen uns, für welche Graphen es möglich ist, einen Nachweis für nicht 3-Färbbarkeit mit NulLa und $D=1$ zu erbringen. \todo[inline]{Formulierung?}
+
+
+\begin{definition}
+Der NulLa kann einen Nachweis der Unlösbarkeit für $(\ast)$ innerhalb der Schranke $D=1$ erbringen, genau dann wenn Koeffizienten $a_i, a_{ij}, b_{ij},b_{ijk} \in \mathbb{F}$ existieren, sodass:
+\begin{align*}
+\sum_{i \in V}\left(a_i + \sum_{j\in V}a_{ij}x_j\right)(x_i^3+1)+\sum_{\{i,j\}\in E}\left(b_{ij}+\sum_{k\in V}b_{ijk}x_k\right)(x_i^2+x_ix_j+x_j^2)=1
+\end{align*}
+\end{definition}
+
+\noindent Nun kommen wir zur kombinatorischen Beschreibung unseres Problems. Wir gehen von einem einfachen ungerichteten Graphen $G=(V,E)$ aus. Nun sei $Arcs(G)$ die Menge die für jede ungerichteten Kante $\{i,j\}\in E(G)$ zwei gerichtete Kanten $(i,j),(j,i)$ enthält:
+\begin{align*}
+Arcs(G) = \{(i,j):i,j \in V(G), und \{i,j\}\in E(G)\}.
+\end{align*}
+ 
+\noindent Mit Hilfe dieser Menge können wir nun zwei Strukturen für Teilgraphen definieren. 
+
+\begin{enumerate}
+	\item \textbf{orientiertes partielles Dreieck:} \\
+	Gegeben: $\{(i,j),(j,k)\} \subseteq Arcs(G)$ und auch $(k,i) \in Arcs(G)$. Dies induziert einen Kreis der Länge 3 in $G$, deshalb schreiben wir auch $(i,j,k)$.
+	\begin{figure}[htp]
+\begin{center}
+\resizebox{.2\linewidth}{!}{
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+                    semithick]
+  \tikzstyle{every state}=[draw=black,text=black]
+	\tikzstyle{every edge} = [draw,thick]
+
+  \node[state] 	(0)              	{i};
+  \node[state]  (1) [above right of=0] 	{j};
+  \node[state] 	(2) [below right of=1]  {k};
+ 
+
+  
+  \path[draw=black,thick] 
+  		%% drone 1
+  		(0)  edge node {} (1)
+  		(1)  edge  node {} (2)
+  		(2)  edge[draw,thick,dashed]  node {} (0)
+  		;
+\end{tikzpicture}
+}
+\caption[orientiertes partielles Dreieck]{orientiertes partielles Dreieck}
+  \label{oDreieck}
+\end{center}
+\end{figure}
+	\item \textbf{orientiertes ? Viereck:} \\
+	Gegeben: $\{(i,j),(j,k),(k,l),(l,i)\} \subseteq Arcs(G)$ und $(i,k),(j,l) \notin Arcs(G)$. Dies induziert einen Kreis der Länge 4 in $G$, deshalb schreiben wir auch $(i,j,k,l)$. 
+	\begin{figure}[htp]
+\begin{center}
+\resizebox{.2\linewidth}{!}{
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+                    semithick]
+  \tikzstyle{every state}=[draw=black,text=black]
+	\tikzstyle{every edge} = [draw,thick]
+
+  \node[state] 	(0)              	{i};
+  \node[state]  (1) [above of=0] 	{j};
+  \node[state] 	(2) [right of=1]  {k};
+  \node[state]  (3) [below of=2] 	{l};
+ 
+
+  
+  \path[draw=black,thick] 
+  		%% drone 1
+  		(0)  edge node {} (1)
+  		(1)  edge  node {} (2)
+  		(2)  edge  node {} (3)
+  		(3)  edge  node {} (0)
+  		;
+\end{tikzpicture}
+}
+\caption[orientiertes Viereck]{orientiertes Viereck}
+  \label{oViereck}
+\end{center}
+\end{figure}
+\item \textbf{ungerades Rad:}\\
+Gegeben: Knoten $1,\ldots,n$, wobei Knoten 1 adjazent zu allen anderen Knoten ist und Knoten $i=2,\ldots,n$ adjazent zu Knoten $1, i-1,i+1$. \todo[inline]{Graph}
+\end{enumerate}
+
+\begin{theorem} \label{3colorTheorem}
+Für einen einfachen ungerichteten Graph $G=(V,E)$ sind folgende Aussagen äquivalent:
+\begin{enumerate}
+	\item Für folgendes polynomielle System über $\mathbb{F}_2$ bringt NulLA einen Nachweis für die nicht 3-Färbbarkeit in D=1
+	\begin{align*}
+	J_G = \{x_i^3+1=0,x_i^2+x_ix_j+x_j^2=0:i\in V(G),\{i,j\}\in E(G)\}
+	\end{align*}
+	\item Es existiert eine Menge $C$ von orientierten partiellen Dreiecken und orientierten ? Vierecken aus $Arcs(G)$, sodass 
+	\begin{compactenum}[a)]
+		\item  $\left|C_{(i,j)}\right|+\left|C_{(j,i)}\right| \equiv 0 \mod{2} \quad \forall \{i,j\} \in E$
+		\item $\sum_{(i,j) \in Arcs(G), i < j} \left|C_{(i,j)}\right| \equiv 1 \mod{2}$
+	\end{compactenum}
+	wobei $C_{(i,j)}$ die Menge der Kreise in C, welche $(i,j) \in Arcs(G)$ enthalten, beschreibt.
+\end{enumerate}
+Solche Graphen sind nicht 3-färbar und dies kann in polynomieller Zeit bestimmt werden
+\end{theorem}
 
 
 
 
 
-\section{Algorithmus Nullstellensatz in der Linaren Algebra (NulLa)}
+\subsection{Ideen zum Beschleunigen des Algorithmus}
+
+\subsection{Stable Sets und NulLA}
+
 
 \section{Vergleich mit anderen Algorithmen zur 3-Färbbarkeit}
+
 
 
 \section{Beweis Nullstellensatz}

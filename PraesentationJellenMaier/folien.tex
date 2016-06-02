@@ -35,8 +35,6 @@ Die \textcolor{blue}{k-Färbung} eines Graphen ist eine Abbildung $f: V(G) \righ
   		;
 \end{tikzpicture}
 }
-\caption[3-Färbung]{3-Färbung}
-  \label{Faerbung}
 \end{center}
 \end{figure}
 
@@ -74,6 +72,62 @@ Durch die Substitution mit unterschiedlichen Einheitswurzeln gilt $x_i - x_j \ne
 Angenommen einem Paar benachbarter Knoten $ij$ wird die selbe Einheitswurzel zugewiesen. Die Gleichung $x_i^{k-1}+x_i^{k-2}x_j+x_i^{k-3}x_j^2+\ldots+x_j^{k-1} = 0$ wird dann zu $\beta^{k-1}+\beta^{k-1}+\ldots+\beta^{k-1} = k\beta^{k-1} = 0$, jedoch $\beta \neq 0 \lightning$ 
 \end{proof}
 
+\framebreak
+
+\begin{definition}
+Paarweise nicht benachbarte Knoten oder Kanten nennt man \textcolor{blue}{unabhängig}. Eine Teilmenge von V oder E heißt unabhängig, wenn ihre Elemente paarweise nicht benachbart sind. Unabhängige Knotenmengen nennt man auch \textcolor{blue}{stabil}. \cite{Diestel}
+\end{definition}
+
+\begin{definition}
+Ein \textcolor{blue}{Stable Set} ist eine unabhängige Knotenmenge.
+\end{definition}
+
+\begin{figure}[h]
+\begin{center}
+\resizebox{.3\linewidth}{!}{
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+                    semithick]
+  \tikzstyle{every state}=[draw=black,text=black]
+	\tikzstyle{every edge} = [draw,thick,-]
+
+  \node[state] 	(0)              	{1};
+  \node[state,fill=red]  (1) [above right of=0] 	{2};
+  \node[state,fill=red] 	(2) [right of=0]  {3};
+  \node[state]  (3) [below of=0] 	{4};
+  \node[state,fill=red] 	(4) [right of=3]  {5};
+  \node[state]  (5) [right of=2] 	{6};
+ 
+
+  
+  \path[draw=black,thick] 
+  		%% drone 1
+  		(0)  edge node {} (2)
+  		(3)  edge  node {} (4)
+  		(5)  edge  node {} (4)
+  		(1)  edge  node {} (0)
+  		(2)  edge  node {} (3)
+  		(1)  edge  node {} (5)
+			(2)  edge  node {} (5)
+			(3)  edge  node {} (5)
+  		;
+\end{tikzpicture}
+}
+\end{center}
+\end{figure}
+
+\framebreak
+
+Sei $G = (V, E)$ ein Graph. Für ein gegebenes $k \in \mathbb{N}$ betrachten wir folgendes polynomielles System:
+\begin{align*}
+&x_i^2 - x_i = 0 \quad \forall i \in V, \\
+&x_i x_j = 0 \quad \forall (i,j) \in E, \\
+& \sum_{i \in V} x_i = k.
+\end{align*} 
+
+\begin{theorem}
+System ist lösbar $\Leftrightarrow$ $G$ besitzt Stable Set der Größe k  
+\end{theorem}
+
 \end{mslide}
 
 \subsection{Hilberts Nullstellensatz}
@@ -94,8 +148,13 @@ Das Lineare Gleichungssystem $Ax=b$ besitzt genau dann eine Lösung, wenn ein Ve
 
 \begin{theorem}[Hilbert's Nullstellensatz] 
 Sei F = $\{f_1,\ldots,f_m\} \subseteq \mathbb{K}[x_1,\ldots,x_n]$.\\
-Die Varietät $\{x \in \overline{\mathbb{K}^n} : f_1(x)=0,\ldots,f_s(x)=0\}$ ist genau dann leer, wenn 1 zum Ideal $\left\langle F \right\rangle$, das aus F generiert wurde, gehört. Man beachte $1 \in \left\langle F \right\rangle$ bedeutet, dass Polynome $\beta_1,\ldots,\beta_m$ im Ring $\mathbb{K}[x_1,\ldots,x_n]$ existieren, sodass $1 = \sum_{i=1}^m \beta_i f_i$. Diese polynomielle Identität ist ein Zertifikat für die Unlösbarkeit von $F(x) = 0$. 
+Die Varietät $\{x \in \overline{\mathbb{K}^n} : f_1(x)=0,\ldots,f_s(x)=0\}$ ist genau dann leer, wenn 1 zum Ideal $\left\langle F \right\rangle$, das aus F generiert wurde, gehört. Man beachte $1 \in \left\langle F \right\rangle$ bedeutet, dass Polynome $\beta_1,\ldots,\beta_m$ im Ring $\mathbb{K}[x_1,\ldots,x_n]$ existieren, sodass $1 = \sum_{i=1}^m \beta_i f_i$. Diese polynomielle Identität ist ein Nachweis für die Unlösbarkeit von $F(x) = 0$. 
 \end{theorem}
 
+\end{mslide}
+
+\subsection{Algorithmus Nullstellensatz in der Linearen Algebra (NulLa)}
+\begin{mslide}{Algorithmus Nullstellensatz in der Linearen Algebra (NulLa)}
 
 \end{mslide}
+
