@@ -478,8 +478,14 @@ Die tatsächliche Anzahl an Iterationen $r$, die der Algorithmus benötigt, defi
 Für gegebene Polynome $f_1,\ldots,f_s \in \mathbb{K}[x_1,\ldots,x_n]$, wobei $\mathbb{K}$ ein algebraisch abgeschlossener Körper ist und $d = \max\{deg(f_i)\}$, falls $f_1,\ldots,f_s$ keine gemeinsame Nullstelle besitzen (auch nicht im Unendlichen), dann gilt $1 = \sum_{i=1}^s\beta_if_i$ mit $deg(\beta_i) \le n (d-1)$.
 \end{corollary}
 
-\noindent Dadurch erhalten wir eine obere Schranke von $2n$ bzw. $n$ für das 3-Färbbarkeitsproblem bzw. Stable Set-Problem.
-Obwohl wir nun theoretisch eine lineare Laufzeit des Algorithmus gezeigt haben, kann es trotzdem noch Probleme in der praktischen Umsetzung geben. Dies liegt im schnellen Wachstum der Matrizen, die die linearen Systeme repräsentieren, von $O(n^n)$. Glücklicherweise gibt es praktische Resultate, die zeigen, dass das Wachstum des Rangs von NulLA für das Färbbarkeitsproblem oft sehr langsam ist. Dadurch können wir den Algorithmus auch auf große Graphen anwenden, wie wir im folgenden Kapitel sehen werden. \cite{Ausgangsartikel}
+\noindent Dadurch erhalten wir eine obere Schranke von $2n$ bzw. $n$ für das 3-Färbbarkeitsproblem bzw. Stable Set-Problem. \\
+
+\noindent Das folgende Lemma trifft eine Aussage über die Laufzeit des Algorithmus:
+\begin{lemma}\label{polTime}
+Sei $d \in \mathbb{Z}_+$ fix und $F = \{f_1,\ldots,f_m\}$ eine Menge von Polynomen aus $\mathbb{K}[x_1,\ldots,x_n]$. Wenn die Bedingungen von NulLA erfüllt sind, dann gilt: Die ersten $d$ Iterationen können in polynomieller Zeit der Größe des Inputs $F$ durchgeführt werden.
+\end{lemma}
+
+Obwohl wir nun theoretisch eine polynomielle Laufzeit des Algorithmus gezeigt haben, kann es trotzdem noch Probleme in der praktischen Umsetzung geben. Dies liegt im schnellen Wachstum der Matrizen, die die linearen Systeme repräsentieren, von $O(n^n)$. Glücklicherweise gibt es praktische Resultate, die zeigen, dass das Wachstum des Rangs von NulLA für das Färbbarkeitsproblem oft sehr langsam ist. Dadurch können wir den Algorithmus auch auf große Graphen anwenden, wie wir im folgenden Kapitel sehen werden. \cite{Ausgangsartikel}
 
 
 
@@ -499,10 +505,10 @@ Ein Graph ist nicht 3-färbbar $\Leftrightarrow$ $\sum_i \beta_if_i = 1, \text{ 
 
 \noindent Dieses Lemma ermöglicht uns das Operieren über dem Körper $\mathbb{F}_2$, was für praktische Anwendungen sehr zeiteffizient ist. \cite{Loera2011}
 
-Die nächsten Resultate zeigen uns, für welche Graphen es möglich ist, einen Nachweis für nicht 3-Färbbarkeit mit NulLa und $D=1$ zu erbringen. \todo[inline]{Formulierung?}
+Die nächsten Resultate zeigen uns, für welche Graphen es möglich ist, einen Nachweis für nicht 3-Färbbarkeit mit NulLA und $D=1$ zu erbringen. \todo[inline]{Formulierung?}
 
 
-\begin{definition}
+\begin{definition} \label{Polynomdarstellung}
 Der NulLa kann einen Nachweis der Unlösbarkeit für $(\ast)$ innerhalb der Schranke $D=1$ erbringen, genau dann wenn Koeffizienten $a_i, a_{ij}, b_{ij},b_{ijk} \in \mathbb{F}$ existieren, sodass:
 \begin{align*}
 \sum_{i \in V}\left(a_i + \sum_{j\in V}a_{ij}x_j\right)(x_i^3+1)+\sum_{\{i,j\}\in E}\left(b_{ij}+\sum_{k\in V}b_{ijk}x_k\right)(x_i^2+x_ix_j+x_j^2)=1
@@ -516,6 +522,7 @@ Arcs(G) = \{(i,j):i,j \in V(G), und \{i,j\}\in E(G)\}.
  
 \noindent Mit Hilfe dieser Menge können wir nun zwei Strukturen für Teilgraphen definieren. 
 
+\begin{definition} \label{Subgraphs}
 \begin{enumerate}
 	\item \textbf{orientiertes partielles Dreieck:} \\
 	Gegeben: $\{(i,j),(j,k)\} \subseteq Arcs(G)$ und auch $(k,i) \in Arcs(G)$. Dies induziert einen Kreis der Länge 3 in $G$, deshalb schreiben wir auch $(i,j,k)$.
@@ -576,8 +583,52 @@ Arcs(G) = \{(i,j):i,j \in V(G), und \{i,j\}\in E(G)\}.
 \end{center}
 \end{figure}
 \item \textbf{ungerades Rad:}\\
-Gegeben: Knoten $1,\ldots,n$, wobei Knoten 1 adjazent zu allen anderen Knoten ist und Knoten $i=2,\ldots,n$ adjazent zu Knoten $1, i-1,i+1$. \todo[inline]{Graph}
+Gegeben: Knoten $1,\ldots,n (\quad n \in \mathbb{N}_G)$, wobei Knoten 1 adjazent zu allen anderen Knoten ist und Knoten $i=2,\ldots,n$ adjazent zu Knoten $1, i-1,i+1$. 
+	\begin{figure}[htp]
+\begin{center}
+\resizebox{.2\linewidth}{!}{
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+                    semithick]
+  \tikzstyle{every state}=[draw=black,text=black]
+	\tikzstyle{every edge} = [draw,thick,-]
+
+  \node[state] 	(0)              	{1};
+  \node[state]  (1) [left of=0] 	{n};
+  \node[state] 	(2) [above left of=0]  {2};
+  \node[state]  (3) [above of=0] 	{3};
+	\node[state]  (4) [above right of=0] 	{4};
+	\node[state]  (5) [right of=0] 	{5};
+	\node[state]  (6) [below right of=0] 	{6};
+	\node[state]  (7) [below of=0] 	{7};
+	
+ 
+
+  
+  \path[draw=black,thick] 
+  		%% drone 1
+  		(0)  edge node {} (1)
+			(0)  edge node {} (2)
+			(0)  edge node {} (3)
+			(0)  edge node {} (4)
+			(0)  edge node {} (5)
+			(0)  edge node {} (6)
+			(0)  edge node {} (7)
+  		(1)  edge[bend left = 10]  node {} (2)
+  		(2)  edge[bend left = 10]  node {} (3)
+  		(3)  edge[bend left = 10]  node {} (4)
+			(4)  edge[bend left = 10]  node {} (5)
+			(5)  edge[bend left = 10]  node {} (6)
+			(6)  edge[bend left = 10]  node {} (7)
+			(7)  edge[bend left = 35,draw,thick,-,dotted]  node {} (1)
+  		;
+\end{tikzpicture}
+}
+\caption[ungerades Rad]{ungerades Rad}
+  \label{oddWheel}
+\end{center}
+\end{figure}
 \end{enumerate}
+\end{definition}
 
 \begin{theorem} \label{3colorTheorem}
 Für einen einfachen ungerichteten Graph $G=(V,E)$ sind folgende Aussagen äquivalent:
@@ -593,16 +644,78 @@ Für einen einfachen ungerichteten Graph $G=(V,E)$ sind folgende Aussagen äquiv
 	\end{compactenum}
 	wobei $C_{(i,j)}$ die Menge der Kreise in C, welche $(i,j) \in Arcs(G)$ enthalten, beschreibt.
 \end{enumerate}
-Solche Graphen sind nicht 3-färbar und dies kann in polynomieller Zeit bestimmt werden
+Solche Graphen sind nicht 3-färbbar und dies kann in polynomieller Zeit bestimmt werden
 \end{theorem}
 
 
+\noindent In diesem Theorem stellt $C$ eine Kantenüberdeckung mit gerichteten Kanten vom ungerichteten Graphen $G$ dar. Die Bedingung $a)$ sagt aus, dass jede Kante in $G$ von einer geraden Anzahl an gerichteten Kanten aus $C$ überdeckt. Bedingung $b)$ liefert eine Aussage für den Graphen $\widehat{G}$, welcher eine gerichtete Version von $G$ ist, wobei die Richtungen von der Ordnung der Knoten $1<2<\ldots <n$ bestimmt wird. Die Anzahl der Kanten in $\widehat{G}$, die sich auch in $C$ befinden, ist ungerade. Wenn wir nun die Kreise der Länge 3 und der Länge 4 in $G$ betrachten, die den partiellen gerichteten Dreiecken und gerichteten Vierecken entsprechen, so erzeugen diese eine Kantenüberdeckung eines nicht 3-färbbaren Teilgraphen von $G$. Falls ein Graph nun einen nicht 3-färbbaren Teilgraphen enthält, und es für diesen Graphen einen Nachweis für die nicht 3-Färbbarkeit in $D=1$ gibt, dann gibt es den auch für $G$. \\
+Die Klasse der Graphen mit dieser Eigenschaft, beinhaltet auch alle Graphen, die ein ungerades Rad enthalten.
 
+\begin{corollary}
+Falls ein Graph $G=(V,E)$ ein ungerades Rad als Teilgraph enthält, so gibt es einen Nachweis für nicht 3-Färbbarkeit mit $D=1$.
+\end{corollary} 
 
+\begin{proof}
+$G$ enthält ein ungerades Grad, wie in Punkt 3 der Definition \ref{Subgraphs} beschrieben, und sei $C$ die Menge der partiellen Dreiecke:
+\begin{align*}
+C\;:=\;\{(i,1,i+1):2\le i \le n-1\}\cup\{(n,1,2)\}.
+\end{align*}
+Wie wir in \ref{oddWheel} sehen können, wird jede Kante genau nullmal oder zweimal von partiellen gerichteten Dreiecken von $C$ überdeckt und damit wird Bedingung $a)$ von Theorem \ref{3colorTheorem} erfüllt. Außerdem gilt für jede Kante $(1,i) \in Arcs(G)$, dass sie genau einmal von einem partiellen gerichteten Dreieck aus $C$ abgedeckt wird und die Anzahl der Kanten $(1,i)$ ist ungerade. Dadurch erfüllt $C$ auch die Bedingung $b)$ unseres Theorems. 
+\end{proof}
 
-\subsection{Ideen zum Beschleunigen des Algorithmus}
+\noindent Ein weiteres nichttriviales Beispiel für den Nachweis der nicht 3-Färbbarkeit des NulLa mit $D=1$ stellt der Grötzsch Graph dar. \todo[inline]{Graph}
+
+\begin{example}
+Der Grötzsch Graph enthält wie man sehen kann, keine Kreise der Länge 3. Jedoch enthält er folgende Menge von orientierten Vierecken:
+\begin{align*}
+C\;:=\;\{(1,2,3,7),(2,3,4,8),(3,4,5,9),(4,5,1,10),(1,10,11,7),(2,6,11,8),(3,7,11,9),(4,8,11,10),(5,9,11,6)\}.
+\end{align*}
+Auch hier liefert wieder unser Theorem \ref{3colorTheorem} die Aussage dafür, dass für diesen Graphen die nicht 3-Färbbarkeit mit $D=1$ gezeigt werden kann. Jede Kante von $G$ wird genau von zwei Vierecken aus $C$ überdeckt und somit ist Bedingung $a)$ erfüllt. Außerdem kann man durch Abzählen erkennen, dass auch Bedingung $b)$ erfüllt ist. 
+\end{example}
+
+\noindent Um das Theorem \ref{3colorTheorem} zu beweisen, benötigen wir 2 Lemmas. Als Vorbereitung dafür, definieren wir zuerst die Menge $H$. Als erstes vereinfachen wir das Polynom zum Nachweis für die nicht 3-Färbbarkeit (siehe Definition \ref{Polynomdarstellung}). Nach Ausmultiplizieren der linken Seite können wir sehen, dass der einzige Koeffizient für den Term $x_jx_i^3$ $a_{ij}$ ist. Daraus folgt, dass $a_{ij} = 0 \forall i,j\in V(G)$. Das gleiche Argument gilt auch für den einzigen Koeffizienten $b_{ij}$ von $x_ix_j$. Dadurch erhält man folgende Vereinfachung:  
+\begin{align*}
+\sum_{i \in V}a_i(x_i^3+1)+\sum_{\{i,j\}\in E}\left(\sum_{k\in V}b_{ijk}x_k\right)(x_i^2+x_ix_j+x_j^2)=1
+\end{align*}
+
+\noindent Nun betrachten wir die Menge der Polynome in $F$:
+\begin{align*}
+x_i^3+1 \qquad \forall i \in V, \\
+x_k(x_i^2+x_ix_j+x_j^2) \qquad \forall \{i,j\} \in E, k \in V.
+\end{align*}
+
+Die Elemente von $F$ sind jene Polynome, die einen Nachweis der Unlösbarkeit mit rang 1 darstellen.  Ein solcher Nachweis kann nur erbracht werden, genau dann wenn das konstante Polynom $1$ in der linearen Hülle von $F$ enthalten ist: $1 \in \langle F \rangle_{\mathbb{F}_2}, \text{ wobei} \langle F \rangle_{\mathbb{F}_2} \text{ Vektorraum über } \mathbb{F}_2$, der durch die Polynome von $F$ generiert wird. 
+Nun vereinfachen wir die Menge $F$ und definieren sie als unsere Menge $H$:
+\begin{table}%
+\begin{center}
+\begin{tabular}{lr}
+$x_i^2x_j +x_ix_j^2+1$ & $\forall \{i,j\} \in E,$ \\
+$x_ix_j^2+x_jx_k^2$ & $\forall (i,j),(j,k),(k,i) \in Arcs(G),$ \\
+$x_ix_j^2+x_jx_k^2+x_kx_l^2+x_lx_i^2$ & $\qquad \forall (i,j),(j,k),(k,l),(l,i) \in Arcs(G),$ \\
+& $(i,k),(j,l) \notin Arcs(G).$
+\end{tabular}
+\end{center}
+\end{table}
+
+Wenn wir die Monome $x_ix_j^2$ als gerichtete Kanten $(i,j)$ betrachten, beschreiben die Polynome in der zweiten Zeile unsere orientierten partiellen Dreiecke und jene in Zeile drei die orientierten Vierecke. Das erste Lemma, welches wir zum Beweis für unser Theorem benötigen, sagt aus, dass wir $H$ anstatt von $F$ verwenden können.
+
+\begin{lemma}
+$1 \in \langle F \rangle_{\mathbb{F}_2} \Leftrightarrow 1 \in \langle H \rangle_{\mathbb{F}_2}$ 
+\end{lemma}
+
+Im folgenden Lemma wird beschrieben, dass sowohl die Bedingungen von Theorem \ref{3colorTheorem} als auch die Bedingung $1 \in \langle H \rangle_{\mathbb{F}_2}$ zum Nachweis der nicht 3-Färbbarkeit genügen.
+
+\begin{lemma}
+Es existiert eine Menge $C$ von gerichteten partiellen Dreiecken und orientierten Vierecken, die die Bedingungen $a)$ und $b)$ des Theorems \ref{3colorTheorem} erfüllen $
+\Leftrightarrow 1 \in \langle H \rangle_{\mathbb{F}_2}$ 
+\end{lemma}
+
+\noindent Aus der Kombination dieser beiden Lemmas sehen wir nun, dass sie einen Beweis für Theorem \ref{3colorTheorem} bilden. Für die beiden Beweise verweisen wir auf \cite{Ausgangsartikel}. Das die Entscheidung, ob solche Graphen nicht 3-färbbar sind, in polyonomieller Zeit erfolgt, zeigt uns Lemma \ref{polTime}.  
+
 
 \subsection{Stable Sets und NulLA}
+
+
 
 
 \section{Vergleich mit anderen Algorithmen zur 3-Färbbarkeit}
