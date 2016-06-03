@@ -129,8 +129,9 @@ Paarweise nicht benachbarte Knoten oder Kanten nennt man \textcolor{blue}{unabh�
 \end{definition}
 
 \begin{definition}
-Ein \textcolor{blue}{Stable Set} ist eine unabhängige Knotenmenge.
+Ein \textcolor{blue}{Stable Set} ist eine unabhängige Knotenmenge. $\alpha (G)$ ist die maximale Größe eines Stable Sets vom Graph $G$.
 \end{definition}
+
 
 \begin{figure}[h]
 \begin{center}
@@ -503,10 +504,15 @@ x_i^2+x_ix_j+x_j^2=0, \qquad &\forall{i,j}\in E(G) \tag{$\ast$}
 Ein Graph ist nicht 3-färbbar $\Leftrightarrow$ $\sum_i \beta_if_i = 1, \text{ für } \beta_i \in \mathbb{F}_2[x_1,\ldots,x_n]$ und $f_i \in \mathbb{F}_2[x_1,\ldots,x_n]$ wie in Lemma \ref{3color} definiert. 
 \end{corollary}
 
-\noindent Dieses Lemma ermöglicht uns das Operieren über dem Körper $\mathbb{F}_2$, was für praktische Anwendungen sehr zeiteffizient ist. \cite{Loera2011}
+\noindent Dieses Korollar ermöglicht uns das Operieren über dem Körper $\mathbb{F}_2$, was für praktische Anwendungen sehr zeiteffizient ist. \cite{Loera2011} \\
 
-Die nächsten Resultate zeigen uns, für welche Graphen es möglich ist, einen Nachweis für nicht 3-Färbbarkeit mit NulLA und $D=1$ zu erbringen. \todo[inline]{Formulierung?}
+\noindent Jedoch ist dies nicht für alle Graphen möglich, die nicht 3-Färbbarkeit in angemessener Zeit zu bestimmen, was uns das folgende Lemma zeigt \cite{Loera2009}:
 
+\begin{lemma}
+Angenommen $P \not = NP$, dann muss es eine unendlich große Menge von Graphen geben, für welche der Grad des Polynoms zum Nachweis der nicht 3-Färbbarkeit in Abhängigkeit der Anzahl der Knoten und Kanten im Graphen unendlich anwachsen kann.
+\end{lemma}
+
+Die nächsten Resultate zeigen uns, für welche Graphen es möglich ist, einen Nachweis für nicht 3-Färbbarkeit mit NulLA und $D=1$ zu erbringen. 
 
 \begin{definition} \label{Polynomdarstellung}
 Der NulLa kann einen Nachweis der Unlösbarkeit für $(\ast)$ innerhalb der Schranke $D=1$ erbringen, genau dann wenn Koeffizienten $a_i, a_{ij}, b_{ij},b_{ijk} \in \mathbb{F}$ existieren, sodass:
@@ -710,10 +716,29 @@ Es existiert eine Menge $C$ von gerichteten partiellen Dreiecken und orientierte
 \Leftrightarrow 1 \in \langle H \rangle_{\mathbb{F}_2}$ 
 \end{lemma}
 
-\noindent Aus der Kombination dieser beiden Lemmas sehen wir nun, dass sie einen Beweis für Theorem \ref{3colorTheorem} bilden. Für die beiden Beweise verweisen wir auf \cite{Ausgangsartikel}. Das die Entscheidung, ob solche Graphen nicht 3-färbbar sind, in polyonomieller Zeit erfolgt, zeigt uns Lemma \ref{polTime}.  
+\noindent Aus der Kombination dieser beiden Lemmas sehen wir nun, dass sie einen Beweis für Theorem \ref{3colorTheorem} bilden. Für die beiden Beweise verweisen wir auf \cite{Ausgangsartikel}. Das die Entscheidung, ob solche Graphen nicht 3-färbbar sind, in polynomieller Zeit erfolgt, zeigt uns Lemma \ref{polTime}.  
 
 
 \subsection{Stable Sets und NulLA}
+
+
+\begin{definition} \label{StableSetPolynom}
+Ein Graph besitzt kein Stable Set der Größe $\ge \alpha (G)$, wenn es eine Lösung für das folgende System gibt:
+\begin{align*}
+1 = A\left(-(\alpha(G) + r) + \sum_{i=1}^nx_i\right)+\sum_{k \in V(G)} Q_k(x_k^2-x_k)+\sum_{\{u,v\}\in E(G)} Q_{uv}(x_ux_v) \qquad r \ge 1. 
+\end{align*}
+\end{definition}
+
+\begin{theorem}
+Für einen Graph $G$ existiert ein Nachweis des Nullstellensatzes mit Grad $\alpha(G)$, für die Nichtexistenz eines Stable Sets, der Größe $\alpha(G) +r (r\ge 1), $ sodass die Definition \ref{StableSetPolynom} erfüllt ist, \\
+wobei 
+\begin{align*}
+\end{align*}
+\end{theorem}
+
+
+\noindent Zum Schluss können wir zusammenfassen, dass die Polynome, die zum Verifizieren des Nullstellensatzes dienen, sehr dicht sind, da alle quadratfreien Monome, welche Stable Sets darstellen, in ihnen vorkommen.
+Das stellt jedoch ein großes Hindernis für die Berechnung dar. In diesem Fall ist es so, dass die Berechnung von Hilberts Nullstellensatz zumindest so schwer ist wie das Zählen aller möglichen Stable Sets eines Graphen. Dieses Problem ist also bereits für Graphen mit geringen Knotengrad $\#P$-vollständig. \todo[inline]{\#P,NP,P definieren}
 
 
 
