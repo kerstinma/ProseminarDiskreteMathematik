@@ -75,16 +75,16 @@ Angenommen einem Paar benachbarter Knoten $ij$ wird die selbe Einheitswurzel zug
 \framebreak
 
 \begin{definition}
-Paarweise nicht benachbarte Knoten oder Kanten nennt man \textcolor{blue}{unabhängig}. Eine Teilmenge von V oder E heißt unabhängig, wenn ihre Elemente paarweise nicht benachbart sind. Unabhängige Knotenmengen nennt man auch \textcolor{blue}{stabil}. \cite{Diestel}
+Paarweise nicht benachbarte Knoten oder Kanten nennt man \textcolor{blue}{unabhängig}. Eine Teilmenge von V oder E heißt unabhängig, wenn ihre Elemente paarweise nicht benachbart sind. Unabhängige Knotenmengen nennt man auch \textcolor{blue}{stabil}. 
 \end{definition}
 
 \begin{definition}
-Ein \textcolor{blue}{Stable Set} ist eine unabhängige Knotenmenge.
+Ein \textcolor{blue}{Stable Set} ist eine unabhängige Knotenmenge.  $\alpha (G)$ ist die maximale Größe eines Stable Sets vom Graph $G$.
 \end{definition}
 
 \begin{figure}[h]
 \begin{center}
-\resizebox{.3\linewidth}{!}{
+\resizebox{.25\linewidth}{!}{
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
                     semithick]
   \tikzstyle{every state}=[draw=black,text=black]
@@ -124,9 +124,9 @@ Sei $G = (V, E)$ ein Graph. Für ein gegebenes $k \in \mathbb{N}$ betrachten wir
 & \sum_{i \in V} x_i = k.
 \end{align*} 
 
-\begin{theorem}
+\begin{thm}
 System ist lösbar $\Leftrightarrow$ $G$ besitzt Stable Set der Größe k  
-\end{theorem}
+\end{thm}
 
 \end{mslide}
 
@@ -140,21 +140,449 @@ Ziel ist es eine Lösung zu diesem System zu finden beziehungsweise zu zeigen, d
 \end{block}
 
 
-\begin{theorem}[Fredholm's Alternativtheorem] 
+\begin{thm}[Fredholm's Alternativtheorem] \label{Fredi}
 Das Lineare Gleichungssystem $Ax=b$ besitzt genau dann eine Lösung, wenn ein Vektor $y$ mit der Eigenschaft $y^TA=0^T$ und $y^Tb\neq 0^T$ existiert. 
-\end{theorem}
+\end{thm}
 
 \framebreak
 
-\begin{theorem}[Hilbert's Nullstellensatz] 
+\begin{thm}[Hilbert's Nullstellensatz] 
 Sei F = $\{f_1,\ldots,f_m\} \subseteq \mathbb{K}[x_1,\ldots,x_n]$.\\
 Die Varietät $\{x \in \overline{\mathbb{K}^n} : f_1(x)=0,\ldots,f_s(x)=0\}$ ist genau dann leer, wenn 1 zum Ideal $\left\langle F \right\rangle$, das aus F generiert wurde, gehört. Man beachte $1 \in \left\langle F \right\rangle$ bedeutet, dass Polynome $\beta_1,\ldots,\beta_m$ im Ring $\mathbb{K}[x_1,\ldots,x_n]$ existieren, sodass $1 = \sum_{i=1}^m \beta_i f_i$. Diese polynomielle Identität ist ein Nachweis für die Unlösbarkeit von $F(x) = 0$. 
-\end{theorem}
+\end{thm}
+
+\begin{kor}
+Falls numerische Vektoren $\mu \in \mathbb{K}^m$ existieren, sodass $\sum_{i=1}^m \mu_i f_i = 1 \Rightarrow $ das polynomielle System $F(x) = 0$ ist unlösbar. 
+\end{kor}
+
+\framebreak
+
+\begin{ex} \label{ex1}
+Wir betrachten folgende Menge von Polynomen:
+\begin{align*}
+F := \left\{f_1 := x_1^2-1, f_2 := 2x_1x_2+x_3,f_3:=x_1+x_2,f_4:=x_1+x_3 \right\}
+\end{align*}
+Wir können zeigen, dass das System $F(x)=0$ unlösbar ist, falls wir ein $\mu \in \mathbb{R}^4$ finden, das die folgende Bedingung erfüllt:
+\begin{align*}
+&\mu_1 f_1 + \mu_2 f_2 + \mu_3 f_3 + \mu_4 f_4 = 1 \\
+\Leftrightarrow \quad &\mu_1(x_1^2-1)+\mu_2(2x_1x_2+x_3)+\mu_3(x_1+x_2)+\mu_4(x_1+x_3)=1 \\
+\Leftrightarrow \quad &\mu_1x_1^2+2\mu_2x_1x_2+(\mu_2+\mu_4)x_3+\mu_3x_2+(\mu_3+\mu_4)x_1-\mu_1 = 1
+\end{align*}
+Mit Hilfe von Koeffizientenvergleich erhalten wir das folgende LGS:
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{rrr}
+$-\mu_1=1$ & $\mu_3+\mu_4=0$ & $\mu_3=0$ \\
+$\mu_2+\mu_4=0$ & $2\mu_2=0$ & $\mu_1=0$ 
+\end{tabular}
+\end{center}
+\end{table}
+%$F(x)= 0$ ist zwar nicht lösbar, aber da wir für das obere System auch keine Lösung finden, gibt es somit auch keinen Beweis für die Unlösbarkeit von F(x).
+\end{ex}
+
+\framebreak
+
+Im Fall, dass $F(x)=0$ ein LGS ist, können wir das Theorem \ref{Fredi} anwenden: 
+\begin{align*}
+F(x)=0 \text{ unlösbar} \Leftrightarrow \mu M_F = (\textbf{0},1)^T \text{ ist lösbar}
+\end{align*} 
+
+\begin{ex}
+Die Matrix $M_F$ zum Beispiel \ref{ex1} sieht folgendermaßen aus: 
+\begin{align*}
+M_F := \bordermatrix{
+	& x_{1} & x_2 & x_3 & x_1x_2 & x_1^2 & 1 \cr
+	\mu_1 & 0 & 0 & 0 & 0 & 1 & -1 \cr
+	\mu_2 & 0 & 0 & 1 & 2 & 0 & 0 \cr
+	\mu_3 & 1 & 1 & 0 & 0 & 0 & 0 \cr
+	\mu_4 & 1 & 0 & 1 & 0 & 0 & 0
+}
+\end{align*}
+\end{ex}
+
+\framebreak
+
+Der Hilbertsche Nullstellensatz sagt aus, dass durch eine Erweiterung von F durch Polynome vom Ideal von F, das System $\mu M_F = (\textbf{0},1)^T$ lösbar werden kann.
+
+\begin{ex}
+Das erweiterte System für F aus dem Beispiel \ref{ex1} könnte folgendermaßen aussehen:
+
+\begin{align*}
+F'=\{f_1,f_2,f_3,f_4,x_2f_1,x_1f_2,x_1f_3,x_1f_4\}
+\end{align*}
+Das neue lineare System lässt sich nach dem Koeffizientenvergleich darstellen als:
+
+
+\begin{table}[h]%
+\begin{center}
+\begin{tabular}{rrr}
+$-\mu_1=1$ & $\mu_3+\mu_4=0$ & $\mu_3-\mu_5=0$ \\
+$\mu_2+\mu_4=0$ & $2\mu_2+\mu_7=0$ & $\mu_1+\mu_7+\mu_8=0$ \\
+$\mu_6 + \mu_8 = 0$ & $\mu_5+2\mu_6 = 0$
+\end{tabular}
+\label{}
+\end{center}
+\end{table}
+
+\noindent Da dieses System die Lösung $\mu = (-1,-\frac{2}{3},-\frac{2}{3},\frac{2}{3},-\frac{2}{3},\frac{1}{3},\frac{4}{3},-\frac{1}{3})$ besitzt, können wir folgern, dass das nichtlineare System $F(x) = 0$ unlösbar ist.
+\end{ex}
 
 \end{mslide}
 
 \subsection{Algorithmus Nullstellensatz in der Linearen Algebra (NulLa)}
 \begin{mslide}{Algorithmus Nullstellensatz in der Linearen Algebra (NulLa)}
 
+\textbf{Grundidee des Algorithmus:} 
+\begin{itemize}
+\item Überprüfung, ob $\mu M_F = (\textbf{0},1)^T$ lösbar $\Leftrightarrow$ $1 \in span_\mathbb{K}(F)$ 
+\item System nicht lösbar $\Rightarrow$ $F$ wird mit Polynomen aus $\langle F \rangle$, der Form $x_if$ für alle $x_i$ und für alle $f \in F$, erweitert und erneut überprüft 
+\item Algorithmus terminiert $\Leftrightarrow$ $F(x) = 0$ unlösbar 
+\item Obere Schranke $D$: Wenn $F(x) = 0$ ist unlösbar, dann existiert Polynom für das folgendes gilt: 
+\begin{align*}
+\sum_i \beta_i f_i = 1, \qquad deg(\beta_i)\le D
+\end{align*}
+Dieses Polynom besitzt Maximalgrad von $deg(F)+D$.
+\end{itemize}
+
+\begin{lem} \label{Kollar}
+Sei $\mathbb{K}$ ein Körper und $f_1,\ldots,f_k$ Polynome aus $\mathbb{K}[x_1,\ldots,x_n]$ mit Graden $d_1\ge d_2 \ge \ldots \ge d_k \ge 2$. Falls diese Polynome keine gemeinsame Nullstelle über $\overline{\mathbb{K}}$ besitzen, dann existieren $g_1,\ldots,g_k$ in $\mathbb{K}[x_1,\ldots,x_n]$, sodass $\sum_{i=1}^k g_if_i=1, deg(g_if_i) \le D$. $D$ setzt sich wie folgt zusammen:
+\begin{align*}
+D &= \begin{cases} d_1\cdots d_k, & \text{falls $k \le n$}, \\ d_1\cdots d_{n-1}d_k, &
+  \text{falls $k > n > 1$}, \\ d_1+d_k-1, & \text{falls $k > n = 1$} \end{cases}
+\end{align*} 
+Diese Abschätzung für $D$ gilt für beliebige Polynome.
+\end{lem}
+
+\framebreak
+
+\begin{center}
+\resizebox{.9\linewidth}{!}{
+\begin{algorithm} [H]
+    \SetKwInOut{Input}{Input}
+    \SetKwInOut{Output}{Output}
+
+    \underline{function NulLA} $(F,D)$\;
+    \Input{Eine endliche Ausgangsmenge von Polynomen $F \subseteq \mathbb{K}[x_1,\ldots,x_n]$ und die maximale Anzahl an Iterationen $D$}
+    \Output{\textsc{lösbar}, wenn $F(x) = 0$ ist lösbar über $\overline{\mathbb{K}}$, sonst \textsc{keine Lösung}}
+		\For{$k = 0,1,\ldots,D$} {
+		\eIf{$1 \in span_\mathbb{K}(F)$}
+      {
+        \textbf{return} \textsc{keine Lösung}\;
+      }
+      {
+        \textbf{return} Ersetze $span_\mathbb{K}(F)$ durch $(span_\mathbb{K}(F))^+$ (hinzufügen der Polynome $x_iF$ zur Menge $F$)\;
+      }
+		}
+		\textbf{return} \textsc{lösbar}
+    \caption{NulLA Algorithmus}
+\end{algorithm}
+}
+\end{center}
+
+\framebreak
+
+\begin{kor}[lineare Schranke]
+Für gegebene Polynome $f_1,\ldots,f_s \in \mathbb{K}[x_1,\ldots,x_n]$, wobei $\mathbb{K}$ ein algebraisch abgeschlossener Körper ist und $d = \max\{deg(f_i)\}$, falls $f_1,\ldots,f_s$ keine gemeinsame Nullstelle besitzen (auch nicht im Unendlichen), dann gilt $1 = \sum_{i=1}^s\beta_if_i$ mit $deg(\beta_i) \le n (d-1)$.
+\end{kor}
+
+
+\begin{lem}[Laufzeit von NulLA]\label{polTime}
+Sei $d \in \mathbb{Z}_+$ fix und $F = \{f_1,\ldots,f_m\}$ eine Menge von Polynomen aus $\mathbb{K}[x_1,\ldots,x_n]$. Wenn die Bedingungen von NulLA erfüllt sind, dann gilt: Die ersten $d$ Iterationen können in polynomieller Zeit der Größe des Inputs $F$ durchgeführt werden.
+\end{lem}
 \end{mslide}
+
+
+
+\subsection{3-Färbbarkeit und NulLA}
+\begin{mslide}{3-Färbbarkeit und NulLA}
+
+Graph 3-färbbar $\Leftrightarrow$ System besitzt Lösung über $\overline{\mathbb{F}_2}$:
+\begin{align*}
+x_i^3+1=0, \qquad &\forall i \in V(G)\\
+x_i^2+x_ix_j+x_j^2=0, \qquad &\forall{i,j}\in E(G) \tag{$\ast$} 
+\end{align*}
+
+\begin{kor}
+Ein Graph ist nicht 3-färbbar $\Leftrightarrow$ $\sum_i \beta_if_i = 1, \text{ für } \beta_i \in \mathbb{F}_2[x_1,\ldots,x_n]$ und $f_i \in \mathbb{F}_2[x_1,\ldots,x_n]$ wie in  $(\ast)$ definiert. 
+\end{kor}
+
+\begin{lem}
+Angenommen $P \not = NP$, dann muss es eine unendlich große Menge von Graphen geben, für welche der Grad des Polynoms zum Nachweis der nicht 3-Färbbarkeit in Abhängigkeit der Anzahl der Knoten und Kanten im Graphen unendlich anwachsen kann.
+\end{lem}
+
+\framebreak
+
+\begin{definition} \label{Polynomdarstellung}
+Der NulLa kann einen Nachweis der Unlösbarkeit für $(\ast)$ innerhalb der Schranke $D=1$ erbringen, genau dann wenn Koeffizienten $a_i, a_{ij}, b_{ij},b_{ijk} \in \mathbb{F}$ existieren, sodass:
+\begin{align*}
+\sum_{i \in V}\left(a_i + \sum_{j\in V}a_{ij}x_j\right)(x_i^3+1)+\sum_{\{i,j\}\in E}\left(b_{ij}+\sum_{k\in V}b_{ijk}x_k\right)(x_i^2+x_ix_j+x_j^2)=1
+\end{align*}
+\end{definition}
+
+\framebreak
+
+\textbf{Kombinatorische Beschreibung des Problems:} \\
+Ausgangspunkt: einfacher ungerichteter Graph $G=(V,E)$ 
+\begin{align*}
+Arcs(G) := \{(i,j):i,j \in V(G), und \{i,j\}\in E(G)\}.
+\end{align*}
+
+\begin{definition}[Strukturen für Teilgraphen I] 
+ 
+\textbf{orientiertes partielles Dreieck:} 
+	Gegeben: $\{(i,j),(j,k)\} \subseteq Arcs(G)$ und auch $(k,i) \in Arcs(G)$. Dies induziert einen Kreis der Länge 3 in $G$, deshalb schreiben wir auch $(i,j,k)$.
+	\begin{figure}[htp]
+\begin{center}
+\resizebox{.2\linewidth}{!}{
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+                    semithick]
+  \tikzstyle{every state}=[draw=black,text=black]
+	\tikzstyle{every edge} = [draw,thick]
+
+  \node[state] 	(0)              	{i};
+  \node[state]  (1) [above right of=0] 	{j};
+  \node[state] 	(2) [below right of=1]  {k};
+ 
+
+  
+  \path[draw=black,thick] 
+  		%% drone 1
+  		(0)  edge node {} (1)
+  		(1)  edge  node {} (2)
+  		(2)  edge[draw,thick,dashed]  node {} (0)
+  		;
+\end{tikzpicture}
+}
+  \label{oDreieck}
+\end{center}
+\end{figure}
+\end{definition}
+
+\framebreak
+
+\begin{definition}[Strukturen für Teilgraphen III]
+	\textbf{orientiertes ? Viereck:} \\
+	Gegeben: $\{(i,j),(j,k),(k,l),(l,i)\} \subseteq Arcs(G)$ und $(i,k),(j,l) \notin Arcs(G)$. Dies induziert einen Kreis der Länge 4 in $G$, deshalb schreiben wir auch $(i,j,k,l)$. 
+	\begin{figure}[htp]
+\begin{center}
+\resizebox{.2\linewidth}{!}{
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+                    semithick]
+  \tikzstyle{every state}=[draw=black,text=black]
+	\tikzstyle{every edge} = [draw,thick]
+
+  \node[state] 	(0)              	{i};
+  \node[state]  (1) [above of=0] 	{j};
+  \node[state] 	(2) [right of=1]  {k};
+  \node[state]  (3) [below of=2] 	{l};
+ 
+
+  
+  \path[draw=black,thick] 
+  		%% drone 1
+  		(0)  edge node {} (1)
+  		(1)  edge  node {} (2)
+  		(2)  edge  node {} (3)
+  		(3)  edge  node {} (0)
+  		;
+\end{tikzpicture}
+}
+  \label{oViereck}
+\end{center}
+\end{figure}
+\end{definition}
+\framebreak
+\begin{definition}[Strukturen für Teilgraphen III]
+\textbf{ungerades Rad:}\\
+Gegeben: Knoten $1,\ldots,n \quad (n \in \mathbb{N}_G)$, wobei Knoten 1 adjazent zu allen anderen Knoten ist und Knoten $i=2,\ldots,n$ adjazent zu Knoten $1, i-1,i+1$. 
+	\begin{figure}[htp]
+\begin{center}
+\resizebox{.2\linewidth}{!}{
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+                    semithick]
+  \tikzstyle{every state}=[draw=black,text=black]
+	\tikzstyle{every edge} = [draw,thick,-]
+
+  \node[state] 	(0)              	{1};
+  \node[state]  (1) [left of=0] 	{n};
+  \node[state] 	(2) [above left of=0]  {2};
+  \node[state]  (3) [above of=0] 	{3};
+	\node[state]  (4) [above right of=0] 	{4};
+	\node[state]  (5) [right of=0] 	{5};
+	\node[state]  (6) [below right of=0] 	{6};
+	\node[state]  (7) [below of=0] 	{7};
+	
+ 
+
+  
+  \path[draw=black,thick] 
+  		%% drone 1
+  		(0)  edge node {} (1)
+			(0)  edge node {} (2)
+			(0)  edge node {} (3)
+			(0)  edge node {} (4)
+			(0)  edge node {} (5)
+			(0)  edge node {} (6)
+			(0)  edge node {} (7)
+  		(1)  edge[bend left = 10]  node {} (2)
+  		(2)  edge[bend left = 10]  node {} (3)
+  		(3)  edge[bend left = 10]  node {} (4)
+			(4)  edge[bend left = 10]  node {} (5)
+			(5)  edge[bend left = 10]  node {} (6)
+			(6)  edge[bend left = 10]  node {} (7)
+			(7)  edge[bend left = 35,draw,thick,-,dotted]  node {} (1)
+  		;
+\end{tikzpicture}
+}
+  \label{oddWheel}
+\end{center}
+\end{figure}
+\end{definition}
+
+\framebreak
+
+\begin{thm} \label{3colorTheorem}
+Für einen einfachen ungerichteten Graph $G=(V,E)$ sind folgende Aussagen äquivalent:
+\begin{compactenum}[1.]
+	\item Für folgendes polynomielle System über $\mathbb{F}_2$ bringt NulLA einen Nachweis für die nicht 3-Färbbarkeit in D=1
+	\begin{align*}
+	J_G = \{x_i^3+1=0,x_i^2+x_ix_j+x_j^2=0:i\in V(G),\{i,j\}\in E(G)\}
+	\end{align*}
+	\item Es existiert eine Menge $C$ von orientierten partiellen Dreiecken und orientierten ? Vierecken aus $Arcs(G)$, sodass 
+	\begin{compactenum}[a)]
+		\item  $\left|C_{(i,j)}\right|+\left|C_{(j,i)}\right| \equiv 0 \mod{2} \quad \forall \{i,j\} \in E$
+		\item $\sum_{(i,j) \in Arcs(G), i < j} \left|C_{(i,j)}\right| \equiv 1 \mod{2}$
+	\end{compactenum}
+	wobei $C_{(i,j)}$ die Menge der Kreise in C, welche $(i,j) \in Arcs(G)$ enthalten, beschreibt.
+\end{compactenum}
+Solche Graphen sind nicht 3-färbbar und dies kann in polynomieller Zeit bestimmt werden
+\end{thm}
+
+\framebreak
+
+\begin{kor}
+Falls ein Graph $G=(V,E)$ ein ungerades Rad als Teilgraph enthält, so gibt es einen Nachweis für nicht 3-Färbbarkeit mit $D=1$.
+\end{kor} 
+
+\begin{proof}
+$G$ enthält ein ungerades Grad, und sei $C$ die Menge der partiellen Dreiecke:
+\begin{align*}
+C\;:=\;\{(i,1,i+1):2\le i \le n-1\}\cup\{(n,1,2)\}.
+\end{align*}
+%Jede Kante wird genau nullmal oder zweimal von partiellen gerichteten Dreiecken von $C$ überdeckt $\Rightarrow$ Bedingung $a)$ erfüllt \\
+%Jede Kante $(1,i) \in Arcs(G)$ wird genau einmal von einem partiellen gerichteten Dreieck $(i < j, \forall i,j \in E(G))$ aus $C$ abgedeckt und die Anzahl der Kanten $(1,i)$ ist ungerade $\Rightarrow$ Bedingung $b)$ erfüllt
+	\begin{figure}[htp]
+\begin{center}
+\resizebox{.2\linewidth}{!}{
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+                    semithick]
+  \tikzstyle{every state}=[draw=black,text=black]
+	\tikzstyle{every edge} = [draw,thick,-]
+
+  \node[state] 	(0)              	{1};
+  \node[state]  (1) [left of=0] 	{n};
+  \node[state] 	(2) [above left of=0]  {2};
+  \node[state]  (3) [above of=0] 	{3};
+	\node[state]  (4) [above right of=0] 	{4};
+	\node[state]  (5) [right of=0] 	{5};
+	\node[state]  (6) [below right of=0] 	{6};
+	\node[state]  (7) [below of=0] 	{7};
+	
+ 
+
+  
+  \path[draw=black,thick] 
+  		%% drone 1
+  		(0)  edge node {} (1)
+			(0)  edge node {} (2)
+			(0)  edge node {} (3)
+			(0)  edge node {} (4)
+			(0)  edge node {} (5)
+			(0)  edge node {} (6)
+			(0)  edge node {} (7)
+  		(1)  edge[bend left = 10]  node {} (2)
+  		(2)  edge[bend left = 10]  node {} (3)
+  		(3)  edge[bend left = 10]  node {} (4)
+			(4)  edge[bend left = 10]  node {} (5)
+			(5)  edge[bend left = 10]  node {} (6)
+			(6)  edge[bend left = 10]  node {} (7)
+			(7)  edge[bend left = 35,draw,thick,-,dotted]  node {} (1)
+  		;
+\end{tikzpicture}
+}
+  \label{oddWheel}
+\end{center}
+\end{figure}
+\end{proof}
+%
+
+\end{mslide}
+
+\begin{slide}{3-Färbbarkeit und NulLA IX}
+
+\begin{ex}[Grötzsch Graph]
+\begin{figure}[htp]
+\begin{center}
+\resizebox{.4\linewidth}{!}{
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+                    semithick]
+  \tikzstyle{every state}=[draw=black,text=black]
+	\tikzstyle{every edge} = [draw,thick,-]
+
+  \node[state,fill=blue] 	(0)              	{1};
+  \node[state, fill=yellow]  (1) [below of=0] 	{6};
+  \node[state, fill=green] 	(2) [below of=1]  {11};
+  \node[state, fill=red]  (3) [below right of=1] 	{7};
+	\node[state,fill=green]  (4) [right of=3] 	{2};
+	\node[state,fill=blue]  (5) [below right of=2] 	{8};
+	\node[state,fill=blue]  (6) [below left of=2] 	{9};
+	\node[state,fill=yellow]  (7) [below right of=5] 	{3};
+	\node[state,fill=green]  (8) [below left of=6] 	{4};
+	\node[state, fill=red]  (9) [below left of=1] 	{10};
+	\node[state,fill=red]  (10) [left of=9] 	{5};
+
+  
+  \path[draw=black,thick] 
+  		% drone 1
+  		(0)  edge node {} (3)
+			(0)  edge node {} (4)
+			(0)  edge node {} (10)
+			(0)  edge node {} (9)
+  		(1)  edge node {} (2)
+			(1)  edge node {} (4)
+			(1)  edge node {} (10)
+			(2)  edge node {} (3)
+			(2)  edge node {} (5)
+			(2)  edge node {} (6)
+			(2)  edge node {} (9)
+			(3)  edge node {} (7)
+			(4)  edge node {} (5)
+			(4)  edge node {} (7)
+			(5)  edge node {} (8)
+			(6)  edge node {} (10)
+			(6)  edge node {} (7)
+			(7)  edge node {} (8)
+			(8)  edge node {} (9)
+			(8)  edge node {} (10)
+  		;
+\end{tikzpicture}
+}
+\end{center}
+\end{figure}
+\begin{align*}
+C\;:=\;\{&(1,2,3,7),(2,3,4,8),(3,4,5,9),(4,5,1,10),(1,10,11,7),\\&(2,6,11,8),(3,7,11,9),(4,8,11,10),(5,9,11,6)\}.
+\end{align*}
+\end{ex}
+
+\end{slide}
+
+\subsection{Stable Sets und NulLA}
+\begin{mslide}{Stable Sets und NulLA}
+
+\end{mslide}
+
+\subsection{Zusammenfassung}
+\begin{slide}{Zusammenfassung}
+
+\end{slide}
 

@@ -1,8 +1,8 @@
 %PDFTexify
 \RequirePackage{atbegshi}
-\documentclass[envcountsect]{beamer}
+%\documentclass[envcountsect]{beamer}
+\documentclass[pdf, 10pt]{beamer}
 \usepackage{tikz}
-\usetikzlibrary{calc}
 \usepackage{beamerthemesplit}
 \usepackage[german]{babel} 
 \usepackage[utf8]{inputenc} %ACHTUNG: ALLE .tex-Dateien müssen UTF8-Codiert sein!
@@ -10,6 +10,7 @@
 \usepackage{subfigure,graphicx}
 \usepackage{amsmath,amssymb}
 \usepackage{color}
+\usepackage{enumerate}
 \usepackage{rotating}
 \usepackage{pgfplots}
 \usepackage{textpos}
@@ -24,6 +25,8 @@
 \usepackage[export]{adjustbox}
 \usepackage{xargs}
 \usepackage{fancyvrb}
+\usepackage[linesnumbered,ruled]{algorithm2e}
+\usepackage{paralist} %für compactenum
 \newboolean{printlogo}
 
 %widerspruchsblitz
@@ -32,12 +35,19 @@
 %tikz
 \usepackage{pgf}
 \usepackage{graphics}
-\usepackage[margin=1in]{geometry}
-\usetikzlibrary{arrows,automata}
+%\usepackage[margin=1in]{geometry}
+\usetikzlibrary{calc,arrows,automata}
  %to enable backgrounds in tikz graphics -> edges do not overlay vertices
 \usetikzlibrary{backgrounds}
 \pgfdeclarelayer{myback}
 \pgfsetlayers{background,myback,main}
+
+
+
+%\mode<presentation>{\usetheme{Warsaw}}
+%\setbeamertemplate{navigation symbols}{}%remove navigation symbols
+\beamertemplatenavigationsymbolsempty
+
 
 
 %----------------------------------------------------------------------------
@@ -126,9 +136,10 @@
 
 \newcommand{\emptypage}{\frame{}}
 \newtheorem{satz}{Satz}[section]
-\newtheorem{thm}{Theorem}[section]
-\newtheorem{kor}{Korollar}[section]
-\newtheorem{lem}{Lemma}[section]
+\newtheorem{thm}{Theorem}
+\newtheorem{kor}{Korollar}
+\newtheorem{ex}{Beispiel}
+\newtheorem{lem}{Lemma}
 
 \newcounter{bsp}
 \newenvironment{bsp}[1][]{\refstepcounter{bsp}\par\medskip\noindent%
@@ -204,7 +215,7 @@
 \begin{lect}{\vortragstitel}{lec:vortrag}
 \include{folien}
 %Falls mehr als eine Literaturfolie benötigt wird, bitte die folgende Anweisung entfernen oder auskommentieren
-\singlerefslide
+%\singlerefslide
 \end{lect}
 
 \end{document}
