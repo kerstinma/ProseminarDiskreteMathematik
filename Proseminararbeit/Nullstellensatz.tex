@@ -112,6 +112,38 @@ das \textcolor{blue}{polynomielle Ideal} erzeugt von F in $\mathbb{K}[x_1,\ldots
 %Charakteristik 
 %\end{definition}
 
+\subsection{Grundbegriffe der Komplexitätstheorie}
+
+\begin{definition}
+Eine \textcolor{blue}{Turning-Maschine} ist gegeben durch ein 7-Tupel $M =(Z,\Sigma,\Gamma,\delta,z_0,\boxempty,E)$.
+\begin{itemize}
+\item $Z$ die endliche Zustandsmenge,
+\item $\Sigma$ das Eingabeband,
+\item $\Sigma \subset \Gamma$ das Arbeitsalphabet,
+\item $\delta: Z \times \Gamma \rightarrow Z \times \Gamma \times \{L,R,N\}$ die Überführungsfunktion,
+\item $z_0 \in Z$ der Startzustand,
+\item $\boxempty \in \Gamma - \Sigma$ das Blank-Zeichen und 
+\item $E \subseteq Z$ die Menge der Endzustände.
+\end{itemize}
+\end{definition}
+
+\begin{definition}
+\textcolor{blue}{$P$} ist die Klasse der Entscheidungsprobleme, die in polynomieller Zeit durch eine Turing-Maschine entscheidbar sind.
+\end{definition}
+
+\begin{definition}
+\textcolor{blue}{$NP$} ist die Klasse der Entscheidungsprobleme, die in polynomieller Zeit durch eine nichtdeterministische Turing-Maschine entscheidbar sind, so dass:
+\begin{itemize}
+\item wenigstens ein Berechnungspfad akzeptiert wird, wenn die Antwort \glqq ja\grqq{}  ist und
+\item kein Berechnungspfad akzeptiert wird, wenn die Antwort \glqq nein\grqq{} ist.
+\end{itemize}
+\end{definition}
+
+\begin{definition}
+Die Klasse \textcolor{blue}{$\#P$} besteht aus Funktionen $f$, so dass für eine polynomiell-zeitbeschränkte nichtdeterministische Turing-Maschine $M$, $f(x)$ ist die Anzahl akzeptierender Berechnungen von $M(x)$ ist.
+\end{definition}
+
+
 \subsection{Grundbegriffe der Graphentheorie} 
 
 \begin{definition}
@@ -721,6 +753,18 @@ Es existiert eine Menge $C$ von gerichteten partiellen Dreiecken und orientierte
 
 \subsection{Stable Sets und NulLA}
 
+Als erstes möchten wir ein paar Begriffe zum besseren Verständnis des folgenden Kapitels erklären.\\
+Wir nennen eine Menge, die alle Stable Sets der Größe $i$ eines Graphen $G$ enthält, $S_i$. Die Elemente von $S_i$ sind $I$ und ein $I \in S_i$ besteht aus Knoten $\{c_1,c_2,\ldots,c_i\}$. In der Polynomdarstellung bezeichnet nun ein Monom $x_I$ nun das Stable Set $I \in S_i$, mit $x_I := x_{c_1}x_{c_2}\cdots x_{c_i}$.\\
+Außerdem sei $S_0 := \emptyset$ und $x_{\emptyset} = 1$. Zwei weitere Bedingungen sind:
+\begin{itemize}
+\item Für $I \cup k \in S_{i+1}$ gilt, dass $I \cap k = \emptyset$ und $x_Ix_k$ ein quadratfreies Monom eines Stable Sets ist vom Grad $i+1$. 
+\item Für $I \cup k \notin S_{i+1}$ gilt, dass $I \cap k = \emptyset$ und $x_Ix_k$ ein quadratfreies Monom eines Nonstable Sets ist vom Grad $i+1$, da $I \cup k$ zumindest eine Kante $\{k,c_j\}$ enthält. $min_k(I)$ bezeichnet hier das kleinste $c_j \in I$ für das gilt: $\{k,c_j\} \in  E(G)$.
+\end{itemize}
+Außerdem definieren wir noch $P_i$ und $L_i$, die für die spätere Notation auch wichtig sind:
+\begin{align*}
+&P_i := \sum_{I\in S_i}x_I, \qquad with P_0 :=1,&\\
+&L_i := \frac{iL_{i-1}}{\alpha(G)+r-i}, \qquad with L_0 := \frac{1}{\alpha(G)+r}.&
+\end{align*}
 
 \begin{definition} \label{StableSetPolynom}
 Ein Graph besitzt kein Stable Set der Größe $\ge \alpha (G)$, wenn es eine Lösung für das folgende System gibt:
@@ -733,12 +777,94 @@ Ein Graph besitzt kein Stable Set der Größe $\ge \alpha (G)$, wenn es eine Lö
 Für einen Graph $G$ existiert ein Nachweis des Nullstellensatzes mit Grad $\alpha(G)$, für die Nichtexistenz eines Stable Sets, der Größe $\alpha(G) +r (r\ge 1), $ sodass die Definition \ref{StableSetPolynom} erfüllt ist, \\
 wobei 
 \begin{align*}
+& A = - \sum_{i=0}^{\alpha(G)}L_iP_i,\\
+& Q_{uv} = \sum_{i=1}^{\alpha(G)} \left( \sum_{\substack{I \in S_i: I \cup v \notin S_{i+1} and  \\ min_v(I)=u}}  L_{i+1}x_{I\backslash u} \right), and\\ 
+& Q_k = \sum_{i=1}^{\alpha(G)}\left( \sum_{I \in S_i: I \cup k \in S_{i+1}} L_{i+1}x_I \right).
 \end{align*}
 \end{theorem}
 
+\begin{proof}
+In unserem Beweis werden wir lediglich zeigen, dass die Gleichung aus Definition \ref{StableSetPolynom} gilt. Dazu setzen wir zuerst $B,C,D$ folgendermaßen:
+$\underbrace{blabla}_{blub}$
+\begin{align*}
+1 = A\underbrace{\left(-(\alpha(G) + r) + \sum_{i=1}^nx_i\right)}_{B}+\underbrace{\sum_{k \in V(G)} Q_k(x_k^2-x_k)}_{D}+\underbrace{\sum_{\{u,v\}\in E(G)} Q_{uv}(x_ux_v)}_{C}
+\end{align*}
+Was man nun leicht erkennen kann, ist:
+\begin{align*}
+-L_0P_0\left(-(\alpha(G)+r)\right) = - \frac{1}{\alpha(G)+r}\left(-(\alpha(G)+r)\right) = 1.
+\end{align*}
+Es bleibt zu zeigen, dass jeder Koeffizient jedes Monoms der Gleichung gleich $0$ wird. Zunächst zeigen wir, dass jedes Monom in $A,Q_k,Q_{uv}$ ein Stable Set ist und dann, dass Stable Set Monome in $Q_k$ keine Monome der Form $x_k$ und Stable Set Monome in $Q_{uv}$ keine Monome der Form $x_u$ bzw. $x_v$ enthalten. Dies gelingt uns, indem wir zeigen, dass das System $AB+C+D$  nur drei Typen von Monomen auftreten. Nämlich: Quadratfreie Stable Set Monome, quadratfreie Nonstabel Set Monome und Stable Set Monome mit genau einer quadratischen Variable.\\
+\begin{itemize}
+\item \textbf{Quadratfreies Stable Set:} Sei $I=\{c_1,\ldots,c_m\}$ ein Stable Set der Größe $m$. Das Monom $x_I$ kann nun in $AB$ auf zwei Weisen erzeugt werden:\\
+\begin{itemize}
+\item $x_{I\backslash c_k}x_{c_k}$ wird m-mal gebildet, für jedes $c_k$ einmal, oder
+\item $x_I\left(-(\alpha(G)+r)\right)$.
+\end{itemize}
+Also ergibt sich der Koeffizient für $x_I$ in \textbf{$AB$} als:
+\begin{align*}
+-mL_{m-1}-L_m\left(-(\alpha(G)+r)\right) = -m \frac{L_m(\alpha(G)+r-m)}{m} + L_m(\alpha(G)+r) = mL_m.
+\end{align*}
+Der Koeffizient für $x_I$ in \textbf{$C$} existiert nicht, da $x_I$ ein Monom eines Stable Sets ist.\\
+In \textbf{$D$} wird das Monom $x_I$ erzeugt durch $x_{I\backslash c_k}-x_{c_k}$, daraus ergibt sich der Koeffizient $-mL_m$. Gesamt folgt das Ergebnis:
+\begin{align*}
+\underbrace{mL_{m-1}}_{from AB}  \underbrace{-mL_m}_{from D} = 0.
+\end{align*}
+\item \textbf{Quadratfreies Nonstable Set:} Sei $I=\{c_1,\ldots,c_m\}$ ein Stable Set der Größe $m$ und $x_Ix_v$ ein Monom mit $u=min_vI$, wobei $\{u,v\} \in E(G)$. \\
+Es existieren $\binom{m+1}{m}$ Teilmengen von ${c_1,\ldots,c_m}$ und $M$ sei die Anzahl der Stable Sets dieser Teilmengen. Jedes dieser M Stable Sets kommt in einem Monom in $A$ vor. Also kommt das Monom $x_Ixv$ $M$-mal in \textbf{$AB$} vor mit dem Koeffizienten $-ML_m$.\\
+$x_Ix_V$ kommt nicht in \textbf{$D$} vor, da es ein Nonstable Set ist.\\
+Jedoch kommt $x_Ix_v$ genau $M$-mal  in \textbf{$C$} mit dem Koeffizienten $ML_m$ vor. Es ergibtt sich:
+\begin{align*}
+\underbrace{-ML_m}_{from AB} + \underbrace{ML_m}_{from C} = 0. 
+\end{align*}
+\item \textbf{Stable Set mit einer quadratischen Variable:} Sei $I=\{c_1,\ldots,c_m\}$ ein Stable Set der Größe $m$ und das zugehörige Monom $x_{I\backslash k}x_k^2$.\\
+In \textbf{$AB$} wird dieses Monom direkt als Produkt von $x_Ix_k$ mit Koeffizient $-L_m$ erzeugt.\\
+In \textbf{$C$} kommt es nicht vor, da es keine Kante enthält.\\
+In \textbf{$D$} wird es aus $x_{I\backslash k}x_k^2$ erzeugt mit Koeffizient $L_m$. Daraus ergibt sich:
+\begin{align*}
+\underbrace{-L_m}_{from AB} + \underbrace{L_m}_{from D} = 0.
+\end{align*}
+\end{itemize}
+Da der konstante Term in $AB+C+D$ gleich 1 ist und die Koeffizienten für alle anderen Monome gleich 0 sind, ergibt sich, dass die Gleichung ein Nachweis für Stable Sets ist mit Grad $\alpha(G)$.
+\end{proof}
+
+Um diesen Satz zu veranschaulichen möchten wir nun ein kleines Beispiel geben:
+
+\begin{example}
+Wir betrachten den \textcolor{blue}{Turán Graph} $T(5,3)$, dieser hat eine chromatische Zahl von $\alpha(T(5,3))=2$.
+
+\todo[inline]{Bild einfügen}
+Wenn wir nun auf ein Stable Set der Größe 3 testen, erhalten wir mit unserem Algorithmus folgenden Nachweis:
+\begin{align*}
+1 = &\left(\frac{1}{3}x_4+\frac{1}{3}x_2+\frac{1}{3}\right)x_1x_3 + \left(\frac{1}{3}x_2+\frac{1}{3}\right)x_1x_4 + \left(\frac{1}{3}x_2+\frac{1}{3}\right)x_1x_5 + \left(\frac{1}{3}x_4+\frac{1}{3}\right)x_2x_3\\ &+ \left(\frac{1}{3}\right)x_2x_4 + \left(\frac{1}{3}\right)x_2x_5 + \left(\frac{1}{3}x_4 +\frac{1}{3}\right)x_3x_5 + \left(\frac{1}{3}\right)x_4x_5 \\ &+ \left(\frac{1}{3}x_2+\frac{1}{6}\right)(x_1^2-x_1) + \left(\frac{1}{3}x_1+\frac{1}{6}\right)(x_2^2-x_2) + \left(\frac{1}{3}x_4+\frac{1}{6}\right)(x_3^2-x_3) + \left(\frac{1}{3}x_3+\frac{1}{6}\right)(x_4^2-x_4) \\ &+ \left(\frac{1}{6}\right)(x_5^2-x_5) + \underbrace{\left(-\frac{1}{3}(x_1x_2 + x_3x_4)-\frac{1}{6}(x_1+x_2+x_3+x_4+x_5)-\frac{1}{3}\right)}_{Stable \, Set \, Polynom} (x_1+x_2+x_3+x_4+x_5-3)
+\end{align*}
+Man kann gut erkennen, dass der Koeffizient für das Stable Set Polynom für jedes Stable Set in $T(5,3)$ genau ein Monom enthält. Wenn wir z.B. den Term $\frac{1}{3}x_1x_2$ betrachten, sehen wir, dass dieser zum Stable Set $\{1,2\}$ gehört. Außerdem stellt jedes Monomin jedem Koeffizient ein Stable Set in $T(5,3)$ dar.
+\end{example}
+
+Nun folgen noch theoretische Resultate zur Größe der Nullstellen Nachweise.
+
+\begin{theorem}
+Für einen Graph $G$ liefert der Nullstellensatz einen Nachweis für die Nichtexistenz eines Stable Sets, das größer als $\alpha(G)$ ist, mit einem Grad der zumindest $\alpha(G)$ ist.
+\end{theorem}
+
+\begin{corollary}
+Für einen Graph $G$ liefert der Nullstellensatz einen Nachweis für die Nichtexistenz eines Stable Sets, das größer als $\alpha(G)$ ist, welcher zumindest ein Monom für jedes Stable Set in $G$ enthält.
+\end{corollary}
+
+Aus diesen beiden Resultaten können wir nun folgendes Theorem folgern:
+
+\begin{theorem}
+Für einen Graph $G$ liefert der Nullstellensatz einen Nachweis für die Nichtexistenz eines Stable Sets, das größer als $\alpha(G)$ ist, welcher einen Grad von $\alpha(G)$ besitzt und außerdem zumindest einen Term für jedes Stable Set in $G$ enthält.
+\end{theorem}
+
+Dieses Theorem gibt uns also eine untere Schranke für den Grad und Anzahl der Terme eines Nachweises für die Nichtexistenz eines Stable Sets nach dem Nullstellensatz. Weiters gibt es eine allgemeinere Aussage für die Komplexität:
+
+\begin{corollary}
+Es existiert eine unendlich große Menge von Graphen $G_n$ mit n Knoten, so dass der minimale Grad eines Nachweises mit dem Nullstellensatz linear anwächst und gleichzeitig die Anzahl der Terme der Koeffizienten Polynome des Nachweises exponentiell in n anwächst.
+\end{corollary}
+
 
 \noindent Zum Schluss können wir zusammenfassen, dass die Polynome, die zum Verifizieren des Nullstellensatzes dienen, sehr dicht sind, da alle quadratfreien Monome, welche Stable Sets darstellen, in ihnen vorkommen.
-Das stellt jedoch ein großes Hindernis für die Berechnung dar. In diesem Fall ist es so, dass die Berechnung von Hilberts Nullstellensatz zumindest so schwer ist wie das Zählen aller möglichen Stable Sets eines Graphen. Dieses Problem ist also bereits für Graphen mit geringen Knotengrad $\#P$-vollständig. \todo[inline]{\#P,NP,P definieren}
+Das stellt jedoch ein großes Hindernis für die Berechnung dar. In diesem Fall ist es so, dass die Berechnung von Hilberts Nullstellensatz zumindest so schwer ist wie das Zählen aller möglichen Stable Sets eines Graphen. Dieses Problem ist also bereits für Graphen mit geringen Knotengrad $\#P$-vollständig. \todo[inline]{\#P,NP,P definieren: @Kerstin: hab ich gemacht - weiß nicht ob das Paper, das ich verwendet habe gut ist! Bitte anschauen}
 
 
 
