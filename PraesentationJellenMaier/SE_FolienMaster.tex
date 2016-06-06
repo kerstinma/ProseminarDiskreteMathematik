@@ -55,7 +55,7 @@
 \newcommand{\currentsemester}{SS 2016}  %aktuelles Semester
 \newcommand{\lecturetitle}{Proseminar Diskrete Mathematik} % LV-Titel
 \newcommand{\lecturesubtitle}{}
-\newcommand{\lecturer}{Anna Jellen, Kerstin Maier} % Vortragender
+\newcommand{\lecturer}{Anna Jellen, Kerstin Maier} % Vortragende
 \newcommand{\email}{kerstinma@edu.aau.at} % email-Kontakt
 \newcommand{\tocTitle}{Inhalt} % Beschriftung (Titel) der Inhaltsfolien
 \newcommand{\refTitle}{Literatur} % Beschriftung Literaturfolien
@@ -125,14 +125,14 @@
 \begin{slide}{\tocTitle}\tableofcontents[currentsubsection,subsectionstyle=show]\end{slide}
 \setboolean{onlyonerefslide}{false}
 }
-{
-\bibliographystyle{alpha}
-\ifthenelse{\boolean{onlyonerefslide}}{\begin{slide}{\refTitle}
-\bibliography{literatur}
-\end{slide}}{\begin{mslide}{\refTitle}
-\bibliography{literatur}
-\end{mslide}}
-}
+%{
+%\bibliographystyle{alpha}
+%\ifthenelse{\boolean{onlyonerefslide}}{\begin{slide}{\refTitle}
+%\bibliography{literatur}
+%\end{slide}}{\begin{mslide}{\refTitle}
+%\bibliography{literatur}
+%\end{mslide}}
+%}
 
 \newcommand{\emptypage}{\frame{}}
 \newtheorem{satz}{Satz}[section]
@@ -195,13 +195,13 @@
 \title[\lecturetitle]{\lecturetitle}
 \ifthenelse{\equal{\lecturesubtitle}{}}{
 \author{\phantom{Yg}\lecturer\phantom{Yg}}
-\institute{Institut für Mathematik\\Alpen-Adria Universität Klagenfurt}
+\institute{Institut für Mathematik\\Alpen-Adria-Universität Klagenfurt}
 %\\\texttt{\email}}
 \date{\currentsemester}
 }
 {%non-empty subtitle
 \author{\phantom{Yg}\lecturesubtitle\phantom{Yg}}
-\institute{\lecturer\\Institut für Mathematik \\Alpen-Adria Universität Klagenfurt}
+\institute{\lecturer\\Institut für Mathematik \\Alpen-Adria-Universität Klagenfurt}
 %\\\texttt{\email}}
 \date{\currentsemester}
 }

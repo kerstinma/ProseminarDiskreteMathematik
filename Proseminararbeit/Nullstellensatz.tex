@@ -430,10 +430,10 @@ Die Matrix $M_F$ zum Beispiel \ref{ex1} sieht folgendermaßen aus:
 \begin{align*}
 M_F := \bordermatrix{
 	& x_{1} & x_2 & x_3 & x_1x_2 & x_1^2 & 1 \cr
-	\mu_1 & 0 & 0 & 0 & 0 & 1 & -1 \cr
-	\mu_2 & 0 & 0 & 1 & 2 & 0 & 0 \cr
-	\mu_3 & 1 & 1 & 0 & 0 & 0 & 0 \cr
-	\mu_4 & 1 & 0 & 1 & 0 & 0 & 0
+	f_1 & 0 & 0 & 0 & 0 & 1 & -1 \cr
+	f_2 & 0 & 0 & 1 & 2 & 0 & 0 \cr
+	f_3 & 1 & 1 & 0 & 0 & 0 & 0 \cr
+	f_4 & 1 & 0 & 1 & 0 & 0 & 0
 }
 \end{align*}
 \end{example}
@@ -836,7 +836,6 @@ wobei
 
 \begin{proof}
 In unserem Beweis werden wir lediglich zeigen, dass die Gleichung aus Definition \ref{StableSetPolynom} gilt. Dazu setzen wir zuerst $B,C,D$ folgendermaßen:
-$\underbrace{blabla}_{blub}$
 \begin{align*}
 1 = A\underbrace{\left(-(\alpha(G) + r) + \sum_{i=1}^nx_i\right)}_{B}+\underbrace{\sum_{k \in V(G)} Q_k(x_k^2-x_k)}_{D}+\underbrace{\sum_{\{u,v\}\in E(G)} Q_{uv}(x_ux_v)}_{C}
 \end{align*}
@@ -926,10 +925,10 @@ Wir betrachten den \textcolor{blue}{Turán Graph} $T(5,3)$, dieser hat eine chro
 \begin{align*}
 1 = &\left(\frac{1}{3}x_4+\frac{1}{3}x_2+\frac{1}{3}\right)x_1x_3 + \left(\frac{1}{3}x_2+\frac{1}{3}\right)x_1x_4 + \left(\frac{1}{3}x_2+\frac{1}{3}\right)x_1x_5 + \left(\frac{1}{3}x_4+\frac{1}{3}\right)x_2x_3\\ &+ \left(\frac{1}{3}\right)x_2x_4 + \left(\frac{1}{3}\right)x_2x_5 + \left(\frac{1}{3}x_4 +\frac{1}{3}\right)x_3x_5 + \left(\frac{1}{3}\right)x_4x_5 \\ &+ \left(\frac{1}{3}x_2+\frac{1}{6}\right)(x_1^2-x_1) + \left(\frac{1}{3}x_1+\frac{1}{6}\right)(x_2^2-x_2) + \left(\frac{1}{3}x_4+\frac{1}{6}\right)(x_3^2-x_3) + \left(\frac{1}{3}x_3+\frac{1}{6}\right)(x_4^2-x_4) \\ &+ \left(\frac{1}{6}\right)(x_5^2-x_5) + \underbrace{\left(-\frac{1}{3}(x_1x_2 + x_3x_4)-\frac{1}{6}(x_1+x_2+x_3+x_4+x_5)-\frac{1}{3}\right)}_{Stable \, Set \, Polynom} (x_1+x_2+x_3+x_4+x_5-3)
 \end{align*}
-Man kann gut erkennen, dass der Koeffizient für das Stable Set Polynom für jedes Stable Set in $T(5,3)$ genau ein Monom enthält. Wenn wir z.B. den Term $\frac{1}{3}x_1x_2$ betrachten, sehen wir, dass dieser zum Stable Set $\{1,2\}$ gehört. Außerdem stellt jedes Monomin jedem Koeffizient ein Stable Set in $T(5,3)$ dar.
+Man kann gut erkennen, dass der Koeffizient für das Stable Set Polynom für jedes Stable Set in $T(5,3)$ genau ein Monom enthält. Wenn wir z.B. den Term $\frac{1}{3}x_1x_2$ betrachten, sehen wir, dass dieser zum Stable Set $\{1,2\}$ gehört. Außerdem stellt jedes Monom in jedem Koeffizient ein Stable Set in $T(5,3)$ dar.
 \end{example}
 
-\noindent Nun folgen noch theoretische Resultate zur Größe der Nullstellen Nachweise.
+\noindent Nun folgen noch theoretische Resultate zur Größe der Polynome, die zum Nachweis für die Nichtexistenz von Stable Sets dienen:
 
 \begin{theorem}
 Für einen Graph $G$ liefert der Nullstellensatz einen Nachweis für die Nichtexistenz eines Stable Sets, das größer als $\alpha(G)$ ist, mit einem Grad der zumindest $\alpha(G)$ ist.

@@ -46,15 +46,12 @@ Sei $G = (V, E)$ ein Graph
 & \sum_{s = 0}^{k-1} x_i^{k-1-s}x_j^s = 0 \quad \forall (i,j) \in E.
 \end{align*} 
 
-\begin{thm}
+\begin{thm} \label{thm1}
 Graph G ist k-färbbar $\Leftrightarrow$ System besitzt eine komplexe Lösung
 \end{thm}
-\begin{thm}
-G ist k-färbbar und k ungerade $\Leftrightarrow$ System besitzt gemeinsame Nullstelle über $\overline{\mathbb{F}_2}$, wobei  $\overline{\mathbb{F}_2}$ algebraische Abschluss über dem endlichen Körper mit zwei Elementen
-\end{thm}
-\nocite{*}
 
-\framebreak
+
+%\framebreak
 
 \begin{proof}
 Angenommen die Aussage ist wahr über den komplexen Zahlen $\mathbb{C}$. \\
@@ -71,6 +68,17 @@ Durch die Substitution mit unterschiedlichen Einheitswurzeln gilt $x_i - x_j \ne
 "`$\Leftarrow$"' Angenommen die Gleichungen seien erfüllt, d.h. der Lösungspunkt muss aus k-ten Einheitswurzeln bestehen. Den benachbarten Knoten müssen verschiedene Einheitswurzeln zugeordnet werden, da: \\
 Angenommen einem Paar benachbarter Knoten $ij$ wird die selbe Einheitswurzel zugewiesen. Die Gleichung $x_i^{k-1}+x_i^{k-2}x_j+x_i^{k-3}x_j^2+\ldots+x_j^{k-1} = 0$ wird dann zu $\beta^{k-1}+\beta^{k-1}+\ldots+\beta^{k-1} = k\beta^{k-1} = 0$, jedoch $\beta \neq 0 \lightning$ 
 \end{proof}
+
+\framebreak
+
+\begin{thm} \label{thm2}
+G ist k-färbbar und k ungerade $\Leftrightarrow$ System besitzt gemeinsame Nullstelle über $\overline{\mathbb{F}_2}$, wobei  $\overline{\mathbb{F}_2}$ algebraische Abschluss über dem endlichen Körper mit zwei Elementen
+\end{thm}
+
+\begin{proof}
+Das gleiche Argument wie im Beweis von Theorem \ref{thm1} gilt auch für Theorem \ref{thm2}. Obwohl $x_i^k - 1$ nur eine Nullstelle über $\mathbb{F}_2$ besitzt, nämlich 1, erhält man über $\overline{\mathbb{F}_2}$ verschiedene Nullstellen $1,\beta_i,\ldots,\beta_{k-1}$ (in diesem Fall keine komplexen Zahlen). Damit gilt das gleiche Argument wie oben. Wir müssen nur bei der Rückrichtung aufpassen, da $k\beta_i^{k-1} \neq 0$ sein muss. Diese Bedingung ist jedoch erfüllt, da $k$ ungerade und durch die Konstruktion $\beta_i^k = 1$. 
+\end{proof}
+
 
 \framebreak
 
@@ -117,7 +125,7 @@ Ein \textcolor{blue}{Stable Set} ist eine unabhängige Knotenmenge.  $\alpha (G)
 
 \framebreak
 
-Sei $G = (V, E)$ ein Graph. Für ein gegebenes $k \in \mathbb{N}$ betrachten wir folgendes polynomielles System:
+Sei $G = (V, E)$ ein Graph. Für ein gegebenes $k \in \mathbb{N}$ betrachten wir folgendes polynomielle System:
 \begin{align*}
 &x_i^2 - x_i = 0 \quad \forall i \in V, \\
 &x_i x_j = 0 \quad \forall (i,j) \in E, \\
@@ -148,7 +156,7 @@ Das Lineare Gleichungssystem $Ax=b$ besitzt genau dann eine Lösung, wenn ein Ve
 
 \begin{thm}[Hilbert's Nullstellensatz] 
 Sei F = $\{f_1,\ldots,f_m\} \subseteq \mathbb{K}[x_1,\ldots,x_n]$.\\
-Die Varietät $\{x \in \overline{\mathbb{K}^n} : f_1(x)=0,\ldots,f_s(x)=0\}$ ist genau dann leer, wenn 1 zum Ideal $\left\langle F \right\rangle$, das aus F generiert wurde, gehört. Man beachte $1 \in \left\langle F \right\rangle$ bedeutet, dass Polynome $\beta_1,\ldots,\beta_m$ im Ring $\mathbb{K}[x_1,\ldots,x_n]$ existieren, sodass $1 = \sum_{i=1}^m \beta_i f_i$. Diese polynomielle Identität ist ein Nachweis für die Unlösbarkeit von $F(x) = 0$. 
+Die Lösungsmenge $\{x \in \overline{\mathbb{K}^n} : f_1(x)=0,\ldots,f_s(x)=0\}$ ist genau dann leer, wenn 1 zum Ideal $\left\langle F \right\rangle$, das aus F generiert wurde, gehört. Man beachte $1 \in \left\langle F \right\rangle$ bedeutet, dass Polynome $\beta_1,\ldots,\beta_m$ im Ring $\mathbb{K}[x_1,\ldots,x_n]$ existieren, sodass $1 = \sum_{i=1}^m \beta_i f_i$. Diese polynomielle Identität ist ein Nachweis für die Unlösbarkeit von $F(x) = 0$. 
 \end{thm}
 
 \begin{kor}
@@ -192,10 +200,10 @@ Die Matrix $M_F$ zum Beispiel \ref{ex1} sieht folgendermaßen aus:
 \begin{align*}
 M_F := \bordermatrix{
 	& x_{1} & x_2 & x_3 & x_1x_2 & x_1^2 & 1 \cr
-	\mu_1 & 0 & 0 & 0 & 0 & 1 & -1 \cr
-	\mu_2 & 0 & 0 & 1 & 2 & 0 & 0 \cr
-	\mu_3 & 1 & 1 & 0 & 0 & 0 & 0 \cr
-	\mu_4 & 1 & 0 & 1 & 0 & 0 & 0
+	f_1 & 0 & 0 & 0 & 0 & 1 & -1 \cr
+	f_2 & 0 & 0 & 1 & 2 & 0 & 0 \cr
+	f_3 & 1 & 1 & 0 & 0 & 0 & 0 \cr
+	f_4 & 1 & 0 & 1 & 0 & 0 & 0
 }
 \end{align*}
 \end{ex}
@@ -206,7 +214,6 @@ Der Hilbertsche Nullstellensatz sagt aus, dass durch eine Erweiterung von F durc
 
 \begin{ex}
 Das erweiterte System für F aus dem Beispiel \ref{ex1} könnte folgendermaßen aussehen:
-
 \begin{align*}
 F'=\{f_1,f_2,f_3,f_4,x_2f_1,x_1f_2,x_1f_3,x_1f_4\}
 \end{align*}
@@ -329,7 +336,7 @@ Arcs(G) := \{(i,j):i,j \in V(G), und \{i,j\}\in E(G)\}.
 
 \begin{definition}[Strukturen für Teilgraphen I] 
  
-\textbf{orientiertes partielles Dreieck:} 
+\textbf{orientierter partieller Kreis der Länge 3:} 
 	Gegeben: $\{(i,j),(j,k)\} \subseteq Arcs(G)$ und auch $(k,i) \in Arcs(G)$. Dies induziert einen Kreis der Länge 3 in $G$, deshalb schreiben wir auch $(i,j,k)$.
 	\begin{figure}[htp]
 \begin{center}
@@ -353,7 +360,6 @@ Arcs(G) := \{(i,j):i,j \in V(G), und \{i,j\}\in E(G)\}.
   		;
 \end{tikzpicture}
 }
-  \label{oDreieck}
 \end{center}
 \end{figure}
 \end{definition}
@@ -361,7 +367,7 @@ Arcs(G) := \{(i,j):i,j \in V(G), und \{i,j\}\in E(G)\}.
 \framebreak
 
 \begin{definition}[Strukturen für Teilgraphen III]
-	\textbf{orientiertes ? Viereck:} \\
+	\textbf{orientierter sehnenloser Kreis der Länge 4:} \\
 	Gegeben: $\{(i,j),(j,k),(k,l),(l,i)\} \subseteq Arcs(G)$ und $(i,k),(j,l) \notin Arcs(G)$. Dies induziert einen Kreis der Länge 4 in $G$, deshalb schreiben wir auch $(i,j,k,l)$. 
 	\begin{figure}[htp]
 \begin{center}
@@ -387,7 +393,6 @@ Arcs(G) := \{(i,j):i,j \in V(G), und \{i,j\}\in E(G)\}.
   		;
 \end{tikzpicture}
 }
-  \label{oViereck}
 \end{center}
 \end{figure}
 \end{definition}
@@ -448,7 +453,7 @@ Für einen einfachen ungerichteten Graph $G=(V,E)$ sind folgende Aussagen äquiv
 	\begin{align*}
 	J_G = \{x_i^3+1=0,x_i^2+x_ix_j+x_j^2=0:i\in V(G),\{i,j\}\in E(G)\}
 	\end{align*}
-	\item Es existiert eine Menge $C$ von orientierten partiellen Dreiecken und orientierten ? Vierecken aus $Arcs(G)$, sodass 
+	\item Es existiert eine Menge $C$ von gerichteten partiellen Kreisen der Länge 3 und gerichteten sehnenlosen Kreisen der Länge 4 aus $Arcs(G)$, sodass 
 	\begin{compactenum}[a)]
 		\item  $\left|C_{(i,j)}\right|+\left|C_{(j,i)}\right| \equiv 0 \mod{2} \quad \forall \{i,j\} \in E$
 		\item $\sum_{(i,j) \in Arcs(G), i < j} \left|C_{(i,j)}\right| \equiv 1 \mod{2}$
@@ -465,7 +470,7 @@ Falls ein Graph $G=(V,E)$ ein ungerades Rad als Teilgraph enthält, so gibt es e
 \end{kor} 
 
 \begin{proof}
-$G$ enthält ein ungerades Grad, und sei $C$ die Menge der partiellen Dreiecke:
+$G$ enthält ein ungerades Rad und $C$ sei die Menge der partiellen Kreise:
 \begin{align*}
 C\;:=\;\{(i,1,i+1):2\le i \le n-1\}\cup\{(n,1,2)\}.
 \end{align*}
@@ -516,9 +521,7 @@ C\;:=\;\{(i,1,i+1):2\le i \le n-1\}\cup\{(n,1,2)\}.
 \end{proof}
 %
 
-\end{mslide}
-
-\begin{slide}{3-Färbbarkeit und NulLA IX}
+\framebreak
 
 \begin{ex}[Grötzsch Graph]
 \begin{figure}[htp]
@@ -579,10 +582,108 @@ C\;:=\;\{&(1,2,3,7),(2,3,4,8),(3,4,5,9),(4,5,1,10),(1,10,11,7),\\&(2,6,11,8),(3,
 \subsection{Stable Sets und NulLA}
 \begin{mslide}{Stable Sets und NulLA}
 
+\begin{align*}
+&x_i^2 - x_i = 0 \quad \forall i \in V, \\
+&x_i x_j = 0 \quad \forall (i,j) \in E, \\
+& \sum_{i \in V} x_i = k.
+\end{align*} 
+
+\begin{definition} \label{StableSetPolynom}
+Ein Graph besitzt kein Stable Set der Größe $\ge \alpha (G)$, wenn es eine Lösung für das folgende System gibt mit  $r \ge 1$:
+\begin{align*}
+1 = A\left(-(\alpha(G) + r) + \sum_{i=1}^nx_i\right)+\sum_{k \in V(G)} Q_k(x_k^2-x_k)+\sum_{\{u,v\}\in E(G)} Q_{uv}(x_ux_v) . 
+\end{align*}
+\end{definition}
+
+\framebreak 
+
+\begin{ex}
+Wir betrachten den \textcolor{blue}{Turán Graph} $T(5,3)$, dieser hat eine chromatische Zahl von $\alpha(T(5,3))=2$.
+
+\begin{figure}
+\begin{center}
+\resizebox{.4\linewidth}{!}{
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+                    semithick]
+  \tikzstyle{every state}=[draw=black,text=black]
+	\tikzstyle{every edge} = [draw,thick,-]
+
+  \node[state] 	(0)              	{3};
+  \node[state]  (1) [right of=0] 	{4};
+  \node[state] 	(2) [below left of=0]  {1};
+  \node[state]  (3) [below of=2] 	{2};
+	\node[state]  (4) [below right of=1] 	{5};
+  
+  \path[draw=black,thick] 
+  		% drone 1
+  		(4)  edge node {} (0)
+			(4)  edge node {} (1)
+			(4)  edge node {} (2)
+			(4)  edge node {} (3)
+  		(0)  edge node {} (2)
+			(0)  edge node {} (3)
+			(0)  edge node {} (4)
+			(1)  edge node {} (2)
+			(1)  edge node {} (3)
+			(1)  edge node {} (4)
+			(2)  edge node {} (0)
+			(2)  edge node {} (1)
+			(2)  edge node {} (4)
+			(3)  edge node {} (0)
+			(3)  edge node {} (1)
+			(3)  edge node {} (4)
+  		;
+\end{tikzpicture}
+}
+\end{center}
+\end{figure}
+\end{ex}
+\framebreak
+\begin{block}{}
+Wenn wir nun auf ein Stable Set der Größe 3 testen, erhalten wir mit unserem Algorithmus folgenden Nachweis:
+\scriptsize{
+\begin{align*}
+1 = &\left(\frac{1}{3}x_4+\frac{1}{3}x_2+\frac{1}{3}\right)x_1x_3 + \left(\frac{1}{3}x_2+\frac{1}{3}\right)x_1x_4 + \left(\frac{1}{3}x_2+\frac{1}{3}\right)x_1x_5 + \left(\frac{1}{3}x_4+\frac{1}{3}\right)x_2x_3\\ &+ \left(\frac{1}{3}\right)x_2x_4 + \left(\frac{1}{3}\right)x_2x_5 + \left(\frac{1}{3}x_4 +\frac{1}{3}\right)x_3x_5 + \left(\frac{1}{3}\right)x_4x_5 \\ &+ \left(\frac{1}{3}x_2+\frac{1}{6}\right)(x_1^2-x_1) + \left(\frac{1}{3}x_1+\frac{1}{6}\right)(x_2^2-x_2) + \left(\frac{1}{3}x_4+\frac{1}{6}\right)(x_3^2-x_3) + \left(\frac{1}{3}x_3+\frac{1}{6}\right)(x_4^2-x_4) \\ &+ \left(\frac{1}{6}\right)(x_5^2-x_5) + \underbrace{\left(-\frac{1}{3}(x_1x_2 + x_3x_4)-\frac{1}{6}(x_1+x_2+x_3+x_4+x_5)-\frac{1}{3}\right)}_{Stable \, Set \, Polynom} (x_1+x_2+x_3+x_4+x_5-3)
+\end{align*}
+}
+\end{block}
+
+\framebreak
+
+\textbf{Theoretische Resultate zur Größe der Nullstellen Nachweise:}
+
+\begin{thm}
+Für einen Graph $G$ liefert der Nullstellensatz einen Nachweis für die Nichtexistenz eines Stable Sets, das größer als $\alpha(G)$ ist, mit einem Grad der zumindest $\alpha(G)$ ist.
+\end{thm}
+
+\begin{kor}
+Für einen Graph $G$ liefert der Nullstellensatz einen Nachweis für die Nichtexistenz eines Stable Sets, das größer als $\alpha(G)$ ist, welcher zumindest ein Monom für jedes Stable Set in $G$ enthält.
+\end{kor}
+
+\framebreak
+
+\begin{thm}
+Für einen Graph $G$ liefert der Nullstellensatz einen Nachweis für die Nichtexistenz eines Stable Sets, das größer als $\alpha(G)$ ist, welcher einen Grad von $\alpha(G)$ besitzt und außerdem zumindest einen Term für jedes Stable Set in $G$ enthält.
+\end{thm}
+
+
+\begin{kor}
+Es existiert eine unendlich große Menge von Graphen $G_n$ mit n Knoten, so dass der minimale Grad eines Nachweises mit dem Nullstellensatz linear anwächst und gleichzeitig die Anzahl der Terme der Koeffizienten Polynome des Nachweises exponentiell in n anwächst.
+\end{kor}
+
+
 \end{mslide}
 
 \subsection{Zusammenfassung}
 \begin{slide}{Zusammenfassung}
+
+\begin{itemize}
+	\setlength{\itemsep}{10pt}
+	\item Kombinatorische Probleme auf Polynome umformen 
+	\item Algorithmus mit Hilfe von Hilberts Nullstellensatz
+	\item Entscheidung für 3-Färbbarkeit effizient 
+	\item Entscheidung für Stable Sets nicht praktisch umsetzbar
+\end{itemize}
 
 \end{slide}
 
