@@ -115,7 +115,7 @@ das \textcolor{blue}{polynomielle Ideal} erzeugt von F in $\mathbb{K}[x_1,\ldots
 \subsection{Grundbegriffe der Komplexitätstheorie}
 
 \begin{definition}
-Eine \textcolor{blue}{Turing-Maschine} ist gegeben durch ein 7-Tupel $M =(Z,\Sigma,\Gamma,\delta,z_0,\boxempty,E)$.
+Eine \textcolor{blue}{Turing-Maschine} ist gegeben durch ein 7-Tupel $M =(Z,\Sigma,\Gamma,\delta,z_0,\boxempty,E)$. \cite{Kompl1}
 \begin{itemize}
 \item $Z$ die endliche Zustandsmenge,
 \item $\Sigma$ das Eingabeband,
@@ -128,19 +128,19 @@ Eine \textcolor{blue}{Turing-Maschine} ist gegeben durch ein 7-Tupel $M =(Z,\Sig
 \end{definition}
 
 \begin{definition}
-\textcolor{blue}{$P$} ist die Klasse der Entscheidungsprobleme, die in polynomieller Zeit durch eine Turing-Maschine entscheidbar sind.
+\textcolor{blue}{$P$} ist die Klasse der Entscheidungsprobleme, die in polynomieller Zeit durch eine Turing-Maschine entscheidbar sind. \cite{Kompl1}
 \end{definition}
 
 \begin{definition}
-\textcolor{blue}{$NP$} ist die Klasse der Entscheidungsprobleme, die in polynomieller Zeit durch eine nichtdeterministische Turing-Maschine entscheidbar sind, so dass:
+\textcolor{blue}{$NP$} ist die Klasse der Entscheidungsprobleme, die in polynomieller Zeit durch eine nichtdeterministische Turing-Maschine entscheidbar sind, so dass \citep{Kompl1} :
 \begin{itemize}
 \item wenigstens ein Berechnungspfad akzeptiert wird, wenn die Antwort \glqq ja\grqq{}  ist und
 \item kein Berechnungspfad akzeptiert wird, wenn die Antwort \glqq nein\grqq{} ist.
-\end{itemize}
+\end{itemize} 
 \end{definition}
 
 \begin{definition}
-Die Klasse \textcolor{blue}{$\#P$} besteht aus Funktionen $f$, so dass für eine polynomiell-zeitbeschränkte nichtdeterministische Turing-Maschine $M$, $f(x)$ ist die Anzahl akzeptierender Berechnungen von $M(x)$ ist.
+Die Klasse \textcolor{blue}{$\#P$} besteht aus Funktionen $f$, für die eine polynomiell-zeitbeschränkte nichtdeterministische Turing-Maschine $M$ existiert, so dass $f(x)$ die Anzahl der akzeptierenden Berechnungen von M bei Eingabe x ausgiebt. \citep{Kompl2}
 \end{definition}
 
 
@@ -953,7 +953,7 @@ Es existiert eine unendlich große Menge von Graphen $G_n$ mit n Knoten, so dass
 
 
 \noindent Zum Schluss können wir zusammenfassen, dass die Polynome, die zum Verifizieren des Nullstellensatzes dienen, sehr dicht sind, da alle quadratfreien Monome, welche Stable Sets darstellen, in ihnen vorkommen.
-Das stellt jedoch ein großes Hindernis für die Berechnung dar. In diesem Fall ist es so, dass die Berechnung von Hilberts Nullstellensatz zumindest so schwer ist wie das Zählen aller möglichen Stable Sets eines Graphen. Dieses Problem ist also bereits für Graphen mit geringen Knotengrad $\#P$-vollständig. \todo[inline]{\#P,NP,P definieren: @Kerstin: hab ich gemacht - weiß nicht ob das Paper, das ich verwendet habe gut ist! Bitte anschauen}
+Das stellt jedoch ein großes Hindernis für die Berechnung dar. In diesem Fall ist es so, dass die Berechnung von Hilberts Nullstellensatz zumindest so schwer ist wie das Zählen aller möglichen Stable Sets eines Graphen. Dieses Problem ist also bereits für Graphen mit geringen Knotengrad $\#P$-vollständig. 
 
 
 
