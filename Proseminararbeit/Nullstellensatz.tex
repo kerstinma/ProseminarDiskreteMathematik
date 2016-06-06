@@ -4,7 +4,7 @@
 
 \section{Einleitung}
 
-Zu Beginn möchten wir auf einige Grundbegriffe in der Graphentheorie und der (Linearen) Algebra eingehen. Dieses Kapitel soll als Nachschlagewerk für die restlichen Kapitel dieser Arbeit dienen. Hierbei werden auch die Begriffe Stable Set, k-Färbbarkeit und Maximaler Schnitt eingeführt, das Finden solcher graphentheoretischer Probleme fällt in die Klasse der NP-vollständigen Probleme. Des Weiteren werden wir in \ref{Grundbegriffe} diese drei Probleme in Polynomialdarstellung  bringen, was dazu führt, dass wir den Hilbertschen Nullstellensatz darauf anwenden können. Wir werden in dieser Arbeit auf dieses zentrale Resultat der Algebraischen Geometrie eingehen und zeigen, dass sich daraus ein Algorithmus ableiten lässt, der entscheidet, ob die angegebenen Probleme lösbar oder unlösbar sind. 
+Zu Beginn möchten wir auf einige Grundbegriffe in der Graphentheorie und der (Linearen) Algebra eingehen. Dieses Kapitel soll als Nachschlagewerk für die restlichen Kapitel dieser Arbeit dienen. Hierbei werden auch die Begriffe Stable Set, k-Färbbarkeit und Maximaler Schnitt eingeführt, das Finden solcher graphentheoretischer Probleme fällt in die Klasse der NP-vollständigen Probleme. Des Weiteren werden wir in Kapitel \ref{Grundbegriffe} diese drei Probleme in Polynomialdarstellung  bringen, was dazu führt, dass wir den Hilbertschen Nullstellensatz darauf anwenden können. Wir werden in dieser Arbeit auf dieses zentrale Resultat der Algebraischen Geometrie eingehen und zeigen, dass sich daraus ein Algorithmus ableiten lässt, der entscheidet, ob die angegebenen Probleme lösbar oder unlösbar sind. In Kapitel \ref{3colorNulLA} werden wir den Algorithmus zum Entscheiden, ob ein Graph nicht 3-färbbar ist, anwenden und zeigen, dass der Algorithmus für diese Problemstellung ein gutes Verhalten aufweist. Allerdings werden wir in Kapitel \ref{StableNulLA}, beim Entscheiden ob ein Graph ein Stable Set besitzt, erkennen, dass der Algorithmus bereits bei kleinen Graphen an seine Grenzen geht.
 
 \section{Grundbegriffe}  \label{Grundbegriffe}
 
@@ -115,7 +115,7 @@ das \textcolor{blue}{polynomielle Ideal} erzeugt von F in $\mathbb{K}[x_1,\ldots
 \subsection{Grundbegriffe der Komplexitätstheorie}
 
 \begin{definition}
-Eine \textcolor{blue}{Turning-Maschine} ist gegeben durch ein 7-Tupel $M =(Z,\Sigma,\Gamma,\delta,z_0,\boxempty,E)$.
+Eine \textcolor{blue}{Turing-Maschine} ist gegeben durch ein 7-Tupel $M =(Z,\Sigma,\Gamma,\delta,z_0,\boxempty,E)$.
 \begin{itemize}
 \item $Z$ die endliche Zustandsmenge,
 \item $\Sigma$ das Eingabeband,
@@ -208,7 +208,7 @@ Die \textcolor{blue}{k-Färbung} eines Graphen ist eine Abbildung $f: V(G) \righ
 
 \todo[inline]{chromatische Zahl}
 
-\begin{figure}[htp]
+\begin{figure}[h]
 \begin{center}
 \resizebox{.5\linewidth}{!}{
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
@@ -259,7 +259,7 @@ Ein \textcolor{blue}{Maximaler Schnitt} ist jener Schnitt $F \neq \emptyset$, wo
 \end{definition}
 
 
-\begin{figure}[htp]
+\begin{figure}[h]
 \begin{center}
 \resizebox{.5\linewidth}{!}{
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
@@ -391,7 +391,7 @@ Falls numerische Vektoren $\mu \in \mathbb{K}^m$ existieren, sodass $\sum_{i=1}^
 \end{corollary}
 \noindent Das Entscheiden, ob ein $\mu \in \mathbb{K}^m$ existiert, sodass $\sum_{i=1}^m \mu_i f_i = 1$ ist nur mehr ein Problem der Linearen Algebra über dem Körper $\mathbb{K}$. \\
 Es herrscht ein starkes Zusammenspiel zwischen dem System der nichtlinearen Gleichungen $F(x) = 0$, dem Ideal $\langle F \rangle$ und der Linearen Hülle von F über $\mathbb{K}$. \todo[inline]{definieren in den Grundbegriffen}
-Im Folgenden möchten wir auf ein Beispiel eingehen, dass uns zeigt, dass wir nicht immer Unlösbarkeit gezeigt werden kann, auch wenn das System tatsächlich unlösbar ist.
+\noindent Im Folgenden möchten wir auf ein Beispiel eingehen, dass uns zeigt, dass wir nicht immer Unlösbarkeit gezeigt werden kann, auch wenn das System tatsächlich unlösbar ist.
 \begin{example} \label{ex1}
 Wir betrachten folgende Menge von Polynomen:
 \begin{align*}
@@ -429,11 +429,11 @@ F(x)=0 \text{ unlösbar} \Leftrightarrow \mu M_F = (\textbf{0},1)^T \text{ ist l
 Die Matrix $M_F$ zum Beispiel \ref{ex1} sieht folgendermaßen aus: 
 \begin{align*}
 M_F := \bordermatrix{
-	& 1 & x_{1} & x_2 & x_3 & x_1x_2 & x_1^2 \cr
-	\mu_1 & -1 & 0 & 0 & 0 & 0 & 1 \cr
-	\mu_2 & 0 & 0 & 0 & 1 & 2 & 0 \cr
-	\mu_3 & 0 & 1 & 1 & 0 & 0 & 0 \cr
-	\mu_4 & 0 & 1 & 0 & 1 & 0 & 0 
+	& x_{1} & x_2 & x_3 & x_1x_2 & x_1^2 & 1 \cr
+	\mu_1 & 0 & 0 & 0 & 0 & 1 & -1 \cr
+	\mu_2 & 0 & 0 & 1 & 2 & 0 & 0 \cr
+	\mu_3 & 1 & 1 & 0 & 0 & 0 & 0 \cr
+	\mu_4 & 1 & 0 & 1 & 0 & 0 & 0
 }
 \end{align*}
 \end{example}
@@ -518,11 +518,11 @@ Für gegebene Polynome $f_1,\ldots,f_s \in \mathbb{K}[x_1,\ldots,x_n]$, wobei $\
 Sei $d \in \mathbb{Z}_+$ fix und $F = \{f_1,\ldots,f_m\}$ eine Menge von Polynomen aus $\mathbb{K}[x_1,\ldots,x_n]$. Wenn die Bedingungen von NulLA erfüllt sind, dann gilt: Die ersten $d$ Iterationen können in polynomieller Zeit der Größe des Inputs $F$ durchgeführt werden.
 \end{lemma}
 
-Obwohl wir nun theoretisch eine polynomielle Laufzeit des Algorithmus gezeigt haben, kann es trotzdem noch Probleme in der praktischen Umsetzung geben. Dies liegt im schnellen Wachstum der Matrizen, die die linearen Systeme repräsentieren, von $O(n^n)$. Glücklicherweise gibt es praktische Resultate, die zeigen, dass das Wachstum des Rangs von NulLA für das Färbbarkeitsproblem oft sehr langsam ist. Dadurch können wir den Algorithmus auch auf große Graphen anwenden, wie wir im folgenden Kapitel sehen werden. \cite{Ausgangsartikel}
+\noindent Obwohl wir nun theoretisch eine polynomielle Laufzeit des Algorithmus gezeigt haben, kann es trotzdem noch Probleme in der praktischen Umsetzung geben. Dies liegt im schnellen Wachstum der Matrizen, die die linearen Systeme repräsentieren, von $O(n^n)$. Glücklicherweise gibt es praktische Resultate, die zeigen, dass das Wachstum des Rangs von NulLA für das Färbbarkeitsproblem oft sehr langsam ist. Dadurch können wir den Algorithmus auch auf große Graphen anwenden, wie wir im folgenden Kapitel sehen werden. \cite{Ausgangsartikel}
 
 
 
-\subsection{3-Färbbarkeit und NulLA}
+\subsection{3-Färbbarkeit und NulLA} \label{3colorNulLA}
 
 In diesem Kapitel werden wir unseren Algorithmus verwenden, um zu zeigen, dass ein Graph nicht 3-färbbar ist. Wie wir bereits mit Hilfe des Lemmas \ref{3color} gezeigt haben, ist ein Graph genau dann 3-färbbar, wenn das folgende System eine Lösung über $\overline{\mathbb{F}_2}$ besitzt:
 \begin{align*}
@@ -621,7 +621,7 @@ Arcs(G) = \{(i,j):i,j \in V(G), und \{i,j\}\in E(G)\}.
 \end{center}
 \end{figure}
 \item \textbf{ungerades Rad:}\\
-Gegeben: Knoten $1,\ldots,n (\quad n \in \mathbb{N}_G)$, wobei Knoten 1 adjazent zu allen anderen Knoten ist und Knoten $i=2,\ldots,n$ adjazent zu Knoten $1, i-1,i+1$. 
+Gegeben: Knoten $1,\ldots,n \quad (n \in \mathbb{N}_G)$, wobei Knoten 1 adjazent zu allen anderen Knoten ist und Knoten $i=2,\ldots,n$ adjazent zu Knoten $1, i-1,i+1$. 
 	\begin{figure}[htp]
 \begin{center}
 \resizebox{.2\linewidth}{!}{
@@ -701,10 +701,61 @@ C\;:=\;\{(i,1,i+1):2\le i \le n-1\}\cup\{(n,1,2)\}.
 Wie wir in \ref{oddWheel} sehen können, wird jede Kante genau nullmal oder zweimal von partiellen gerichteten Dreiecken von $C$ überdeckt und damit wird Bedingung $a)$ von Theorem \ref{3colorTheorem} erfüllt. Außerdem gilt für jede Kante $(1,i) \in Arcs(G)$, dass sie genau einmal von einem partiellen gerichteten Dreieck aus $C$ abgedeckt wird und die Anzahl der Kanten $(1,i)$ ist ungerade. Dadurch erfüllt $C$ auch die Bedingung $b)$ unseres Theorems. 
 \end{proof}
 
-\noindent Ein weiteres nichttriviales Beispiel für den Nachweis der nicht 3-Färbbarkeit des NulLa mit $D=1$ stellt der Grötzsch Graph dar. \todo[inline]{Graph}
+\noindent Ein weiteres nichttriviales Beispiel für den Nachweis der nicht 3-Färbbarkeit des NulLa mit $D=1$ stellt der Grötzsch Graph dar. 
+
+	\begin{figure}[h]
+\begin{center}
+\resizebox{.4\linewidth}{!}{
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+                    semithick]
+  \tikzstyle{every state}=[draw=black,text=black]
+	\tikzstyle{every edge} = [draw,thick,-]
+
+  \node[state,fill=blue] 	(0)              	{1};
+  \node[state, fill=yellow]  (1) [below of=0] 	{6};
+  \node[state, fill=green] 	(2) [below of=1]  {11};
+  \node[state, fill=red]  (3) [below right of=1] 	{7};
+	\node[state,fill=green]  (4) [right of=3] 	{2};
+	\node[state,fill=blue]  (5) [below right of=2] 	{8};
+	\node[state,fill=blue]  (6) [below left of=2] 	{9};
+	\node[state,fill=yellow]  (7) [below right of=5] 	{3};
+	\node[state,fill=green]  (8) [below left of=6] 	{4};
+	\node[state, fill=red]  (9) [below left of=1] 	{10};
+	\node[state,fill=red]  (10) [left of=9] 	{5};
+
+  
+  \path[draw=black,thick] 
+  		%% drone 1
+  		(0)  edge node {} (3)
+			(0)  edge node {} (4)
+			(0)  edge node {} (10)
+			(0)  edge node {} (9)
+  		(1)  edge node {} (2)
+			(1)  edge node {} (4)
+			(1)  edge node {} (10)
+			(2)  edge node {} (3)
+			(2)  edge node {} (5)
+			(2)  edge node {} (6)
+			(2)  edge node {} (9)
+			(3)  edge node {} (7)
+			(4)  edge node {} (5)
+			(4)  edge node {} (7)
+			(5)  edge node {} (8)
+			(6)  edge node {} (10)
+			(6)  edge node {} (7)
+			(7)  edge node {} (8)
+			(8)  edge node {} (9)
+			(8)  edge node {} (10)
+  		;
+\end{tikzpicture}
+}
+\caption[Grötzsch Graph]{Grötzsch Graph}
+  \label{GrötzschGraph}
+\end{center}
+\end{figure}
 
 \begin{example}
-Der Grötzsch Graph enthält wie man sehen kann, keine Kreise der Länge 3. Jedoch enthält er folgende Menge von orientierten Vierecken:
+Der Grötzsch Graph enthält wie man in Abbildung \ref{GrötzschGraph} sehen kann, keine Kreise der Länge 3. Jedoch enthält er folgende Menge von orientierten Vierecken:
 \begin{align*}
 C\;:=\;\{(1,2,3,7),(2,3,4,8),(3,4,5,9),(4,5,1,10),(1,10,11,7),(2,6,11,8),(3,7,11,9),(4,8,11,10),(5,9,11,6)\}.
 \end{align*}
@@ -722,9 +773,9 @@ x_i^3+1 \qquad \forall i \in V, \\
 x_k(x_i^2+x_ix_j+x_j^2) \qquad \forall \{i,j\} \in E, k \in V.
 \end{align*}
 
-Die Elemente von $F$ sind jene Polynome, die einen Nachweis der Unlösbarkeit mit rang 1 darstellen.  Ein solcher Nachweis kann nur erbracht werden, genau dann wenn das konstante Polynom $1$ in der linearen Hülle von $F$ enthalten ist: $1 \in \langle F \rangle_{\mathbb{F}_2}, \text{ wobei} \langle F \rangle_{\mathbb{F}_2} \text{ Vektorraum über } \mathbb{F}_2$, der durch die Polynome von $F$ generiert wird. 
+\noindent Die Elemente von $F$ sind jene Polynome, die einen Nachweis der Unlösbarkeit mit rang 1 darstellen.  Ein solcher Nachweis kann nur erbracht werden, genau dann wenn das konstante Polynom $1$ in der linearen Hülle von $F$ enthalten ist: $1 \in \langle F \rangle_{\mathbb{F}_2}, \text{ wobei} \langle F \rangle_{\mathbb{F}_2} \text{ Vektorraum über } \mathbb{F}_2$, der durch die Polynome von $F$ generiert wird. 
 Nun vereinfachen wir die Menge $F$ und definieren sie als unsere Menge $H$:
-\begin{table}%
+\begin{table}[h]
 \begin{center}
 \begin{tabular}{lr}
 $x_i^2x_j +x_ix_j^2+1$ & $\forall \{i,j\} \in E,$ \\
@@ -735,13 +786,13 @@ $x_ix_j^2+x_jx_k^2+x_kx_l^2+x_lx_i^2$ & $\qquad \forall (i,j),(j,k),(k,l),(l,i) 
 \end{center}
 \end{table}
 
-Wenn wir die Monome $x_ix_j^2$ als gerichtete Kanten $(i,j)$ betrachten, beschreiben die Polynome in der zweiten Zeile unsere orientierten partiellen Dreiecke und jene in Zeile drei die orientierten Vierecke. Das erste Lemma, welches wir zum Beweis für unser Theorem benötigen, sagt aus, dass wir $H$ anstatt von $F$ verwenden können.
+\noindent Wenn wir die Monome $x_ix_j^2$ als gerichtete Kanten $(i,j)$ betrachten, beschreiben die Polynome in der zweiten Zeile unsere orientierten partiellen Dreiecke und jene in Zeile drei die orientierten Vierecke. Das erste Lemma, welches wir zum Beweis für unser Theorem benötigen, sagt aus, dass wir $H$ anstatt von $F$ verwenden können.
 
 \begin{lemma}
 $1 \in \langle F \rangle_{\mathbb{F}_2} \Leftrightarrow 1 \in \langle H \rangle_{\mathbb{F}_2}$ 
 \end{lemma}
 
-Im folgenden Lemma wird beschrieben, dass sowohl die Bedingungen von Theorem \ref{3colorTheorem} als auch die Bedingung $1 \in \langle H \rangle_{\mathbb{F}_2}$ zum Nachweis der nicht 3-Färbbarkeit genügen.
+\noindent Im folgenden Lemma wird beschrieben, dass sowohl die Bedingungen von Theorem \ref{3colorTheorem} als auch die Bedingung $1 \in \langle H \rangle_{\mathbb{F}_2}$ zum Nachweis der nicht 3-Färbbarkeit genügen.
 
 \begin{lemma}
 Es existiert eine Menge $C$ von gerichteten partiellen Dreiecken und orientierten Vierecken, die die Bedingungen $a)$ und $b)$ des Theorems \ref{3colorTheorem} erfüllen $
@@ -751,7 +802,7 @@ Es existiert eine Menge $C$ von gerichteten partiellen Dreiecken und orientierte
 \noindent Aus der Kombination dieser beiden Lemmas sehen wir nun, dass sie einen Beweis für Theorem \ref{3colorTheorem} bilden. Für die beiden Beweise verweisen wir auf \cite{Ausgangsartikel}. Das die Entscheidung, ob solche Graphen nicht 3-färbbar sind, in polynomieller Zeit erfolgt, zeigt uns Lemma \ref{polTime}.  
 
 
-\subsection{Stable Sets und NulLA}
+\subsection{Stable Sets und NulLA} \label{StableNulLA}
 
 Als erstes möchten wir ein paar Begriffe zum besseren Verständnis des folgenden Kapitels erklären.\\
 Wir nennen eine Menge, die alle Stable Sets der Größe $i$ eines Graphen $G$ enthält, $S_i$. Die Elemente von $S_i$ sind $I$ und ein $I \in S_i$ besteht aus Knoten $\{c_1,c_2,\ldots,c_i\}$. In der Polynomdarstellung bezeichnet nun ein Monom $x_I$ nun das Stable Set $I \in S_i$, mit $x_I := x_{c_1}x_{c_2}\cdots x_{c_i}$.\\
@@ -778,7 +829,7 @@ Für einen Graph $G$ existiert ein Nachweis des Nullstellensatzes mit Grad $\alp
 wobei 
 \begin{align*}
 & A = - \sum_{i=0}^{\alpha(G)}L_iP_i,\\
-& Q_{uv} = \sum_{i=1}^{\alpha(G)} \left( \sum_{\substack{I \in S_i: I \cup v \notin S_{i+1} and  \\ min_v(I)=u}}  L_{i+1}x_{I\backslash u} \right), and\\ 
+& Q_{uv} = \sum_{i=1}^{\alpha(G)} \left( \sum_{\substack{I \in S_i: I \cup v \notin S_{i+1} and  \\ min_v(I)=u}}  L_{i+1}x_{I\backslash u} \right), und\\ 
 & Q_k = \sum_{i=1}^{\alpha(G)}\left( \sum_{I \in S_i: I \cup k \in S_{i+1}} L_{i+1}x_I \right).
 \end{align*}
 \end{theorem}
@@ -827,20 +878,58 @@ In \textbf{$D$} wird es aus $x_{I\backslash k}x_k^2$ erzeugt mit Koeffizient $L_
 Da der konstante Term in $AB+C+D$ gleich 1 ist und die Koeffizienten für alle anderen Monome gleich 0 sind, ergibt sich, dass die Gleichung ein Nachweis für Stable Sets ist mit Grad $\alpha(G)$.
 \end{proof}
 
-Um diesen Satz zu veranschaulichen möchten wir nun ein kleines Beispiel geben:
+\noindent Um diesen Satz zu veranschaulichen möchten wir nun ein kleines Beispiel geben:
 
 \begin{example}
 Wir betrachten den \textcolor{blue}{Turán Graph} $T(5,3)$, dieser hat eine chromatische Zahl von $\alpha(T(5,3))=2$.
 
-\todo[inline]{Bild einfügen}
-Wenn wir nun auf ein Stable Set der Größe 3 testen, erhalten wir mit unserem Algorithmus folgenden Nachweis:
+	\begin{figure}[htp]
+\begin{center}
+\resizebox{.4\linewidth}{!}{
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+                    semithick]
+  \tikzstyle{every state}=[draw=black,text=black]
+	\tikzstyle{every edge} = [draw,thick,-]
+
+  \node[state] 	(0)              	{3};
+  \node[state]  (1) [right of=0] 	{4};
+  \node[state] 	(2) [below left of=0]  {1};
+  \node[state]  (3) [below of=2] 	{2};
+	\node[state]  (4) [below right of=1] 	{5};
+  
+  \path[draw=black,thick] 
+  		%% drone 1
+  		(4)  edge node {} (0)
+			(4)  edge node {} (1)
+			(4)  edge node {} (2)
+			(4)  edge node {} (3)
+  		(0)  edge node {} (2)
+			(0)  edge node {} (3)
+			(0)  edge node {} (4)
+			(1)  edge node {} (2)
+			(1)  edge node {} (3)
+			(1)  edge node {} (4)
+			(2)  edge node {} (0)
+			(2)  edge node {} (1)
+			(2)  edge node {} (4)
+			(3)  edge node {} (0)
+			(3)  edge node {} (1)
+			(3)  edge node {} (4)
+  		;
+\end{tikzpicture}
+}
+\caption[Turán Graph]{Turán Graph}
+  \label{Turán Graph}
+\end{center}
+\end{figure}
+\noindent Wenn wir nun auf ein Stable Set der Größe 3 testen, erhalten wir mit unserem Algorithmus folgenden Nachweis:
 \begin{align*}
 1 = &\left(\frac{1}{3}x_4+\frac{1}{3}x_2+\frac{1}{3}\right)x_1x_3 + \left(\frac{1}{3}x_2+\frac{1}{3}\right)x_1x_4 + \left(\frac{1}{3}x_2+\frac{1}{3}\right)x_1x_5 + \left(\frac{1}{3}x_4+\frac{1}{3}\right)x_2x_3\\ &+ \left(\frac{1}{3}\right)x_2x_4 + \left(\frac{1}{3}\right)x_2x_5 + \left(\frac{1}{3}x_4 +\frac{1}{3}\right)x_3x_5 + \left(\frac{1}{3}\right)x_4x_5 \\ &+ \left(\frac{1}{3}x_2+\frac{1}{6}\right)(x_1^2-x_1) + \left(\frac{1}{3}x_1+\frac{1}{6}\right)(x_2^2-x_2) + \left(\frac{1}{3}x_4+\frac{1}{6}\right)(x_3^2-x_3) + \left(\frac{1}{3}x_3+\frac{1}{6}\right)(x_4^2-x_4) \\ &+ \left(\frac{1}{6}\right)(x_5^2-x_5) + \underbrace{\left(-\frac{1}{3}(x_1x_2 + x_3x_4)-\frac{1}{6}(x_1+x_2+x_3+x_4+x_5)-\frac{1}{3}\right)}_{Stable \, Set \, Polynom} (x_1+x_2+x_3+x_4+x_5-3)
 \end{align*}
 Man kann gut erkennen, dass der Koeffizient für das Stable Set Polynom für jedes Stable Set in $T(5,3)$ genau ein Monom enthält. Wenn wir z.B. den Term $\frac{1}{3}x_1x_2$ betrachten, sehen wir, dass dieser zum Stable Set $\{1,2\}$ gehört. Außerdem stellt jedes Monomin jedem Koeffizient ein Stable Set in $T(5,3)$ dar.
 \end{example}
 
-Nun folgen noch theoretische Resultate zur Größe der Nullstellen Nachweise.
+\noindent Nun folgen noch theoretische Resultate zur Größe der Nullstellen Nachweise.
 
 \begin{theorem}
 Für einen Graph $G$ liefert der Nullstellensatz einen Nachweis für die Nichtexistenz eines Stable Sets, das größer als $\alpha(G)$ ist, mit einem Grad der zumindest $\alpha(G)$ ist.
@@ -850,13 +939,13 @@ Für einen Graph $G$ liefert der Nullstellensatz einen Nachweis für die Nichtex
 Für einen Graph $G$ liefert der Nullstellensatz einen Nachweis für die Nichtexistenz eines Stable Sets, das größer als $\alpha(G)$ ist, welcher zumindest ein Monom für jedes Stable Set in $G$ enthält.
 \end{corollary}
 
-Aus diesen beiden Resultaten können wir nun folgendes Theorem folgern:
+\noindent Aus diesen beiden Resultaten können wir nun folgendes Theorem folgern:
 
 \begin{theorem}
 Für einen Graph $G$ liefert der Nullstellensatz einen Nachweis für die Nichtexistenz eines Stable Sets, das größer als $\alpha(G)$ ist, welcher einen Grad von $\alpha(G)$ besitzt und außerdem zumindest einen Term für jedes Stable Set in $G$ enthält.
 \end{theorem}
 
-Dieses Theorem gibt uns also eine untere Schranke für den Grad und Anzahl der Terme eines Nachweises für die Nichtexistenz eines Stable Sets nach dem Nullstellensatz. Weiters gibt es eine allgemeinere Aussage für die Komplexität:
+\noindent Dieses Theorem gibt uns also eine untere Schranke für den Grad und Anzahl der Terme eines Nachweises für die Nichtexistenz eines Stable Sets nach dem Nullstellensatz. Weiters gibt es eine allgemeinere Aussage für die Komplexität:
 
 \begin{corollary}
 Es existiert eine unendlich große Menge von Graphen $G_n$ mit n Knoten, so dass der minimale Grad eines Nachweises mit dem Nullstellensatz linear anwächst und gleichzeitig die Anzahl der Terme der Koeffizienten Polynome des Nachweises exponentiell in n anwächst.
