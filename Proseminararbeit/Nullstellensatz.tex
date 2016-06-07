@@ -55,6 +55,15 @@ Es sei K eine Menge mit den inneren Verknüpfung $+ : K \times K \rightarrow K$ 
 \end{definition}
 
 \begin{definition}
+Ein \textcolor{blue}{univariates Polynom} ist ein Polynom folgender Gestalt:
+\begin{align*}
+P(x; a_0,\ldots,a_n) = a_o + a_1x + a_2x^2 + \ldots + a_nx^n
+\end{align*}
+mit einer unabhängigen Variablen $x$ und Koeffizienten $a_i, \, i = 0,\ldots,n$. $a_0$ wird als das \textcolor{blue}{absolute Glied} und $a_n$ als der \textcolor{blue}{Leitkoeffizient} bezeichnet.\\
+Ein univariates Polynom dessen Leitkoeffizient gleich 1 ist, nennt man \textcolor{blue}{normiertes Polynom}.
+\end{definition}
+
+\begin{definition}
 Es sei 
 \begin{align*}
 R[X] = \{\sum_{i\in\mathbb{N}_0} a_i X^i |a_i \in R \text{ und} a_i = 0 \text{ für fast alle i} \,\in \mathbb{N}_0 \}
@@ -103,6 +112,14 @@ Sei $F = \{f_1,\ldots,f_m\} \subseteq \mathbb{K}[x_1,\ldots,x_n]$, dann ist
 \left\langle F \right\rangle = \left\{f = \sum_{i=1}^k h_if_i: \quad f_i \in F, h_i \in \mathbb{K}[x_1,\ldots,x_n] \quad \forall i = 1,\ldots,k\right\} \subseteq \mathbb{K}[x_1,\ldots,x_n]
 \end{align*}
 das \textcolor{blue}{polynomielle Ideal} erzeugt von F in $\mathbb{K}[x_1,\ldots,x_n]$.
+\end{definition}
+
+\begin{definition} \label{Radikal}
+Man nennt ein Ideal \textcolor{blue}{radikal} wenn gilt: $f^m \in I \, \Rightarrow \, f \in I$. \\
+Genauer gesagt definiert sich das \textcolor{blue}{Radikal eines Ideals I} folgend: 
+\begin{align*}
+\sqrt{I} := \left\{f: f^m \in  I \text{ für beliebiges m } \ge 1.\right\}
+\end{align*}
 \end{definition}
 %\begin{definition}
 %Für einen endlichen Körper $\Bbb F_p$ der Primzahl-Ordnung $p$ ist der algebraische Abschluss ein abzählbarer unendlicher Körper %der Charakteristik $p$ und enthält für jede natürliche Zahl n einen Teilkörper der Ordnung $p^n$, er besteht sogar aus der Vereinigung dieser Teilkörper. \cite{Karpfinger}
@@ -959,9 +976,129 @@ Das stellt jedoch ein großes Hindernis für die Berechnung dar. In diesem Fall 
 
 \section{Vergleich mit anderen Algorithmen zur 3-Färbbarkeit}
 
+In diesem Kapitel wollen wir aufzeigen wie effizient NulLA im Vergleich zu anderen Methoden ist. Basierend auf den Berechnungen von \cite{Loera2011} wollen wir die Alon-Tarsi-Methode (AT) und die Gröbner-Basen-Methode mit unserem NulLA Algorithmus vergleichen.\\
 
+\noindent Vor der Beschreibung der Methoden, benötigen wir noch ein Theorem zum besseren Verständnis:
+
+\begin{theorem}
+Für einen Graph $G$ mit $n$ Knoten sie $I_G = \langle x-1^3-1,\ldots, x_n^3-1 \rangle$ ein Ideal. Außerdem sei $P_G = \prod_{(i,j) \in E(G)} (x_i-x_j)$.\\
+Es gilt, dass G genau dann ein nicht 3-färbbarer Graph ist, wenn $P_G \in I_G$.
+\end{theorem}
+
+\todo[inline]{Alson-Tarsi und Gröbner Basen nochmal nachschauen und event. definieren?}
+\begin{itemize}
+\item \textbf{Alon-Tarsi-Methode: }\\
+Der genau Algorithmus kann in Kapitel 7 von \cite{Alon1999} nachgelesen werden. Zu erwähnen bleibt, dass wir für die Anwendung von Alon-Tarsi folgendes  benötigen: $B = \{x-1^3-1,\ldots, x_n^3-1\}$ sei die Gröbner Base des Ideals $I_G$, für den Algorithmus betrachten wir die Normalform von $P_G$ in Bezug auf $B$ und wir wissen, dass $G$ nicht 3-färbbar ist, falls $P_G \in I_G$. Durch eine speziellere Konstruktion von $P_G$ kann die Berechnung zusätzlich beschleunigt werden.
+\item \textbf{Gröbner-Basen-Methode: }\\
+Bei dieser Methode wird die Gröbner Basis des Ideals, siehe Lemma \ref{3color}, betrachtet. Der Graph wird genau dann nicht 3-färbbar sein, wenn die Gröbner Basis eine Konstante ist.
+\end{itemize}
+
+Nun möchten wir kurz die Graphen vorstellen, auf welche die Algorithmen angewendet wurden:
+
+\begin{itemize}
+\item \textbf{Mycielski Graphen: }\\
+Die Besonderheit dieser Graphen ist der Unterschied zwischen ihrer chromatischen Zahl und der Anzahl der Cliquen. Der $Mycielski Graph$ der Ordnung $k$ beschreibt einen Graph, welcher keine Kreise der Länge 3 als Teilgraphen enthält und dessen chromatische Zahl k ist. Wie diese Graphen genau aussehen und mit welchem Algorithmus sie generiert werden können, kann man auf http://mathworld.wolfram.com/MycielskiGraph.html nachlesen.
+\item \textbf{Kneser Graphen: }\\
+Ein $Kneser-(t-r) Graph$ wird durch alle $r$ Teilmengen der Menge $\{1,\ldots,t\}$ erzeugt. Die Bildungsvorschrift lautet wie folgt: 2 Knoten sind genau dann adjazent, wenn die zugehörigen Teilmengen disjunkt sind.
+\todo[inline]{finde homepage wo diese Graphen beschrieben sind}
+\end{itemize}
+
+\todo[inline]{table einfügen und referenzieren}
+
+\noindent Nun folgen Vergleiche zur Performance: In den Tests von \cite{Loera2011} konnte gezeigt werden, dass für Graphen bei denen die ersten Knoten und Kanten, die vom Algorithmus betrachtet werden, einen nicht 3-färbbaren Teilgraph beschreiben sehr schnell von Alon-Tarsi auf nicht 3-Färbbarkeit geprüft werden kann. Eine Schwäche von Alon-Tarsi zeigt jedoch der 9. Mycielski Graph auf: Wie man in der Tabelle ?? sehen kann, braucht Alon-Tarsi nur 0.24 Sekunden für die Berechnung. Verändert man aber die Struktur, im Speziellen permutiert man die Reihenfolge der Knoten, die der Algorithmus betrachtet, so ist eine wesentliche Verlangsamung zu erkennen, um genau zu sein, brauchte der Alon-Tarsi Algorithmus 9 GB RAM und mehr als vier Stunden zur Berechnung um lediglich 30 (von 7271) Kanten zu betrachten. Dieses Beispiel zeigt also, dass der Alon-Tarsi Algorithmus extrem empfinlich bezüglich der Anordnung der Kanten bzw. Knoten ist. Dies gilt jedoch nicht für NulLA und die Gröbner-Basen-Methode, wie man auch in der Tabelle ?? erkennen kann.\\
+Eine weiter Schwäche von Alon Tarsi ist, dass er im Test kein ungerades Rad mit 18 Knoten erkennen konnte.
 
 \section{Beweis Nullstellensatz}
+
+In diesem Kapitel möchten wir einen Beweis für Hilberts Nullstellensatz angeben.
+Wenn wir an den bereits definierten Nullstellensatz denken, Theorem \ref{HilbertNull}, kann man unschwer erkennen, dass aus der Gleichung $1 = \sum_i \beta_if_i$ die Unlösbarkeit des Systems $F$ folgt. Was jedoch eine Schwierigkeit im Beweis des Satzes darstellt, ist es die Rückrichtung zu zeigen, also dass die Unlösbarkeit von $F$ eine Gleichung $1 = \sum_i \beta_if_i$ impliziert.
+
+\subsection{Beweis für Polynome in einer Variable}
+
+Für Beweise in diesem Abschnitt werden wir mit dem größten gemeinsamen Teiler arbeiten. Deshalb möchten wir ein erstes Resultat für den größten gemeinsamen Teiler (gcd) von Polynomen angeben:
+\begin{lemma} \label{gcd1}
+Gegeben sind $f_1,\ldots ,f_s$ univariate Polynome aus $\mathbb{K}[x]$ und wir betrachen den gcd als normiertes Polynom, dann gilt:
+\begin{align*}
+gcd (f_1,f_2,\ldots,f_s) = gcd(f_1,gcd(f_2,\ldots,f_s)).
+\end{align*}
+\end{lemma}
+
+\noindent Der Beweis ist relativ kurz und die Aussage wird bewiesen, indem die Gleichheit der beiden Seiten gezeigt wird.\\
+\noindent Die Frage die sich nun stellt ist: Was hat ein größter gemeinsamer Teiler mit der Lösung unseres Systems $f_1(x)=0,\ldots,f_s(x)=0$? Die Antwort liegt darin, dass für eine gemeinsame Nullstelle $a$ dieser Polynome $(x-a)$ einen gemeinsamen Faktor darstellt. Damit folgt, dass sich für einen größten gemeinsamen Teiler $gcd(f_1(x),\ldots,f_s(x)) \not = 1$ eine gemeinsame Lösung für unser System gefunden werden kann, da jede Nullstelle des $gcd$ auch eine gemeinsame Nullstelle von $f_1(x)=0,\ldots,f_s(x)=0$ ist. Damit ergibt sich folgendes Lemma:
+
+\begin{lemma} \label{gcd2}
+Sei $h = gcd(f_1,f_2,\ldots,f_s)$. Es existieren Polynome $a_1,a_2,\ldots,a_s$ und es gilt: $h = a_1f_1+ \ldots + a_sf_s$
+\end{lemma}
+
+\noindent Mit den Lemmas \ref{gcd1} und \ref{gcd2} lässt sich nun folgendes Korollar aufstellen und beweisen. Dieses folgende Resultat liefert uns dann den Beweis für Hilberts Nullstellensatz für Polynome in einer Variablen:
+
+\begin{corollary}
+Eine Menge univarianter Polynome $f_1(x)=0,\ldots,f_s(x)=0$ hat genau dann keine gemeinsame Nullstelle, wenn es möglich ist Polynome $a_1,\ldots, a_s$ zu finden, so dass $1 = a_1f_1+ \ldots + a_sf_s$ erfüllt ist.
+\end{corollary}
+
+\subsection{Beweis für Polynome in mehreren Variablen}
+
+Die Hauptidee für diesen, nun schwierigeren Fall, besteht darin, unsere Systeme auf den leichteren Fall, welcher im vorigen Kapitel gezeigt wurde,zu reduzieren. Im speziellen werden wir sogenannte Resultate benutzen. Diese kann man zur dazu verwenden um herauszufinden, ob es gemeinsame Faktoren von Polynomen gibt (zum Beispiel wenn der größte gemeinsame Teiler dieser Polynome ungleich 1 ist), eine genaue Definition folgt später, zuerst brauchen wir ein Resultat das später für ein besseres Verständnis sorgen wird.
+
+\begin{lemma}
+Für einen beliebigen Körper $\mathbb{K}$ seien $f$ und $g$ Polynome ungleich dem Nullpolynom aus $\mathbb{K}[x]$. $f$ habe den Grad $n$ und $g$ habe den Grad $m$. $f$ und $g$ haben genau dann einen gemeinsamen Faktor, wenn Polynome $A,B \in \mathbb{K}[x]$ ungleich dem Nullpolynome existieren, so dass gilt:
+\begin{itemize}
+\item $Af + Bg = 0$,
+\item $deg(A) < m, deg(B) < n$
+\end{itemize}
+\end{lemma}
+
+\noindent Mit diesem Lemma ist es nun ein Leichtes die Resultante zu definieren.
+
+\begin{definition}
+Für zwei univariate Polynome $f = a_nx^n+a_{n-1}x^{n-1}+\ldots + a_0$ und $g = b_mx^m+b_{m-1}x^{m-1}+\ldots+b_0$ ungleich dem Nullpolynom mit Koeffizienten $a_i, b_j$ aus $\mathbb{K}$. Die \textcolor{blue}{Sylvester matrix Syl(f,g)} ist eine $(m+n) \times (m+n)$ Matrix folgender Art:
+\begin{align*}
+\begin{pmatrix}
+a_n & 0 &\dots & 0 & b_m & 0 & \ldots & 0 \\
+a_{n-1} & a_n & \ddots & 0 & b_{m-1} & b_m & \ddots & 0 \\
+\vdots & a_{n-1} & \ddots & 0 & \vdots & b_{m-1} & \ddots & 0 \\
+a_0 & \vdots & \ddots & a_n & b_0 & \vdots & \ddots & b_m\\
+0 & a_0 & \dots & \vdots & 0 & b_0 & \dots & \vdots \\
+0 & 0 & \dots & a_0 & 0 & 0 & \dots & b_0
+\end{pmatrix}
+\end{align*}
+Die Determinante dieser Matrix ist die \textcolor{blue}{Resultante}, R(f,g), von $f$ und $g$. 
+\end{definition}
+
+\noindent Die Resultante ist also ein Polynom dessen Variablen die Koeffizienten von $f$ und $g$ und dessen Koeffizienten ganze Zahlen sind.\\
+\noindent Mit diesem Wissen können wir nun ein erstes Resultat festhalten:
+
+\begin{theorem}
+Zwei Polynome $f$ und $g$ haben genau dann einen gemeinsamen Faktor in $\mathbb{K}$, wenn $Res(f,g) = det(Syl(f,g)) = 0$. Außerdem existieren Polynome $\tilde{C},\tilde{D} \in \mathbb{K}$, so dass gilt $\tilde{C}f + \tilde{D}g = Res(f,g)$.
+\end{theorem}
+
+\noindent Die folgenden zwei Lemmas werden wir im Beweis zu Hilberts Nullstellensatz benötigen. Sie werden uns dabei helfen Polynome umzuschreiben um sie dann leichter zu analysieren und anzuwenden.
+
+\begin{lemma}
+Für einen Körper $\mathbb{K}$ sei $B(x_1,\ldots,x_n)\in \mathbb{K}[x_1,\ldots,x_n]$ ein Polynom vom Grad $d$ ungleich dem Nullpolynom. Es existieren $z_1,\ldots,z_n \in \mathbb{K}$ so dass $B(z_1,\ldots,z_n) \not = 0$.
+\end{lemma}
+
+\begin{lemma}
+Sei $B(x_1,\ldots,x_n)\in \mathbb{K}[x_1,\ldots,x_n]$ ein Polynom vom Grad $\le d$. Dann existiert eine Permutation der Koordinaten der Form:
+\begin{align*}
+x_1 = \lambda_1y_1+\lambda_n, \qqaud x_2 = \lambda_2y_2 + y_n, \qquad \ldots, \qquad x_i = \lambda_iy_i+y_n, \\
+x_n = y_n,
+\end{align*}
+Dann gilt: $B(y_1+\lambda_1y_n,\ldots,y_{n-1}+\lamda_{n-1}y_n,y_n) = P(y_1,\ldots,y_n)$ ist ein Polynom dessen Koeffizient von $y_n^d$ ist nicht null.
+\end{lemma}
+
+\noindent Diese Resultate reichen uns um Hilberts Nullstellensatz zu beweisen. Als nächstes werden wir Hilberts Nullstellensatz nochmal in der originalen Version aufstellen und anschließend werden wir ihn beweisen.
+
+\begin{theorem}
+Sei $f_1 = 0, f_2 = 0, \ldots, f_s = 0$ ein System von Polynomgleichungen von $f_1,\ldots,f_s \in \mathbb{K}[x_1,\ldots,x_n]$ über dem algebraisch abgeschlossenen Körper $\mathbb{K}$. Es gibt genau dann keine gemeinsame Lösung über $\mathbb{K}^n$, wenn Polynome $\alpha_1,\alpha_2,\ldots,\alpha_s \in \mathbb{K}[x_1,\ldots,x_n]$ existieren, so dass:
+\begin{align*}
+\alpha_1f_1 + \alpha_2f_2+ \ldots + \alpha_sf_s = 1.
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
 
 %%% Local Variables: 
 %%% mode: latex
