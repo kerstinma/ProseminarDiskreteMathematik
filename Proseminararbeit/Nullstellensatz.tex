@@ -66,7 +66,7 @@ Ein univariates Polynom dessen Leitkoeffizient gleich 1 ist, nennt man \textcolo
 \begin{definition}
 Es sei 
 \begin{align*}
-R[X] = \{\sum_{i\in\mathbb{N}_0} a_i X^i |a_i \in R \text{ und} a_i = 0 \text{ für fast alle i} \,\in \mathbb{N}_0 \}
+R[X] = \{\sum_{i\in\mathbb{N}_0} a_i X^i |a_i \in R \text{ und } a_i = 0 \text{ für fast alle i} \,\in \mathbb{N}_0 \}
 \end{align*}
 ein kommutativer Ring mit Einselement 1. \\
 Man nennt R[X] den \textcolor{blue}{Polynomring} in der Unbestimmten X über R. \cite{Karpfinger}
@@ -336,7 +336,7 @@ Sei $G = (V, E)$ ein Graph. Für ein gegebenes $k \in \mathbb{N}$ betrachten wir
 & \sum_{s = 0}^{k-1} x_i^{k-1-s}x_j^s = 0 \quad \forall (i,j) \in E.
 \end{align*} 
 
-\noindent Der Graph G ist genau dann k-färbbar, wenn dieses System eine komplexe Lösung besitzt. Des Weiteren gilt, wenn k ungerade , dann ist G genau dann k-färbbar, wenn das System eine Lösung über $\overline{\mathbb{F}_2}$ besitzt. $\overline{\mathbb{F}_2}$ ist der algebraische Abschluss über dem endlichen Körper mit zwei Elementen.
+\noindent Der Graph G ist genau dann k-färbbar, wenn dieses System eine komplexe Lösung besitzt. Des Weiteren gilt, wenn k ungerade, dann ist G genau dann k-färbbar, wenn das System eine Lösung über $\overline{\mathbb{F}_2}$ besitzt. $\overline{\mathbb{F}_2}$ ist der algebraische Abschluss über dem endlichen Körper mit zwei Elementen.
 \end{lemma}
 
 \begin{proof}
@@ -514,7 +514,7 @@ Diese Abschätzung für $D$ gilt für beliebige Polynome.
         \textbf{return} \textsc{keine Lösung}\;
       }
       {
-        \textbf{return} Ersetze $span_\mathbb{K}(F)$ durch $(span_\mathbb{K}(F))^+$ (hinzufügen der Polynome $x_iF$ zur Menge $F$)\;
+        Ersetze $span_\mathbb{K}(F)$ durch $(span_\mathbb{K}(F))^+$ (hinzufügen der Polynome $x_iF$ zur Menge $F$)\;
       }
 		}
 		\textbf{return} \textsc{lösbar}
@@ -1081,10 +1081,10 @@ Für einen Körper $\mathbb{K}$ sei $B(x_1,\ldots,x_n)\in \mathbb{K}[x_1,\ldots,
 \begin{lemma}
 Sei $B(x_1,\ldots,x_n)\in \mathbb{K}[x_1,\ldots,x_n]$ ein Polynom vom Grad $\le d$. Dann existiert eine Permutation der Koordinaten der Form:
 \begin{align*}
-x_1 = \lambda_1y_1+\lambda_n, \qqaud x_2 = \lambda_2y_2 + y_n, \qquad \ldots, \qquad x_i = \lambda_iy_i+y_n, \\
+x_1 = \lambda_1y_1+\lambda_n, \qquad x_2 = \lambda_2y_2 + y_n, \qquad \ldots, \qquad x_i = \lambda_iy_i+y_n, \\
 x_n = y_n,
 \end{align*}
-Dann gilt: $B(y_1+\lambda_1y_n,\ldots,y_{n-1}+\lamda_{n-1}y_n,y_n) = P(y_1,\ldots,y_n)$ ist ein Polynom dessen Koeffizient von $y_n^d$ ist nicht null.
+Dann gilt: $B(y_1+\lambda_1y_n,\ldots,y_{n-1}+\lambda_{n-1}y_n,y_n) = P(y_1,\ldots,y_n)$ ist ein Polynom dessen Koeffizient von $y_n^d$ ist nicht null.
 \end{lemma}
 
 \noindent Diese Resultate reichen uns um Hilberts Nullstellensatz zu beweisen. Als nächstes werden wir Hilberts Nullstellensatz nochmal in der originalen Version aufstellen und anschließend werden wir ihn beweisen.
