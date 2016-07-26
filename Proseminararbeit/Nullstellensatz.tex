@@ -4,7 +4,7 @@
 
 \section{Einleitung}
 
-Zu Beginn möchten wir auf einige Grundbegriffe in der Graphentheorie und der (Linearen) Algebra eingehen. Dieses Kapitel soll als Nachschlagewerk für die restlichen Kapitel dieser Arbeit dienen. Hierbei werden auch die Begriffe Stable Set, k-Färbbarkeit und Maximaler Schnitt eingeführt, das Finden solcher graphentheoretischer Probleme fällt in die Klasse der NP-vollständigen Probleme. Des Weiteren werden wir in Kapitel \ref{Grundbegriffe} diese drei Probleme in Polynomialdarstellung  bringen, was dazu führt, dass wir den Hilbertschen Nullstellensatz darauf anwenden können. Wir werden in dieser Arbeit auf dieses zentrale Resultat der Algebraischen Geometrie eingehen und zeigen, dass sich daraus ein Algorithmus ableiten lässt, der entscheidet, ob die angegebenen Probleme lösbar oder unlösbar sind. In Kapitel \ref{3colorNulLA} werden wir den Algorithmus zum Entscheiden, ob ein Graph nicht 3-färbbar ist, anwenden und zeigen, dass der Algorithmus für diese Problemstellung ein gutes Verhalten aufweist. Allerdings werden wir in Kapitel \ref{StableNulLA}, beim Entscheiden ob ein Graph ein Stable Set besitzt, erkennen, dass der Algorithmus bereits bei kleinen Graphen an seine Grenzen geht.
+Zu Beginn möchten wir auf einige Grundbegriffe in der Graphentheorie und der (Linearen) Algebra eingehen. Dieses Kapitel soll als Nachschlagewerk für die restlichen Kapitel dieser Arbeit dienen. Hierbei werden auch die Begriffe Stable Set, k-Färbbarkeit und Maximaler Schnitt eingeführt. Das Finden solcher graphentheoretischer Probleme fällt in die Klasse der NP-vollständigen Probleme. Des Weiteren werden wir in Kapitel \ref{Grundbegriffe} diese drei Probleme in Polynomialdarstellung  bringen, was dazu führt, dass wir den Hilbertschen Nullstellensatz darauf anwenden können. Wir werden in dieser Arbeit auf dieses zentrale Resultat der Algebraischen Geometrie eingehen und zeigen, dass sich daraus ein Algorithmus ableiten lässt, der entscheidet, ob die angegebenen Probleme lösbar oder unlösbar sind. In Kapitel \ref{3colorNulLA} werden wir den Algorithmus zum Entscheiden, ob ein Graph nicht 3-färbbar ist, anwenden und zeigen, dass der Algorithmus für diese Problemstellung ein gutes Verhalten aufweist. Allerdings werden wir in Kapitel \ref{StableNulLA}, beim Entscheiden ob ein Graph ein Stable Set besitzt, erkennen, dass der Algorithmus bereits bei kleinen Graphen an seine Grenzen geht.
 
 \section{Grundbegriffe}  \label{Grundbegriffe}
 
@@ -133,6 +133,13 @@ Man nennt das Ideal eines Rings $R$ \textcolor{blue}{echt}, wenn $I$ eine echte 
 %\begin{definition}
 %Charakteristik 
 %\end{definition}
+
+\begin{definition}
+Sei $V$ ein Vektorraum über dem Körper $K$ und $S \subset V$. Dann wird die Menge aller Linearkombinationen der $n$-Vektoren aus $S$ als \textcolor{blue}{lineare Hülle} von $S$ bezeichnet. 
+\begin{align*}
+span(S) = \left\{\sum_{i=1}^n c_is_i: \quad s_i \in S, c_i \in K \quad \forall i = 1,\ldots,n\right\}
+\end{align*}
+\end{definition}
 
 \subsection{Grundbegriffe der Komplexitätstheorie}
 
@@ -414,7 +421,7 @@ Aus dem Hilbertschen Nullstellensatz lässt sich folgendes Korollar ableiten:
 Falls numerische Vektoren $\mu \in \mathbb{K}^m$ existieren, sodass $\sum_{i=1}^m \mu_i f_i = 1 \Rightarrow $ das polynomielle System $F(x) = 0$ ist unlösbar. 
 \end{corollary}
 \noindent Das Entscheiden, ob ein $\mu \in \mathbb{K}^m$ existiert, sodass $\sum_{i=1}^m \mu_i f_i = 1$ ist nur mehr ein Problem der Linearen Algebra über dem Körper $\mathbb{K}$. \\
-Es herrscht ein starkes Zusammenspiel zwischen dem System der nichtlinearen Gleichungen $F(x) = 0$, dem Ideal $\langle F \rangle$ und der Linearen Hülle von F über $\mathbb{K}$. \todo[inline]{definieren in den Grundbegriffen}
+Es herrscht ein starkes Zusammenspiel zwischen dem System der nichtlinearen Gleichungen $F(x) = 0$, dem Ideal $\langle F \rangle$ und der linearen Hülle von F über $\mathbb{K}$. 
 \noindent Im Folgenden möchten wir auf ein Beispiel eingehen, dass uns zeigt, dass wir nicht immer Unlösbarkeit gezeigt werden kann, auch wenn das System tatsächlich unlösbar ist.
 \begin{example} \label{ex1}
 Wir betrachten folgende Menge von Polynomen:
@@ -1085,7 +1092,7 @@ Zwei Polynome $f$ und $g$ haben genau dann einen gemeinsamen Faktor in $\mathbb{
 Für einen Körper $\mathbb{K}$ sei $B(x_1,\ldots,x_n)\in \mathbb{K}[x_1,\ldots,x_n]$ ein Polynom vom Grad $d$ ungleich dem Nullpolynom. Es existieren $z_1,\ldots,z_n \in \mathbb{K}$ so dass $B(z_1,\ldots,z_n) \not = 0$.
 \end{lemma}
 
-\begin{lemma}
+\begin{lemma} \label{lemma}
 Sei $B(x_1,\ldots,x_n)\in \mathbb{K}[x_1,\ldots,x_n]$ ein Polynom vom Grad $\le d$. Dann existiert eine Permutation der Koordinaten der Form:
 \begin{align*}
 x_1 = \lambda_1y_1+\lambda_n, \qquad x_2 = \lambda_2y_2 + y_n, \qquad \ldots, \qquad x_i = \lambda_iy_i+y_n, \\
@@ -1106,9 +1113,9 @@ Sei $f_1 = 0, f_2 = 0, \ldots, f_s = 0$ ein System von Polynomgleichungen von $f
 \begin{proof}
 Wir können sofort erkennen, dass das System keine Lösungen besitzt, wenn die Gleichung $\alpha_1f_1 + \alpha_2f_2+ \ldots + \alpha_sf_s = 1$  erfüllt ist. Die Gegenrichtung zeigen wir mit Hilfe von Idealen. Wir definieren $I$ als das Ideal, das von $f_1,\ldots,f_s$ erzeugt wird. Die Aussage, die wir zeigen wollen, ist äquivalent zur Folgenden:
 \begin{lemma}
-Sei $I$ ein \textcolor{blue}{echtes Ideal} des Polynomrings, dann gibt es eine gemeinsame Lösung zum gegebenen System.
+Sei $I$ ein echtes Ideal des Polynomrings $(1 \notin I)$, dann gibt es eine gemeinsame Lösung zum gegebenen System.
 \end{lemma}    
-Dieses Lemma beweisen wir durch Induktion über die Anzahl der Variablen. Durch die Eigenschaften des ggt ist die Aussage für $n = 1$ erfüllt.    
+\noindent Dieses Lemma beweisen wir durch Induktion über die Anzahl der Variablen. Durch die Eigenschaften des ggt ist die Aussage für $n = 1$ erfüllt. Angenommen die Aussage gilt für alle echten Ideale in $\mathbb{K}[x_1,\ldots,x_{n-1}]$. Wir beweisen die Aussage für das echte Ideal $I \subset \mathbb{K}[x_1,\ldots,x_n]$. Durch das Lemma \ref{lemma} wissen wir, dass für jedes nichtkonstante Polynom $f \in I$ ein äquivalentes Polynom, mit Koeffizienten von $x_n^d$ ungleich 0, existiert. Dadurch finden wir ein $g \in I$, das in $x_n$ normiert ist. Sei $I'$ ein echtes Ideal in $\mathbb{K}[x_1,\ldots,x_{n-1}]$ bestehend aus allen Polynomen aus $I$, die $x_n$ nicht enthalten. Aufgrund der Induktionsannahme existiert ein Punkt $(a_1,\ldots,a_{n-1})$, sodass $f(a_1,\ldots,a_{n-1})=0$ für alle $f \in I'$. Nun nehmen wir an, dass die Menge $J = \{f(a_1,\ldots,a_n,x_n)\}$ ein echtes Ideal von $\mathbb{K}[x_n]$ ist. Stimmt diese Annahme, dann ist J ein echtes Ideal von $\mathbb{K}[x_n]$, das durch das Polynom $h(x_n)$ erzeugt wird. Sei $h$ nichtkonstant, dann besitzt $h(x_n)$, durch die algebraische Abgeschlossenheit von $\mathbb{K}$, eine Wurzel $a_n$. Ähnliches gilt für das konstante Nullpolynom. In beiden Fällen gilt $f(a_1,\ldots,a_{n})=0$ für alle $f \in I$. Daher existiert für jedes echte Ideal $I \in \mathbb{K}[x_1,\ldots,x_{n}]$ ein Punkt $(a_1,\ldots,a_{n})$, sodass $f(a_1,\ldots,a_{n})=0$ für alle $f \in I$. Somit wäre der Beweis des Hilbertschen Nullstellensatz bewiesen. Allerdings müssen wir noch die obige Annahme beweisen.      
 \end{proof}
 
 %%% Local Variables: 
