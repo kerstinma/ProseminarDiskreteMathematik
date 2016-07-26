@@ -4,7 +4,7 @@
 
 \section{Einleitung}
 
-Zu Beginn möchten wir auf einige Grundbegriffe in der Graphentheorie und der (Linearen) Algebra eingehen. Dieses Kapitel soll als Nachschlagewerk für die restlichen Kapitel dieser Arbeit dienen. Hierbei werden auch die Begriffe Stable Set, k-Färbbarkeit und Maximaler Schnitt eingeführt. Das Finden solcher graphentheoretischer Probleme fällt in die Klasse der NP-vollständigen Probleme. Des Weiteren werden wir in Kapitel \ref{Grundbegriffe} diese drei Probleme in Polynomialdarstellung  bringen, was dazu führt, dass wir den Hilbertschen Nullstellensatz darauf anwenden können. Wir werden in dieser Arbeit auf dieses zentrale Resultat der Algebraischen Geometrie eingehen und zeigen, dass sich daraus ein Algorithmus ableiten lässt, der entscheidet, ob die angegebenen Probleme lösbar oder unlösbar sind. In Kapitel \ref{3colorNulLA} werden wir den Algorithmus zum Entscheiden, ob ein Graph nicht 3-färbbar ist, anwenden und zeigen, dass der Algorithmus für diese Problemstellung ein gutes Verhalten aufweist. Allerdings werden wir in Kapitel \ref{StableNulLA}, beim Entscheiden ob ein Graph ein Stable Set besitzt, erkennen, dass der Algorithmus bereits bei kleinen Graphen an seine Grenzen geht.
+Zu Beginn möchten wir auf einige Grundbegriffe in der Graphentheorie und der (Linearen) Algebra eingehen. Dieses Kapitel soll als Nachschlagewerk für die restlichen Kapitel dieser Arbeit dienen. Hierbei werden auch die Begriffe Stable Set, k--Färbbarkeit und Maximaler Schnitt eingeführt. Das Finden solcher graphentheoretischer Probleme fällt in die Klasse der NP--vollständigen Probleme. Des Weiteren werden wir in Kapitel \ref{Grundbegriffe} diese drei Probleme in Polynomialdarstellung  bringen, was dazu führt, dass wir den Hilbertschen Nullstellensatz darauf anwenden können. Wir werden in dieser Arbeit auf dieses zentrale Resultat der Algebraischen Geometrie eingehen und in Kapitel \ref{HilbertNull} zeigen, dass sich daraus ein Algorithmus ableiten lässt, der entscheidet, ob die angegebenen Probleme lösbar oder unlösbar sind. In Kapitel \ref{3colorNulLA} werden wir den Algorithmus zum Entscheiden, ob ein Graph nicht 3--färbbar ist, anwenden und zeigen, dass der Algorithmus für diese Problemstellung ein gutes Verhalten aufweist. Allerdings werden wir in Kapitel \ref{StableNulLA}, beim Entscheiden ob ein Graph ein Stable Set besitzt, erkennen, dass der Algorithmus bereits bei kleinen Graphen an seine Grenzen geht. In Kapitel \ref{vergleich} werden wir noch andere Algorithmen zur Lösung der 3--Färbbarkeit aufzeigen und diese mit unserem in Kapitel \ref{HilbertNull} besprochenen Algorithmus vergleichen. Zu guter Letzt werden wir in Kapitel \ref{beweis} den Beweis zum Nullstellensatz genau beleuchten.
 
 \section{Grundbegriffe}  \label{Grundbegriffe}
 
@@ -60,7 +60,7 @@ Ein \textcolor{blue}{univariates Polynom} ist ein Polynom folgender Gestalt:
 P(x; a_0,\ldots,a_n) = a_o + a_1x + a_2x^2 + \ldots + a_nx^n
 \end{align*}
 mit einer unabhängigen Variablen $x$ und Koeffizienten $a_i, \, i = 0,\ldots,n$. $a_0$ wird als das \textcolor{blue}{absolute Glied} und $a_n$ als der \textcolor{blue}{Leitkoeffizient} bezeichnet.\\
-Ein univariates Polynom dessen Leitkoeffizient gleich 1 ist, nennt man \textcolor{blue}{normiertes Polynom}.
+Ein univariates Polynom dessen Leitkoeffizient gleich 1 ist, nennt man \textcolor{blue}{normiertes Polynom}. \cite{Ausgangsartikel}
 \end{definition}
 
 \begin{definition}
@@ -117,14 +117,14 @@ das \textcolor{blue}{polynomielle Ideal} erzeugt von F in $\mathbb{K}[x_1,\ldots
 
 \begin{definition} \label{Radikal}
 Man nennt ein Ideal \textcolor{blue}{radikal}, wenn gilt: $f^m \in I \, \Rightarrow \, f \in I$. \\
-Genauer gesagt definiert sich das \textcolor{blue}{Radikal eines Ideals I} folgend: 
+Genauer gesagt definiert sich das \textcolor{blue}{Radikal eines Ideals I} folgend: \cite{Ausgangsartikel}
 \begin{align*}
 \sqrt{I} := \left\{f: f^m \in  I \text{ für beliebiges m } \ge 1.\right\}
 \end{align*}
 \end{definition}
 
 \begin{definition}
-Man nennt das Ideal eines Rings $R$ \textcolor{blue}{echt}, wenn $I$ eine echte Teilmenge von $R$ darstellt. Bei Ringen mit Einselement ist dies genau dann der Fall, wenn $1 \notin I$.  
+Man nennt das Ideal eines Rings $R$ \textcolor{blue}{echt}, wenn $I$ eine echte Teilmenge von $R$ darstellt. Bei Ringen mit Einselement ist dies genau dann der Fall, wenn $1 \notin I$.  \cite{Karpfinger}
 \end{definition}
 %\begin{definition}
 %Für einen endlichen Körper $\Bbb F_p$ der Primzahl-Ordnung $p$ ist der algebraische Abschluss ein abzählbarer unendlicher Körper %der Charakteristik $p$ und enthält für jede natürliche Zahl n einen Teilkörper der Ordnung $p^n$, er besteht sogar aus der Vereinigung dieser Teilkörper. \cite{Karpfinger}
@@ -135,7 +135,7 @@ Man nennt das Ideal eines Rings $R$ \textcolor{blue}{echt}, wenn $I$ eine echte 
 %\end{definition}
 
 \begin{definition}
-Sei $V$ ein Vektorraum über dem Körper $K$ und $S \subset V$. Dann wird die Menge aller Linearkombinationen der $n$-Vektoren aus $S$ als \textcolor{blue}{lineare Hülle} von $S$ bezeichnet. 
+Sei $V$ ein Vektorraum über dem Körper $K$ und $S \subset V$. Dann wird die Menge aller Linearkombinationen der $n$--Vektoren aus $S$ als \textcolor{blue}{lineare Hülle} von $S$ bezeichnet. \cite{Howard}
 \begin{align*}
 span(S) = \left\{\sum_{i=1}^n c_is_i: \quad s_i \in S, c_i \in K \quad \forall i = 1,\ldots,n\right\}
 \end{align*}
@@ -144,24 +144,24 @@ span(S) = \left\{\sum_{i=1}^n c_is_i: \quad s_i \in S, c_i \in K \quad \forall i
 \subsection{Grundbegriffe der Komplexitätstheorie}
 
 \begin{definition}
-Eine \textcolor{blue}{Turing-Maschine} ist gegeben durch ein 7-Tupel $M =(Z,\Sigma,\Gamma,\delta,z_0,\boxempty,E)$. \cite{Kompl1}
+Eine \textcolor{blue}{Turing--Maschine} ist gegeben durch ein 7--Tupel $M =(Z,\Sigma,\Gamma,\delta,z_0,\boxempty,E)$. \cite{Kompl1}
 \begin{itemize}
 \item $Z$ die endliche Zustandsmenge,
 \item $\Sigma$ das Eingabeband,
 \item $\Sigma \subset \Gamma$ das Arbeitsalphabet,
 \item $\delta: Z \times \Gamma \rightarrow Z \times \Gamma \times \{L,R,N\}$ die Überführungsfunktion,
 \item $z_0 \in Z$ der Startzustand,
-\item $\boxempty \in \Gamma - \Sigma$ das Blank-Zeichen und 
+\item $\boxempty \in \Gamma - \Sigma$ das Blank--Zeichen und 
 \item $E \subseteq Z$ die Menge der Endzustände.
 \end{itemize}
 \end{definition}
 
 \begin{definition}
-\textcolor{blue}{$P$} ist die Klasse der Entscheidungsprobleme, die in polynomieller Zeit durch eine Turing-Maschine entscheidbar sind. \cite{Kompl1}
+\textcolor{blue}{$P$} ist die Klasse der Entscheidungsprobleme, die in polynomieller Zeit durch eine Turing--Maschine entscheidbar sind. \cite{Kompl1}
 \end{definition}
 
 \begin{definition}
-\textcolor{blue}{$NP$} ist die Klasse der Entscheidungsprobleme, die in polynomieller Zeit durch eine nichtdeterministische Turing-Maschine entscheidbar sind, so dass \citep{Kompl1} :
+\textcolor{blue}{$NP$} ist die Klasse der Entscheidungsprobleme, die in polynomieller Zeit durch eine nichtdeterministische Turing--Maschine entscheidbar sind, so dass \citep{Kompl1} :
 \begin{itemize}
 \item wenigstens ein Berechnungspfad akzeptiert wird, wenn die Antwort \glqq ja\grqq{}  ist und
 \item kein Berechnungspfad akzeptiert wird, wenn die Antwort \glqq nein\grqq{} ist.
@@ -169,7 +169,7 @@ Eine \textcolor{blue}{Turing-Maschine} ist gegeben durch ein 7-Tupel $M =(Z,\Sig
 \end{definition}
 
 \begin{definition}
-Die Klasse \textcolor{blue}{$\#P$} besteht aus Funktionen $f$, für die eine polynomiell-zeitbeschränkte nichtdeterministische Turing-Maschine $M$ existiert, so dass $f(x)$ die Anzahl der akzeptierenden Berechnungen von M bei Eingabe x ausgiebt. \citep{Kompl2}
+Die Klasse \textcolor{blue}{$\#P$} besteht aus Funktionen $f$, für die eine polynomiell--zeitbeschränkte nichtdeterministische Turing--Maschine $M$ existiert, so dass $f(x)$ die Anzahl der akzeptierenden Berechnungen von M bei Eingabe x ausgiebt. \citep{Kompl2}
 \end{definition}
 
 
@@ -190,7 +190,7 @@ Paarweise nicht benachbarte Knoten oder Kanten nennt man \textcolor{blue}{unabh�
 \end{definition}
 
 \begin{definition}
-Ein \textcolor{blue}{Stable Set} ist eine unabhängige Knotenmenge. $\alpha (G)$ ist die maximale Größe eines Stable Sets vom Graph $G$.
+Ein \textcolor{blue}{Stable Set} ist eine unabhängige Knotenmenge. $\alpha (G)$ ist die maximale Größe eines Stable Sets vom Graph $G$. \cite{Diestel}
 \end{definition}
 
 
@@ -229,10 +229,10 @@ Ein \textcolor{blue}{Stable Set} ist eine unabhängige Knotenmenge. $\alpha (G)$
 \end{center}
 \end{figure}
 
-\subsubsection*{k-Färbbarkeit}
+\subsubsection*{k--Färbbarkeit}
 
 \begin{definition}
-Die \textcolor{blue}{k-Färbung} eines Graphen ist eine Abbildung $f: V(G) \rightarrow S$ mit $xy \in E(G): f(x) \neq f(y)$, wobei S Menge der Farben und $\vert S \vert = k$. \cite{Diestel, West}
+Die \textcolor{blue}{k--Färbung} eines Graphen ist eine Abbildung $f: V(G) \rightarrow S$ mit $xy \in E(G): f(x) \neq f(y)$, wobei S Menge der Farben und $\vert S \vert = k$. \cite{Diestel, West}
 \end{definition}
 
 \begin{definition}
@@ -269,7 +269,7 @@ Die chromatische Zahl $\alpha(G)=k$ eines Graphen $G$, ist die kleinstmögliche 
   		;
 \end{tikzpicture}
 }
-\caption[3-Färbung]{3-Färbung}
+\caption[3--Färbung]{3--Färbung}
   \label{Faerbung}
 \end{center}
 \end{figure}
@@ -286,7 +286,7 @@ Ist ${V_1,V_2}$ eine Partition von V, so nennen wir die Menge $E(V_1,V_2)$ aller
 \end{definition}
 
 \begin{definition}
-Ein \textcolor{blue}{Maximaler Schnitt} ist jener Schnitt $F \neq \emptyset$, wo die Summe der Gewichte der verbindenden Kanten maximal ist. 
+Ein \textcolor{blue}{Maximaler Schnitt} ist jener Schnitt $F \neq \emptyset$, wo die Summe der Gewichte der verbindenden Kanten maximal ist. \cite{Diestel}
 \end{definition}
 
 
@@ -338,31 +338,31 @@ Sei $G = (V, E)$ ein Graph. Für ein gegebenes $k \in \mathbb{N}$ betrachten wir
 & \sum_{i \in V} x_i = k.
 \end{align*} 
 
-\noindent Dieses System ist genau dann lösbar, wenn $G$ ein Stable Set der Größe k besitzt.
+\noindent Dieses System ist genau dann lösbar, wenn $G$ ein Stable Set der Größe k besitzt. \cite{Ausgangsartikel}
 \end{lemma} 
 
-\subsubsection*{k-Färbbarkeit}
+\subsubsection*{k--Färbbarkeit }
 
 \begin{lemma} \label{3color}
 Sei $G = (V, E)$ ein Graph. Für ein gegebenes $k \in \mathbb{N}$ betrachten wir folgendes polynomielles System mit $\vert V \vert + \vert E \vert$ Gleichungen:
 \begin{align*}
 &x_i^k - 1 = 0 \quad \forall i \in V, \\
-& \sum_{s = 0}^{k-1} x_i^{k-1-s}x_j^s = 0 \quad \forall (i,j) \in E.
+& \sum_{s = 0}^{k-1} x_i^{k-1-s}x_j^s = 0 \quad \forall (i,j) \in E. 
 \end{align*} 
 
-\noindent Der Graph G ist genau dann k-färbbar, wenn dieses System eine komplexe Lösung besitzt. Des Weiteren gilt, wenn k ungerade, dann ist G genau dann k-färbbar, wenn das System eine Lösung über $\overline{\mathbb{F}_2}$ besitzt. $\overline{\mathbb{F}_2}$ ist der algebraische Abschluss über dem endlichen Körper mit zwei Elementen.
+\noindent Der Graph G ist genau dann k--färbbar, wenn dieses System eine komplexe Lösung besitzt. Des Weiteren gilt, wenn k ungerade, dann ist G genau dann k--färbbar, wenn das System eine Lösung über $\overline{\mathbb{F}_2}$ besitzt. $\overline{\mathbb{F}_2}$ ist der algebraische Abschluss über dem endlichen Körper mit zwei Elementen.
 \end{lemma}
 
 \begin{proof}
 Angenommen die Aussage ist wahr über den komplexen Zahlen $\mathbb{C}$. 
-\\ $"`\Rightarrow"'$ Sei G k-färbbar, ordne jeder Farbe die k-te Einheitswurzel zu. Sei die j-te Farbe $\beta_j = e^{2\Pi j/k}$; substituiere alle $x_l$ mit der zugehörigen Einheitswurzel der Farbe des l-ten Knotens. \\Also haben wir eine Lösung des Systems: Die Gleichungen $x_i^k-1 = 0$ sind trivialerweise erfüllt. \\Wir betrachten nun die Kantengleichungen: Wir nehmen eine Kante $ij$, da $x_i$ und $x_j$ durch Einheitswurzeln substituiert wurden, gilt $x_i^k - x_j^k = 0$. Des Weiteren gilt: 
+\\ $"`\Rightarrow"'$ Sei G k--färbbar, ordne jeder Farbe die k--te Einheitswurzel zu. Sei die j--te Farbe $\beta_j = e^{2\Pi j/k}$; substituiere alle $x_l$ mit der zugehörigen Einheitswurzel der Farbe des l--ten Knotens. \\Also haben wir eine Lösung des Systems: Die Gleichungen $x_i^k-1 = 0$ sind trivialerweise erfüllt. \\Wir betrachten nun die Kantengleichungen: Wir nehmen eine Kante $ij$, da $x_i$ und $x_j$ durch Einheitswurzeln substituiert wurden, gilt $x_i^k - x_j^k = 0$. Des Weiteren gilt: 
 \begin{align*}
 x_i^k-x_j^k = (x_i-x_j)(x_i^{k-1}+x_i^{k-2}x_j+x_i^{k-3}x_j^2+\ldots+x_j^{k-1}) = 0;
 \end{align*}   
 Durch die Substitution mit unterschiedlichen Einheitswurzeln gilt $x_i - x_j \neq 0$, also muss der andere Faktor, der den Kantengleichungen entspricht, 0 sein.  
-\\ $"`\Leftarrow"'$ Angenommen die Gleichungen seien erfüllt, d.h. der Lösungspunkt muss aus k-ten Einheitswurzeln bestehen. Den benachbarten Knoten müssen verschiedene Einheitswurzeln zugeordnet werden, da: \\
+\\ $"`\Leftarrow"'$ Angenommen die Gleichungen seien erfüllt, d.h. der Lösungspunkt muss aus k--ten Einheitswurzeln bestehen. Den benachbarten Knoten müssen verschiedene Einheitswurzeln zugeordnet werden, da: \\
 Angenommen einem Paar benachbarter Knoten $ij$ wird die selbe Einheitswurzel zugewiesen. Die Gleichung $x_i^{k-1}+x_i^{k-2}x_j+x_i^{k-3}x_j^2+\ldots+x_j^{k-1} = 0$ wird dann zu $\beta^{k-1}+\beta^{k-1}+\ldots+\beta^{k-1} = k\beta^{k-1} = 0$, jedoch $\beta \neq 0 \lightning$ 
-Es verbleibt zu zeigen, dass das gleiche Argument wie wir oben über die komplexen Zahlen gezeigt haben, auch für $\overline{\mathbb{F}_2}$ gilt. Obwohl $x_i^k - 1$ nur eine Nullstelle über $\mathbb{F}_2$ besitzt, nämlich 1, erhält man über $\overline{\mathbb{F}_2}$ verschiedene Nullstellen $1,\beta_i,\ldots,\beta_{k-1}$ (in diesem Fall keine komplexen Zahlen). Damit gilt das gleiche Argument wie oben. Wir müssen nur bei der Rückrichtung aufpassen, da $k\beta_i^{k-1} \neq 0$ sein muss. Diese Bedingung ist jedoch erfüllt, da $k$ ungerade und durch die Konstruktion $\beta_i^k$. 
+Es verbleibt zu zeigen, dass das gleiche Argument wie wir oben über die komplexen Zahlen gezeigt haben, auch für $\overline{\mathbb{F}_2}$ gilt. Obwohl $x_i^k - 1$ nur eine Nullstelle über $\mathbb{F}_2$ besitzt, nämlich 1, erhält man über $\overline{\mathbb{F}_2}$ verschiedene Nullstellen $1,\beta_i,\ldots,\beta_{k-1}$ (in diesem Fall keine komplexen Zahlen). Damit gilt das gleiche Argument wie oben. Wir müssen nur bei der Rückrichtung aufpassen, da $k\beta_i^{k-1} \neq 0$ sein muss. Diese Bedingung ist jedoch erfüllt, da $k$ ungerade und durch die Konstruktion $\beta_i^k$. \cite{Ausgangsartikel}
 \end{proof}
 
 
@@ -387,11 +387,11 @@ Sei $G = (V, E)$ ein Graph. Wir können die Menge der Schnitte $SG$ von G als 0-
 \begin{align*}
 &x_e^2 - x_e = 0 \quad \forall e \in E(G),\\
 &\prod_{e\in T\cap E(G)}x_e = 0 \quad \forall T \, ungerader \, Kreis \, in \, G
-\end{align*}
+\end{align*} \cite{Ausgangsartikel}
 \end{lemma}
 
 
-\section{Hilberts Nullstellensatz} \label{HilbertNull}
+\section{Hilberts Nullstellensatz } \label{HilbertNull}
 
 Zunächst möchten wir auf die allgemeine Problemdarstellung eingehen. \\
 Gegeben: $f_1,\ldots,f_m \in \mathbb{K}[x_1,\ldots,x_n]$ \\
@@ -411,7 +411,7 @@ Sei F = $\{f_1,\ldots,f_m\} \subseteq \mathbb{K}[x_1,\ldots,x_n]$.\\
 Die Varietät $\{x \in \overline{\mathbb{K}^n} : f_1(x)=0,\ldots,f_s(x)=0\}$ ist genau dann leer, wenn 1 zum Ideal $\left\langle F \right\rangle$, das aus F generiert wurde, gehört. Man beachte $1 \in \left\langle F \right\rangle$ bedeutet, dass Polynome $\beta_1,\ldots,\beta_m$ im Ring $\mathbb{K}[x_1,\ldots,x_n]$ existieren, sodass $1 = \sum_{i=1}^m \beta_i f_i$. Diese polynomielle Identität ist ein Nachweis für die Unlösbarkeit von $F(x) = 0$. 
 \end{theorem}
 
-\noindent Wir können leicht erkennen, dass das Fredholm's Theorem eine lineare Variante des Hilbertschen Nullstellensatzes mit linearen Polynomen und Konstanten $\beta_i$'s ist. 
+\noindent Wir können leicht erkennen, dass das Fredholm's Theorem eine lineare Variante des Hilbertschen Nullstellensatzes mit linearen Polynomen und Konstanten $\beta_i$'s ist. \cite{Ausgangsartikel}
 
 \subsection{Relaxierungen mit Hilfe der Linearen Algebra}
 
@@ -493,7 +493,7 @@ $\mu_6 + \mu_8 = 0$ & $\mu_5+2\mu_6 = 0$
 \end{center}
 \end{table}
 
-\noindent Da dieses System die Lösung $\mu = (-1,-\frac{2}{3},-\frac{2}{3},\frac{2}{3},-\frac{2}{3},\frac{1}{3},\frac{4}{3},-\frac{1}{3})$ besitzt, können wir folgern, dass das nichtlineare System $F(x) = 0$ unlösbar ist.
+\noindent Da dieses System die Lösung $\mu = (-1,-\frac{2}{3},-\frac{2}{3},\frac{2}{3},-\frac{2}{3},\frac{1}{3},\frac{4}{3},-\frac{1}{3})$ besitzt, können wir folgern, dass das nichtlineare System $F(x) = 0$ unlösbar ist. \cite{Ausgangsartikel}
 \end{example}
 
 \section{Algorithmus Nullstellensatz in der Linearen Algebra (NulLa)}
@@ -542,7 +542,7 @@ Die tatsächliche Anzahl an Iterationen $r$, die der Algorithmus benötigt, defi
 Für gegebene Polynome $f_1,\ldots,f_s \in \mathbb{K}[x_1,\ldots,x_n]$, wobei $\mathbb{K}$ ein algebraisch abgeschlossener Körper ist und $d = \max\{deg(f_i)\}$, falls $f_1,\ldots,f_s$ keine gemeinsame Nullstelle besitzen (auch nicht im Unendlichen), dann gilt $1 = \sum_{i=1}^s\beta_if_i$ mit $deg(\beta_i) \le n (d-1)$.
 \end{corollary}
 
-\noindent Dadurch erhalten wir eine obere Schranke von $2n$ bzw. $n$ für das 3-Färbbarkeitsproblem bzw. Stable Set-Problem. \\
+\noindent Dadurch erhalten wir eine obere Schranke von $2n$ bzw. $n$ für das 3--Färbbarkeitsproblem bzw. Stable Set--Problem. \\
 
 \noindent Das folgende Lemma trifft eine Aussage über die Laufzeit des Algorithmus:
 \begin{lemma}\label{polTime}
@@ -553,29 +553,29 @@ Sei $d \in \mathbb{Z}_+$ fix und $F = \{f_1,\ldots,f_m\}$ eine Menge von Polynom
 
 
 
-\subsection{3-Färbbarkeit und NulLA} \label{3colorNulLA}
+\subsection{3--Färbbarkeit und NulLA} \label{3colorNulLA}
 
-In diesem Kapitel werden wir unseren Algorithmus verwenden, um zu zeigen, dass ein Graph nicht 3-färbbar ist. Wie wir bereits mit Hilfe des Lemmas \ref{3color} gezeigt haben, ist ein Graph genau dann 3-färbbar, wenn das folgende System eine Lösung über $\overline{\mathbb{F}_2}$ besitzt:
+In diesem Kapitel werden wir unseren Algorithmus verwenden, um zu zeigen, dass ein Graph nicht 3--färbbar ist. Wie wir bereits mit Hilfe des Lemmas \ref{3color} gezeigt haben, ist ein Graph genau dann 3--färbbar, wenn das folgende System eine Lösung über $\overline{\mathbb{F}_2}$ besitzt:
 \begin{align*}
 x_i^3+1=0, \qquad &\forall i \in V(G)\\
 x_i^2+x_ix_j+x_j^2=0, \qquad &\forall{i,j}\in E(G) \tag{$\ast$} 
 \end{align*}
 
-\noindent Nun können wir ein Korollar zur nicht 3-Färbbarkeit aufstellen.
+\noindent Nun können wir ein Korollar zur nicht 3--Färbbarkeit aufstellen.
 
 \begin{corollary}
-Ein Graph ist nicht 3-färbbar $\Leftrightarrow$ $\sum_i \beta_if_i = 1, \text{ für } \beta_i \in \mathbb{F}_2[x_1,\ldots,x_n]$ und $f_i \in \mathbb{F}_2[x_1,\ldots,x_n]$ wie in Lemma \ref{3color} definiert. 
+Ein Graph ist nicht 3--färbbar $\Leftrightarrow$ $\sum_i \beta_if_i = 1, \text{ für } \beta_i \in \mathbb{F}_2[x_1,\ldots,x_n]$ und $f_i \in \mathbb{F}_2[x_1,\ldots,x_n]$ wie in Lemma \ref{3color} definiert. 
 \end{corollary}
 
 \noindent Dieses Korollar ermöglicht uns das Operieren über dem Körper $\mathbb{F}_2$, was für praktische Anwendungen sehr zeiteffizient ist. \cite{Loera2011} \\
 
-\noindent Jedoch ist dies nicht für alle Graphen möglich, die nicht 3-Färbbarkeit in angemessener Zeit zu bestimmen, was uns das folgende Lemma zeigt \cite{Loera2009}:
+\noindent Jedoch ist dies nicht für alle Graphen möglich, die nicht 3--Färbbarkeit in angemessener Zeit zu bestimmen, was uns das folgende Lemma zeigt \cite{Loera2009}:
 
 \begin{lemma}
-Angenommen $P \not = NP$, dann muss es eine unendlich große Menge von Graphen geben, für welche der Grad des Polynoms zum Nachweis der nicht 3-Färbbarkeit in Abhängigkeit der Anzahl der Knoten und Kanten im Graphen unendlich anwachsen kann.
+Angenommen $P \not = NP$, dann muss es eine unendlich große Menge von Graphen geben, für welche der Grad des Polynoms zum Nachweis der nicht 3--Färbbarkeit in Abhängigkeit der Anzahl der Knoten und Kanten im Graphen unendlich anwachsen kann.
 \end{lemma}
 
-Die nächsten Resultate zeigen uns, für welche Graphen es möglich ist, einen Nachweis für nicht 3-Färbbarkeit mit NulLA und $D=1$ zu erbringen. 
+Die nächsten Resultate zeigen uns, für welche Graphen es möglich ist, einen Nachweis für nicht 3--Färbbarkeit mit NulLA und $D=1$ zu erbringen. 
 
 \begin{definition} \label{Polynomdarstellung}
 Der NulLa kann einen Nachweis der Unlösbarkeit für $(\ast)$ innerhalb der Schranke $D=1$ erbringen, genau dann wenn Koeffizienten $a_i, a_{ij}, b_{ij},b_{ijk} \in \mathbb{F}$ existieren, sodass:
@@ -702,7 +702,7 @@ Gegeben: Knoten $1,\ldots,n \quad (n \in \mathbb{N}_G)$, wobei Knoten 1 adjazent
 \begin{theorem} \label{3colorTheorem}
 Für einen einfachen ungerichteten Graph $G=(V,E)$ sind folgende Aussagen äquivalent:
 \begin{enumerate}
-	\item Für folgendes polynomielle System über $\mathbb{F}_2$ bringt NulLA einen Nachweis für die nicht 3-Färbbarkeit in D=1
+	\item Für folgendes polynomielle System über $\mathbb{F}_2$ bringt NulLA einen Nachweis für die nicht 3--Färbbarkeit in D=1
 	\begin{align*}
 	J_G = \{x_i^3+1=0,x_i^2+x_ix_j+x_j^2=0:i\in V(G),\{i,j\}\in E(G)\}
 	\end{align*}
@@ -713,15 +713,15 @@ Für einen einfachen ungerichteten Graph $G=(V,E)$ sind folgende Aussagen äquiv
 	\end{compactenum}
 	wobei $C_{(i,j)}$ die Menge der Kreise in C, welche $(i,j) \in Arcs(G)$ enthalten, beschreibt.
 \end{enumerate}
-Solche Graphen sind nicht 3-färbbar und dies kann in polynomieller Zeit bestimmt werden
+Solche Graphen sind nicht 3--färbbar und dies kann in polynomieller Zeit bestimmt werden
 \end{theorem}
 
 
-\noindent In diesem Theorem stellt $C$ eine Kantenüberdeckung mit gerichteten Kanten vom ungerichteten Graphen $G$ dar. Die Bedingung $a)$ sagt aus, dass jede Kante in $G$ von einer geraden Anzahl an gerichteten Kanten aus $C$ überdeckt. Bedingung $b)$ liefert eine Aussage für den Graphen $\widehat{G}$, welcher eine gerichtete Version von $G$ ist, wobei die Richtungen von der Ordnung der Knoten $1<2<\ldots <n$ bestimmt wird. Die Anzahl der Kanten in $\widehat{G}$, die sich auch in $C$ befinden, ist ungerade. Wenn wir nun die Kreise der Länge 3 und der Länge 4 in $G$ betrachten, die den partiellen gerichteten Dreiecken und gerichteten Vierecken entsprechen, so erzeugen diese eine Kantenüberdeckung eines nicht 3-färbbaren Teilgraphen von $G$. Falls ein Graph nun einen nicht 3-färbbaren Teilgraphen enthält, und es für diesen Graphen einen Nachweis für die nicht 3-Färbbarkeit in $D=1$ gibt, dann gibt es den auch für $G$. \\
+\noindent In diesem Theorem stellt $C$ eine Kantenüberdeckung mit gerichteten Kanten vom ungerichteten Graphen $G$ dar. Die Bedingung $a)$ sagt aus, dass jede Kante in $G$ von einer geraden Anzahl an gerichteten Kanten aus $C$ überdeckt. Bedingung $b)$ liefert eine Aussage für den Graphen $\widehat{G}$, welcher eine gerichtete Version von $G$ ist, wobei die Richtungen von der Ordnung der Knoten $1<2<\ldots <n$ bestimmt wird. Die Anzahl der Kanten in $\widehat{G}$, die sich auch in $C$ befinden, ist ungerade. Wenn wir nun die Kreise der Länge 3 und der Länge 4 in $G$ betrachten, die den partiellen gerichteten Dreiecken und gerichteten Vierecken entsprechen, so erzeugen diese eine Kantenüberdeckung eines nicht 3--färbbaren Teilgraphen von $G$. Falls ein Graph nun einen nicht 3--färbbaren Teilgraphen enthält, und es für diesen Graphen einen Nachweis für die nicht 3--Färbbarkeit in $D=1$ gibt, dann gibt es den auch für $G$. \\
 Die Klasse der Graphen mit dieser Eigenschaft, beinhaltet auch alle Graphen, die ein ungerades Rad enthalten.
 
 \begin{corollary}
-Falls ein Graph $G=(V,E)$ ein ungerades Rad als Teilgraph enthält, so gibt es einen Nachweis für nicht 3-Färbbarkeit mit $D=1$.
+Falls ein Graph $G=(V,E)$ ein ungerades Rad als Teilgraph enthält, so gibt es einen Nachweis für nicht 3--Färbbarkeit mit $D=1$.
 \end{corollary} 
 
 \begin{proof}
@@ -732,7 +732,7 @@ C\;:=\;\{(i,1,i+1):2\le i \le n-1\}\cup\{(n,1,2)\}.
 Wie wir in \ref{oddWheel} sehen können, wird jede Kante genau nullmal oder zweimal von partiellen gerichteten Dreiecken von $C$ überdeckt und damit wird Bedingung $a)$ von Theorem \ref{3colorTheorem} erfüllt. Außerdem gilt für jede Kante $(1,i) \in Arcs(G)$, dass sie genau einmal von einem partiellen gerichteten Dreieck aus $C$ abgedeckt wird und die Anzahl der Kanten $(1,i)$ ist ungerade. Dadurch erfüllt $C$ auch die Bedingung $b)$ unseres Theorems. 
 \end{proof}
 
-\noindent Ein weiteres nichttriviales Beispiel für den Nachweis der nicht 3-Färbbarkeit des NulLa mit $D=1$ stellt der Grötzsch Graph dar. 
+\noindent Ein weiteres nichttriviales Beispiel für den Nachweis der nicht 3--Färbbarkeit des NulLa mit $D=1$ stellt der Grötzsch Graph dar. 
 
 	\begin{figure}[h]
 \begin{center}
@@ -790,10 +790,10 @@ Der Grötzsch Graph enthält wie man in Abbildung \ref{GrötzschGraph} sehen kan
 \begin{align*}
 C\;:=\;\{(1,2,3,7),(2,3,4,8),(3,4,5,9),(4,5,1,10),(1,10,11,7),(2,6,11,8),(3,7,11,9),(4,8,11,10),(5,9,11,6)\}.
 \end{align*}
-Auch hier liefert wieder unser Theorem \ref{3colorTheorem} die Aussage dafür, dass für diesen Graphen die nicht 3-Färbbarkeit mit $D=1$ gezeigt werden kann. Jede Kante von $G$ wird genau von zwei Vierecken aus $C$ überdeckt und somit ist Bedingung $a)$ erfüllt. Außerdem kann man durch Abzählen erkennen, dass auch Bedingung $b)$ erfüllt ist. 
+Auch hier liefert wieder unser Theorem \ref{3colorTheorem} die Aussage dafür, dass für diesen Graphen die nicht 3--Färbbarkeit mit $D=1$ gezeigt werden kann. Jede Kante von $G$ wird genau von zwei Vierecken aus $C$ überdeckt und somit ist Bedingung $a)$ erfüllt. Außerdem kann man durch Abzählen erkennen, dass auch Bedingung $b)$ erfüllt ist. 
 \end{example}
 
-\noindent Um das Theorem \ref{3colorTheorem} zu beweisen, benötigen wir 2 Lemmas. Als Vorbereitung dafür, definieren wir zuerst die Menge $H$. Als erstes vereinfachen wir das Polynom zum Nachweis für die nicht 3-Färbbarkeit (siehe Definition \ref{Polynomdarstellung}). Nach Ausmultiplizieren der linken Seite können wir sehen, dass der einzige Koeffizient für den Term $x_jx_i^3$ $a_{ij}$ ist. Daraus folgt, dass $a_{ij} = 0 \forall i,j\in V(G)$. Das gleiche Argument gilt auch für den einzigen Koeffizienten $b_{ij}$ von $x_ix_j$. Dadurch erhält man folgende Vereinfachung:  
+\noindent Um das Theorem \ref{3colorTheorem} zu beweisen, benötigen wir 2 Lemmas. Als Vorbereitung dafür, definieren wir zuerst die Menge $H$. Als erstes vereinfachen wir das Polynom zum Nachweis für die nicht 3--Färbbarkeit (siehe Definition \ref{Polynomdarstellung}). Nach Ausmultiplizieren der linken Seite können wir sehen, dass der einzige Koeffizient für den Term $x_jx_i^3$ $a_{ij}$ ist. Daraus folgt, dass $a_{ij} = 0 \forall i,j\in V(G)$. Das gleiche Argument gilt auch für den einzigen Koeffizienten $b_{ij}$ von $x_ix_j$. Dadurch erhält man folgende Vereinfachung:  
 \begin{align*}
 \sum_{i \in V}a_i(x_i^3+1)+\sum_{\{i,j\}\in E}\left(\sum_{k\in V}b_{ijk}x_k\right)(x_i^2+x_ix_j+x_j^2)=1
 \end{align*}
@@ -823,14 +823,14 @@ $x_ix_j^2+x_jx_k^2+x_kx_l^2+x_lx_i^2$ & $\qquad \forall (i,j),(j,k),(k,l),(l,i) 
 $1 \in \langle F \rangle_{\mathbb{F}_2} \Leftrightarrow 1 \in \langle H \rangle_{\mathbb{F}_2}$ 
 \end{lemma}
 
-\noindent Im folgenden Lemma wird beschrieben, dass sowohl die Bedingungen von Theorem \ref{3colorTheorem} als auch die Bedingung $1 \in \langle H \rangle_{\mathbb{F}_2}$ zum Nachweis der nicht 3-Färbbarkeit genügen.
+\noindent Im folgenden Lemma wird beschrieben, dass sowohl die Bedingungen von Theorem \ref{3colorTheorem} als auch die Bedingung $1 \in \langle H \rangle_{\mathbb{F}_2}$ zum Nachweis der nicht 3--Färbbarkeit genügen.
 
 \begin{lemma}
 Es existiert eine Menge $C$ von gerichteten partiellen Dreiecken und orientierten Vierecken, die die Bedingungen $a)$ und $b)$ des Theorems \ref{3colorTheorem} erfüllen $
 \Leftrightarrow 1 \in \langle H \rangle_{\mathbb{F}_2}$ 
 \end{lemma}
 
-\noindent Aus der Kombination dieser beiden Lemmas sehen wir nun, dass sie einen Beweis für Theorem \ref{3colorTheorem} bilden. Für die beiden Beweise verweisen wir auf \cite{Ausgangsartikel}. Das die Entscheidung, ob solche Graphen nicht 3-färbbar sind, in polynomieller Zeit erfolgt, zeigt uns Lemma \ref{polTime}.  
+\noindent Aus der Kombination dieser beiden Lemmas sehen wir nun, dass sie einen Beweis für Theorem \ref{3colorTheorem} bilden. Für die beiden Beweise verweisen wir auf \cite{Ausgangsartikel}. Das die Entscheidung, ob solche Graphen nicht 3--färbbar sind, in polynomieller Zeit erfolgt, zeigt uns Lemma \ref{polTime}.   \cite{Ausgangsartikel}
 
 
 \subsection{Stable Sets und NulLA} \label{StableNulLA}
@@ -878,7 +878,7 @@ Es bleibt zu zeigen, dass jeder Koeffizient jedes Monoms der Gleichung gleich $0
 \begin{itemize}
 \item \textbf{Quadratfreies Stable Set:} Sei $I=\{c_1,\ldots,c_m\}$ ein Stable Set der Größe $m$. Das Monom $x_I$ kann nun in $AB$ auf zwei Weisen erzeugt werden:\\
 \begin{itemize}
-\item $x_{I\backslash c_k}x_{c_k}$ wird m-mal gebildet, für jedes $c_k$ einmal, oder
+\item $x_{I\backslash c_k}x_{c_k}$ wird m--mal gebildet, für jedes $c_k$ einmal, oder
 \item $x_I\left(-(\alpha(G)+r)\right)$.
 \end{itemize}
 Also ergibt sich der Koeffizient für $x_I$ in \textbf{$AB$} als:
@@ -891,9 +891,9 @@ In \textbf{$D$} wird das Monom $x_I$ erzeugt durch $x_{I\backslash c_k}-x_{c_k}$
 \underbrace{mL_{m-1}}_{from AB}  \underbrace{-mL_m}_{from D} = 0.
 \end{align*}
 \item \textbf{Quadratfreies Nonstable Set:} Sei $I=\{c_1,\ldots,c_m\}$ ein Stable Set der Größe $m$ und $x_Ix_v$ ein Monom mit $u=min_vI$, wobei $\{u,v\} \in E(G)$. \\
-Es existieren $\binom{m+1}{m}$ Teilmengen von ${c_1,\ldots,c_m}$ und $M$ sei die Anzahl der Stable Sets dieser Teilmengen. Jedes dieser M Stable Sets kommt in einem Monom in $A$ vor. Also kommt das Monom $x_Ixv$ $M$-mal in \textbf{$AB$} vor mit dem Koeffizienten $-ML_m$.\\
+Es existieren $\binom{m+1}{m}$ Teilmengen von ${c_1,\ldots,c_m}$ und $M$ sei die Anzahl der Stable Sets dieser Teilmengen. Jedes dieser M Stable Sets kommt in einem Monom in $A$ vor. Also kommt das Monom $x_Ixv$ $M$--mal in \textbf{$AB$} vor mit dem Koeffizienten $-ML_m$.\\
 $x_Ix_V$ kommt nicht in \textbf{$D$} vor, da es ein Nonstable Set ist.\\
-Jedoch kommt $x_Ix_v$ genau $M$-mal  in \textbf{$C$} mit dem Koeffizienten $ML_m$ vor. Es ergibtt sich:
+Jedoch kommt $x_Ix_v$ genau $M$--mal  in \textbf{$C$} mit dem Koeffizienten $ML_m$ vor. Es ergibtt sich:
 \begin{align*}
 \underbrace{-ML_m}_{from AB} + \underbrace{ML_m}_{from C} = 0. 
 \end{align*}
@@ -983,28 +983,28 @@ Es existiert eine unendlich große Menge von Graphen $G_n$ mit n Knoten, so dass
 
 
 \noindent Zum Schluss können wir zusammenfassen, dass die Polynome, die zum Verifizieren des Nullstellensatzes dienen, sehr dicht sind, da alle quadratfreien Monome, welche Stable Sets darstellen, in ihnen vorkommen.
-Das stellt jedoch ein großes Hindernis für die Berechnung dar. In diesem Fall ist es so, dass die Berechnung von Hilberts Nullstellensatz zumindest so schwer ist wie das Zählen aller möglichen Stable Sets eines Graphen. Dieses Problem ist also bereits für Graphen mit geringen Knotengrad $\#P$-vollständig. 
+Das stellt jedoch ein großes Hindernis für die Berechnung dar. In diesem Fall ist es so, dass die Berechnung von Hilberts Nullstellensatz zumindest so schwer ist wie das Zählen aller möglichen Stable Sets eines Graphen. Dieses Problem ist also bereits für Graphen mit geringen Knotengrad $\#P$--vollständig. \cite{Ausgangsartikel, Loera2009}
 
 
 
 
-\section{Vergleich mit anderen Algorithmen zur 3-Färbbarkeit}
+\section{Vergleich mit anderen Algorithmen zur 3--Färbbarkeit} \label{vergleich}
 
-In diesem Kapitel wollen wir aufzeigen wie effizient NulLA im Vergleich zu anderen Methoden ist. Basierend auf den Berechnungen von \cite{Loera2011} wollen wir die Alon-Tarsi-Methode (AT) und die Gröbner-Basen-Methode mit unserem NulLA Algorithmus vergleichen.\\
+In diesem Kapitel wollen wir aufzeigen wie effizient NulLA im Vergleich zu anderen Methoden ist. Basierend auf den Berechnungen von \cite{Loera2011} wollen wir die Alon--Tarsi--Methode (AT) und die Gröbner--Basen--Methode mit unserem NulLA Algorithmus vergleichen.\\
 
 \noindent Vor der Beschreibung der Methoden, benötigen wir noch ein Theorem zum besseren Verständnis:
 
 \begin{theorem}
 Für einen Graph $G$ mit $n$ Knoten sie $I_G = \langle x-1^3-1,\ldots, x_n^3-1 \rangle$ ein Ideal. Außerdem sei $P_G = \prod_{(i,j) \in E(G)} (x_i-x_j)$.\\
-Es gilt, dass G genau dann ein nicht 3-färbbarer Graph ist, wenn $P_G \in I_G$.
+Es gilt, dass G genau dann ein nicht 3--färbbarer Graph ist, wenn $P_G \in I_G$.
 \end{theorem}
 
-\todo[inline]{Alson-Tarsi und Gröbner Basen nochmal nachschauen und event. definieren?}
+\todo[inline]{Alson--Tarsi und Gröbner Basen nochmal nachschauen und event. definieren?}
 \begin{itemize}
-\item \textbf{Alon-Tarsi-Methode: }\\
-Der genau Algorithmus kann in Kapitel 7 von \cite{Alon1999} nachgelesen werden. Zu erwähnen bleibt, dass wir für die Anwendung von Alon-Tarsi folgendes  benötigen: $B = \{x-1^3-1,\ldots, x_n^3-1\}$ sei die Gröbner Base des Ideals $I_G$, für den Algorithmus betrachten wir die Normalform von $P_G$ in Bezug auf $B$ und wir wissen, dass $G$ nicht 3-färbbar ist, falls $P_G \in I_G$. Durch eine speziellere Konstruktion von $P_G$ kann die Berechnung zusätzlich beschleunigt werden.
-\item \textbf{Gröbner-Basen-Methode: }\\
-Bei dieser Methode wird die Gröbner Basis des Ideals, siehe Lemma \ref{3color}, betrachtet. Der Graph wird genau dann nicht 3-färbbar sein, wenn die Gröbner Basis eine Konstante ist.
+\item \textbf{Alon--Tarsi--Methode: }\\
+Der genau Algorithmus kann in Kapitel 7 von \cite{Alon1999} nachgelesen werden. Zu erwähnen bleibt, dass wir für die Anwendung von Alon--Tarsi folgendes  benötigen: $B = \{x-1^3-1,\ldots, x_n^3-1\}$ sei die Gröbner Base des Ideals $I_G$, für den Algorithmus betrachten wir die Normalform von $P_G$ in Bezug auf $B$ und wir wissen, dass $G$ nicht 3--färbbar ist, falls $P_G \in I_G$. Durch eine speziellere Konstruktion von $P_G$ kann die Berechnung zusätzlich beschleunigt werden.
+\item \textbf{Gröbner--Basen--Methode: }\\
+Bei dieser Methode wird die Gröbner Basis des Ideals, siehe Lemma \ref{3color}, betrachtet. Der Graph wird genau dann nicht 3--färbbar sein, wenn die Gröbner Basis eine Konstante ist.
 \end{itemize}
 
 Nun möchten wir kurz die Graphen vorstellen, auf welche die Algorithmen angewendet wurden:
@@ -1013,46 +1013,45 @@ Nun möchten wir kurz die Graphen vorstellen, auf welche die Algorithmen angewen
 \item \textbf{Mycielski Graphen: }\\
 Die Besonderheit dieser Graphen ist der Unterschied zwischen ihrer chromatischen Zahl und der Anzahl der Cliquen. Der $Mycielski Graph$ der Ordnung $k$ beschreibt einen Graph, welcher keine Kreise der Länge 3 als Teilgraphen enthält und dessen chromatische Zahl k ist. Wie diese Graphen genau aussehen und mit welchem Algorithmus sie generiert werden können, kann man auf http://mathworld.wolfram.com/MycielskiGraph.html nachlesen.
 \item \textbf{Kneser Graphen: }\\
-Ein $Kneser-(t-r) Graph$ wird durch alle $r$ Teilmengen der Menge $\{1,\ldots,t\}$ erzeugt. Die Bildungsvorschrift lautet wie folgt: 2 Knoten sind genau dann adjazent, wenn die zugehörigen Teilmengen disjunkt sind.
-\todo[inline]{finde homepage wo diese Graphen beschrieben sind}
+Ein $Kneser--(t-r) Graph$ wird durch alle $r$ Teilmengen der Menge $\{1,\ldots,t\}$ erzeugt. Die Bildungsvorschrift lautet wie folgt: 2 Knoten sind genau dann adjazent, wenn die zugehörigen Teilmengen disjunkt sind. Genaueres zu diesen Graphen findet man unter http://mathworld.wolfram.com/KneserGraph.html.
 \end{itemize}
 
 \todo[inline]{table einfügen und referenzieren}
 
-\noindent Nun folgen Vergleiche zur Performance: In den Tests von \cite{Loera2011} konnte gezeigt werden, dass für Graphen bei denen die ersten Knoten und Kanten, die vom Algorithmus betrachtet werden, einen nicht 3-färbbaren Teilgraph beschreiben sehr schnell von Alon-Tarsi auf nicht 3-Färbbarkeit geprüft werden kann. Eine Schwäche von Alon-Tarsi zeigt jedoch der 9. Mycielski Graph auf: Wie man in der Tabelle ?? sehen kann, braucht Alon-Tarsi nur 0.24 Sekunden für die Berechnung. Verändert man aber die Struktur, im Speziellen permutiert man die Reihenfolge der Knoten, die der Algorithmus betrachtet, so ist eine wesentliche Verlangsamung zu erkennen, um genau zu sein, brauchte der Alon-Tarsi Algorithmus 9 GB RAM und mehr als vier Stunden zur Berechnung um lediglich 30 (von 7271) Kanten zu betrachten. Dieses Beispiel zeigt also, dass der Alon-Tarsi Algorithmus extrem empfinlich bezüglich der Anordnung der Kanten bzw. Knoten ist. Dies gilt jedoch nicht für NulLA und die Gröbner-Basen-Methode, wie man auch in der Tabelle ?? erkennen kann.\\
-Eine weiter Schwäche von Alon Tarsi ist, dass er im Test kein ungerades Rad mit 18 Knoten erkennen konnte.
+\noindent Nun folgen Vergleiche zur Performance: In den Tests von \cite{Loera2011} konnte gezeigt werden, dass für Graphen bei denen die ersten Knoten und Kanten, die vom Algorithmus betrachtet werden, einen nicht 3--färbbaren Teilgraph beschreiben sehr schnell von Alon--Tarsi auf nicht 3--Färbbarkeit geprüft werden kann. Eine Schwäche von Alon--Tarsi zeigt jedoch der 9. Mycielski Graph auf: Wie man in der Tabelle ?? sehen kann, braucht Alon--Tarsi nur 0.24 Sekunden für die Berechnung. Verändert man aber die Struktur, im Speziellen permutiert man die Reihenfolge der Knoten, die der Algorithmus betrachtet, so ist eine wesentliche Verlangsamung zu erkennen, um genau zu sein, brauchte der Alon--Tarsi Algorithmus 9 GB RAM und mehr als vier Stunden zur Berechnung, um lediglich 30 (von 7271) Kanten zu betrachten. Dieses Beispiel zeigt also, dass der Alon--Tarsi Algorithmus extrem empfindlich bezüglich der Anordnung der Kanten bzw. Knoten ist. Dies gilt jedoch nicht für NulLA und die Gröbner--Basen--Methode, wie man auch in der Tabelle ?? erkennen kann.\\
+Eine weiter Schwäche von Alon Tarsi ist, dass er im Test kein ungerades Rad mit 18 Knoten erkennen konnte. \cite{Loera2011}
 
-\section{Beweis Nullstellensatz}
+\section{Beweis Nullstellensatz} \label{beweis}
 
 In diesem Kapitel möchten wir einen Beweis für Hilberts Nullstellensatz angeben.
-Wenn wir an den bereits definierten Nullstellensatz denken, Theorem \ref{HilbertNull}, kann man unschwer erkennen, dass aus der Gleichung $1 = \sum_i \beta_if_i$ die Unlösbarkeit des Systems $F$ folgt. Was jedoch eine Schwierigkeit im Beweis des Satzes darstellt, ist es die Rückrichtung zu zeigen, also dass die Unlösbarkeit von $F$ eine Gleichung $1 = \sum_i \beta_if_i$ impliziert.
+Wenn wir an den bereits definierten Nullstellensatz denken, Theorem \ref{HilbertNull}, kann man unschwer erkennen, dass aus der Gleichung $1 = \sum_i \beta_if_i$ die Unlösbarkeit des Systems $F$ folgt. Was jedoch eine Schwierigkeit im Beweis des Satzes darstellt, ist es die Rückrichtung zu zeigen, also dass die Unlösbarkeit von $F$ eine Gleichung $1 = \sum_i \beta_if_i$ impliziert. \cite{Ausgangsartikel}
 
 \subsection{Beweis für Polynome in einer Variable}
 
-Für Beweise in diesem Abschnitt werden wir mit dem größten gemeinsamen Teiler arbeiten. Deshalb möchten wir ein erstes Resultat für den größten gemeinsamen Teiler (ggt) von Polynomen angeben:
+Für Beweise in diesem Abschnitt werden wir mit dem größten gemeinsamen Teiler arbeiten. Deshalb möchten wir ein erstes Resultat für den größten gemeinsamen Teiler (ggT) von Polynomen angeben:
 \begin{lemma} \label{gcd1}
-Gegeben sind $f_1,\ldots ,f_s$ univariate Polynome aus $\mathbb{K}[x]$ und wir betrachen den ggt als normiertes Polynom, dann gilt:
+Gegeben sind $f_1,\ldots ,f_s$ univariate Polynome aus $\mathbb{K}[x]$ und wir betrachen den ggT als normiertes Polynom, dann gilt:
 \begin{align*}
-ggt (f_1,f_2,\ldots,f_s) = ggt(f_1,ggt(f_2,\ldots,f_s)).
+ggT (f_1,f_2,\ldots,f_s) = ggT(f_1,ggT(f_2,\ldots,f_s)).
 \end{align*}
 \end{lemma}
 
 \noindent Der Beweis ist relativ kurz und die Aussage wird bewiesen, indem die Gleichheit der beiden Seiten gezeigt wird.\\
-\noindent Die Frage, die sich nun stellt ist: Was hat ein größter gemeinsamer Teiler mit der Lösung unseres Systems $f_1(x)=0,\ldots,f_s(x)=0$? Die Antwort liegt darin, dass für eine gemeinsame Nullstelle $a$ dieser Polynome $(x-a)$ einen gemeinsamen Faktor darstellt. Damit folgt, dass sich für einen größten gemeinsamen Teiler $ggt(f_1(x),\ldots,f_s(x)) \not = 1$ eine gemeinsame Lösung für unser System gefunden werden kann, da jede Nullstelle des $ggt$ auch eine gemeinsame Nullstelle von $f_1(x)=0,\ldots,f_s(x)=0$ ist. Damit ergibt sich folgendes Lemma:
+\noindent Die Frage, die sich nun stellt ist: Was hat ein größter gemeinsamer Teiler mit der Lösung unseres Systems $f_1(x)=0,\ldots,f_s(x)=0$? Die Antwort liegt darin, dass für eine gemeinsame Nullstelle $a$ dieser Polynome $(x-a)$ einen gemeinsamen Faktor darstellt. Damit folgt, dass sich für einen größten gemeinsamen Teiler $ggT(f_1(x),\ldots,f_s(x)) \not = 1$ eine gemeinsame Lösung für unser System gefunden werden kann, da jede Nullstelle des $ggT$ auch eine gemeinsame Nullstelle von $f_1(x)=0,\ldots,f_s(x)=0$ ist. Damit ergibt sich folgendes Lemma:
 
 \begin{lemma} \label{gcd2}
-Sei $h = ggt(f_1,f_2,\ldots,f_s)$. Es existieren Polynome $a_1,a_2,\ldots,a_s$ und es gilt: $h = a_1f_1+ \ldots + a_sf_s$
+Sei $h = ggT(f_1,f_2,\ldots,f_s)$. Es existieren Polynome $a_1,a_2,\ldots,a_s$ und es gilt: $h = a_1f_1+ \ldots + a_sf_s$
 \end{lemma}
 
 \noindent Mit den Lemmas \ref{gcd1} und \ref{gcd2} lässt sich nun folgendes Korollar aufstellen und beweisen. Dieses folgende Resultat liefert uns dann den Beweis für Hilberts Nullstellensatz für Polynome in einer Variablen:
 
 \begin{corollary}
-Eine Menge univarianter Polynome $f_1(x)=0,\ldots,f_s(x)=0$ hat genau dann keine gemeinsame Nullstelle, wenn es möglich ist Polynome $a_1,\ldots, a_s$ zu finden, so dass $1 = a_1f_1+ \ldots + a_sf_s$ erfüllt ist.
+Eine Menge univarianter Polynome $f_1(x)=0,\ldots,f_s(x)=0$ hat genau dann keine gemeinsame Nullstelle, wenn es möglich ist Polynome $a_1,\ldots, a_s$ zu finden, so dass $1 = a_1f_1+ \ldots + a_sf_s$ erfüllt ist. \cite{Ausgangsartikel}
 \end{corollary}
 
 \subsection{Beweis für Polynome in mehreren Variablen}
 
-Die Hauptidee für diesen, nun schwierigeren Fall, besteht darin, unsere Systeme auf den leichteren Fall, welcher im vorigen Kapitel gezeigt wurde, zu reduzieren. Im Speziellen werden wir sogenannte Resultate benutzen. Diese kann man zur dazu verwenden um herauszufinden, ob es gemeinsame Faktoren von Polynomen gibt (zum Beispiel wenn der größte gemeinsame Teiler dieser Polynome ungleich 1 ist), eine genaue Definition folgt später, zuerst brauchen wir ein Resultat das später für ein besseres Verständnis sorgen wird.
+Die Hauptidee für diesen, nun schwierigeren Fall, besteht darin, unsere Systeme auf den leichteren Fall, welcher im vorigen Kapitel gezeigt wurde, zu reduzieren. Im Speziellen werden wir sogenannte Resultanten benutzen. Diese kann man zur dazu verwenden um herauszufinden, ob es gemeinsame Faktoren von Polynomen gibt (zum Beispiel wenn der größte gemeinsame Teiler dieser Polynome ungleich 1 ist), eine genaue Definition folgt später, zuerst stellen wir ein Lemma vor, das später für ein besseres Verständnis sorgen wird.
 
 \begin{lemma}
 Für einen beliebigen Körper $\mathbb{K}$ seien $f$ und $g$ Polynome ungleich dem Nullpolynom aus $\mathbb{K}[x]$. $f$ habe den Grad $n$ und $g$ habe den Grad $m$. $f$ und $g$ haben genau dann einen gemeinsamen Faktor, wenn Polynome $A,B \in \mathbb{K}[x]$ ungleich dem Nullpolynome existieren, so dass gilt:
@@ -1065,7 +1064,7 @@ Für einen beliebigen Körper $\mathbb{K}$ seien $f$ und $g$ Polynome ungleich d
 \noindent Mit diesem Lemma ist es nun ein Leichtes, die Resultante zu definieren.
 
 \begin{definition}
-Für zwei univariate Polynome $f = a_nx^n+a_{n-1}x^{n-1}+\ldots + a_0$ und $g = b_mx^m+b_{m-1}x^{m-1}+\ldots+b_0$ ungleich dem Nullpolynom mit Koeffizienten $a_i, b_j$ aus $\mathbb{K}$. Die \textcolor{blue}{Sylvester matrix Syl(f,g)} ist eine $(m+n) \times (m+n)$ Matrix folgender Art:
+Für zwei univariate Polynome $f = a_nx^n+a_{n-1}x^{n-1}+\ldots + a_0$ und $g = b_mx^m+b_{m-1}x^{m-1}+\ldots+b_0$ ungleich dem Nullpolynom mit Koeffizienten $a_i, b_j$ aus $\mathbb{K}$. Die \textcolor{blue}{Sylvestermatrix Syl(f,g)} ist eine $(m+n) \times (m+n)$ Matrix folgender Art:
 \begin{align*}
 \begin{pmatrix}
 a_n & 0 &\dots & 0 & b_m & 0 & \ldots & 0 \\
@@ -1076,11 +1075,11 @@ a_0 & \vdots & \ddots & a_n & b_0 & \vdots & \ddots & b_m\\
 0 & 0 & \dots & a_0 & 0 & 0 & \dots & b_0
 \end{pmatrix}
 \end{align*}
-Die Determinante dieser Matrix ist die \textcolor{blue}{Resultante}, R(f,g), von $f$ und $g$. 
+Die Determinante dieser Matrix ist die \textcolor{blue}{Resultante R(f,g)} von $f$ und $g$. 
 \end{definition}
 
 \noindent Die Resultante ist also ein Polynom, dessen Variablen die Koeffizienten von $f$ und $g$ und dessen Koeffizienten ganze Zahlen sind.\\
-\noindent Mit diesem Wissen können wir nun ein erstes Resultat festhalten:
+\noindent Mit diesem Wissen können wir nun ein erstes Theorem festhalten:
 
 \begin{theorem}
 Zwei Polynome $f$ und $g$ haben genau dann einen gemeinsamen Faktor in $\mathbb{K}$, wenn $Res(f,g) = det(Syl(f,g)) = 0$. Außerdem existieren Polynome $\tilde{C},\tilde{D} \in \mathbb{K}$, so dass gilt $\tilde{C}f + \tilde{D}g = Res(f,g)$.
@@ -1115,8 +1114,8 @@ Wir können sofort erkennen, dass das System keine Lösungen besitzt, wenn die G
 \begin{lemma}
 Sei $I$ ein echtes Ideal des Polynomrings $(1 \notin I)$, dann gibt es eine gemeinsame Lösung zum gegebenen System.
 \end{lemma}    
-\noindent Dieses Lemma beweisen wir durch Induktion über die Anzahl der Variablen. Durch die Eigenschaften des ggt ist die Aussage für $n = 1$ erfüllt. Angenommen die Aussage gilt für alle echten Ideale in $\mathbb{K}[x_1,\ldots,x_{n-1}]$. Wir beweisen die Aussage für das echte Ideal $I \subset \mathbb{K}[x_1,\ldots,x_n]$. Durch das Lemma \ref{lemma} wissen wir, dass für jedes nichtkonstante Polynom $f \in I$ ein äquivalentes Polynom, mit Koeffizienten von $x_n^d$ ungleich 0, existiert. Dadurch finden wir ein $g \in I$, das in $x_n$ normiert ist. Sei $I'$ ein echtes Ideal in $\mathbb{K}[x_1,\ldots,x_{n-1}]$ bestehend aus allen Polynomen aus $I$, die $x_n$ nicht enthalten. Aufgrund der Induktionsannahme existiert ein Punkt $(a_1,\ldots,a_{n-1})$, sodass $f(a_1,\ldots,a_{n-1})=0$ für alle $f \in I'$. Nun nehmen wir an, dass die Menge $J = \{f(a_1,\ldots,a_n,x_n)\}$ ein echtes Ideal von $\mathbb{K}[x_n]$ ist. Stimmt diese Annahme, dann ist J ein echtes Ideal von $\mathbb{K}[x_n]$, das durch das Polynom $h(x_n)$ erzeugt wird. Sei $h$ nichtkonstant, dann besitzt $h(x_n)$, durch die algebraische Abgeschlossenheit von $\mathbb{K}$, eine Wurzel $a_n$. Ähnliches gilt für das konstante Nullpolynom. In beiden Fällen gilt $f(a_1,\ldots,a_{n})=0$ für alle $f \in I$. Daher existiert für jedes echte Ideal $I \in \mathbb{K}[x_1,\ldots,x_{n}]$ ein Punkt $(a_1,\ldots,a_{n})$, sodass $f(a_1,\ldots,a_{n})=0$ für alle $f \in I$. Somit wäre der Beweis des Hilbertschen Nullstellensatz bewiesen. Allerdings müssen wir noch die obige Annahme beweisen.      
-\end{proof}
+\noindent Dieses Lemma beweisen wir durch Induktion über die Anzahl der Variablen. Durch die Eigenschaften des ggT ist die Aussage für $n = 1$ erfüllt. Angenommen die Aussage gilt für alle echten Ideale in $\mathbb{K}[x_1,\ldots,x_{n-1}]$. Wir beweisen die Aussage für das echte Ideal $I \subset \mathbb{K}[x_1,\ldots,x_n]$. Durch das Lemma \ref{lemma} wissen wir, dass für jedes nichtkonstante Polynom $f \in I$ ein äquivalentes Polynom, mit Koeffizienten von $x_n^d$ ungleich 0, existiert. Dadurch finden wir ein $g \in I$, das in $x_n$ normiert ist. Sei $I'$ ein echtes Ideal in $\mathbb{K}[x_1,\ldots,x_{n-1}]$ bestehend aus allen Polynomen aus $I$, die $x_n$ nicht enthalten. Aufgrund der Induktionsannahme existiert ein Punkt $(a_1,\ldots,a_{n-1})$, sodass $f(a_1,\ldots,a_{n-1})=0$ für alle $f \in I'$. Nun nehmen wir an, dass die Menge $J = \{f(a_1,\ldots,a_n,x_n)\}$ ein echtes Ideal von $\mathbb{K}[x_n]$ ist. Stimmt diese Annahme, dann ist J ein echtes Ideal von $\mathbb{K}[x_n]$, das durch das Polynom $h(x_n)$ erzeugt wird. Sei $h$ nichtkonstant, dann besitzt $h(x_n)$, durch die algebraische Abgeschlossenheit von $\mathbb{K}$, eine Wurzel $a_n$. Ähnliches gilt für das konstante Nullpolynom. In beiden Fällen gilt $f(a_1,\ldots,a_{n})=0$ für alle $f \in I$. Daher existiert für jedes echte Ideal $I \in \mathbb{K}[x_1,\ldots,x_{n}]$ ein Punkt $(a_1,\ldots,a_{n})$, sodass $f(a_1,\ldots,a_{n})=0$ für alle $f \in I$. Somit wäre der Beweis des Hilbertschen Nullstellensatz bewiesen. Allerdings müssen wir noch die obige Annahme beweisen. \cite{Ausgangsartikel}  
+\end{proof} 
 
 %%% Local Variables: 
 %%% mode: latex
