@@ -1016,7 +1016,26 @@ Die Besonderheit dieser Graphen ist der Unterschied zwischen ihrer chromatischen
 Ein $Kneser--(t-r) Graph$ wird durch alle $r$ Teilmengen der Menge $\{1,\ldots,t\}$ erzeugt. Die Bildungsvorschrift lautet wie folgt: 2 Knoten sind genau dann adjazent, wenn die zugehörigen Teilmengen disjunkt sind. Genaueres zu diesen Graphen findet man unter http://mathworld.wolfram.com/KneserGraph.html.
 \end{itemize}
 
-\todo[inline]{table einfügen und referenzieren}
+\begin{table} [h]
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline Graph & Knoten & Kanten & NulLA & GB & AT \\
+\hline Ungerades Rad 9 & 10 & 18 & 0 & 0 & 0.05 \\
+\hline Ungerades Rad 11 & 12 & 22 & 0 & 0 & 0.74 \\
+\hline Ungerades Rad 13 & 14 & 26 & 0 & 0 & 8.47 \\
+\hline Ungerades Rad 15 & 16 & 30 & 0 & 0 & 369.45 \\
+\hline Ungerades Rad 17 & 18 & 34 & 0 & 0 & -- \\
+\hline Ungerades Rad 151 & 152 & 302 & 0.21 & 2.21 & -- \\
+\hline Mycielski 4 & 11 & 20 & 0 & 0.01 & 0.22 \\
+\hline Mycielski 8 & 191 & 2360 & 7.72 & 9015.06 & 0.23 \\
+\hline Mycielski 9 & 383 & 7271 & 268.78 & -- & 0.22 \\
+\hline Mycielski 9 permutiert & 383 & 7271 & 497.47 & -- & -- \\
+\hline (6,2)--Kneser & 15 & 45 & 0 & 0.03 & 1.87 \\
+\hline (8,3)--Kneser & 56 & 280 & 0.07 & 18.39 & -- \\
+\hline (10,4)--Kneser & 210 & 1575 & 3.92 & 9771.76 & -- \\
+\hline
+\end{tabular}
+\caption{Vergleich der Algorithmen NulLA, Gröbner--Basen und Alon--Tarsi auf verschiedenen Graphen.}
+\end{table}
 
 \noindent Nun folgen Vergleiche zur Performance: In den Tests von \cite{Loera2011} konnte gezeigt werden, dass für Graphen bei denen die ersten Knoten und Kanten, die vom Algorithmus betrachtet werden, einen nicht 3--färbbaren Teilgraph beschreiben sehr schnell von Alon--Tarsi auf nicht 3--Färbbarkeit geprüft werden kann. Eine Schwäche von Alon--Tarsi zeigt jedoch der 9. Mycielski Graph auf: Wie man in der Tabelle ?? sehen kann, braucht Alon--Tarsi nur 0.24 Sekunden für die Berechnung. Verändert man aber die Struktur, im Speziellen permutiert man die Reihenfolge der Knoten, die der Algorithmus betrachtet, so ist eine wesentliche Verlangsamung zu erkennen, um genau zu sein, brauchte der Alon--Tarsi Algorithmus 9 GB RAM und mehr als vier Stunden zur Berechnung, um lediglich 30 (von 7271) Kanten zu betrachten. Dieses Beispiel zeigt also, dass der Alon--Tarsi Algorithmus extrem empfindlich bezüglich der Anordnung der Kanten bzw. Knoten ist. Dies gilt jedoch nicht für NulLA und die Gröbner--Basen--Methode, wie man auch in der Tabelle ?? erkennen kann.\\
 Eine weiter Schwäche von Alon Tarsi ist, dass er im Test kein ungerades Rad mit 18 Knoten erkennen konnte. \cite{Loera2011}
