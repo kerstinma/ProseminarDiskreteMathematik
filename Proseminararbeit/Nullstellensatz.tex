@@ -4,7 +4,7 @@
 
 \section{Einleitung}
 
-Zu Beginn möchten wir auf einige Grundbegriffe in der Graphentheorie und der (Linearen) Algebra eingehen. Dieses Kapitel soll als Nachschlagewerk für die restlichen Kapitel dieser Arbeit dienen. Hierbei werden auch die Begriffe Stable Set, k--Färbbarkeit und Maximaler Schnitt eingeführt. Das Finden solcher graphentheoretischer Probleme fällt in die Klasse der NP--vollständigen Probleme. Des Weiteren werden wir in Kapitel \ref{Grundbegriffe} diese drei Probleme in Polynomialdarstellung  bringen, was dazu führt, dass wir den Hilbertschen Nullstellensatz darauf anwenden können. Wir werden in dieser Arbeit auf dieses zentrale Resultat der Algebraischen Geometrie eingehen und in Kapitel \ref{HilbertNull} zeigen, dass sich daraus ein Algorithmus ableiten lässt, der entscheidet, ob die angegebenen Probleme lösbar oder unlösbar sind. In Kapitel \ref{3colorNulLA} werden wir den Algorithmus zum Entscheiden, ob ein Graph nicht 3--färbbar ist, anwenden und zeigen, dass der Algorithmus für diese Problemstellung ein gutes Verhalten aufweist. Allerdings werden wir in Kapitel \ref{StableNulLA}, beim Entscheiden ob ein Graph ein Stable Set besitzt, erkennen, dass der Algorithmus bereits bei kleinen Graphen an seine Grenzen geht. In Kapitel \ref{vergleich} werden wir noch andere Algorithmen zur Lösung der 3--Färbbarkeit aufzeigen und diese mit unserem in Kapitel \ref{HilbertNull} besprochenen Algorithmus vergleichen. Zu guter Letzt werden wir in Kapitel \ref{beweis} den Beweis zum Nullstellensatz genau beleuchten.
+Zu Beginn möchten wir auf einige Grundbegriffe in der Graphentheorie und der (Linearen) Algebra eingehen. Dieses Kapitel soll als Nachschlagewerk für die restlichen Kapitel dieser Arbeit dienen. Hierbei werden auch die Begriffe Stable Set, k--Färbbarkeit und Maximaler Schnitt eingeführt. Das Finden solcher graphentheoretischer Probleme fällt in die Klasse der NP--vollständigen Probleme. Des Weiteren werden wir in Kapitel \ref{Grundbegriffe} diese drei Probleme in Polynomialdarstellung  bringen, was dazu führt, dass wir Hilbert's Nullstellensatz darauf anwenden können. Wir werden in dieser Arbeit auf dieses zentrale Resultat der Algebraischen Geometrie eingehen und in Kapitel \ref{HilbertNull} zeigen, dass sich daraus ein Algorithmus ableiten lässt, der entscheidet, ob die angegebenen Probleme lösbar oder unlösbar sind. In Kapitel \ref{3colorNulLA} werden wir den Algorithmus zum Entscheiden, ob ein Graph nicht 3--färbbar ist, anwenden und zeigen, dass der Algorithmus für diese Problemstellung ein gutes Verhalten aufweist. Allerdings werden wir in Kapitel \ref{StableNulLA}, beim Entscheiden ob ein Graph ein Stable Set besitzt, erkennen, dass der Algorithmus bereits bei kleinen Graphen an seine Grenzen geht. In Kapitel \ref{vergleich} werden wir noch andere Algorithmen zur Lösung der 3--Färbbarkeit aufzeigen und diese mit unserem in Kapitel \ref{HilbertNull} besprochenen Algorithmus vergleichen. Zu guter Letzt werden wir in Kapitel \ref{beweis} den Beweis zum Nullstellensatz genau beleuchten.
 
 \section{Grundbegriffe}  \label{Grundbegriffe}
 
@@ -391,32 +391,32 @@ Sei $G = (V, E)$ ein Graph. Wir können die Menge der Schnitte $SG$ von G als 0-
 \end{lemma}
 
 
-\section{Hilberts Nullstellensatz } \label{HilbertNull}
+\section{Hilbert's Nullstellensatz } \label{HilbertNull}
 
 Zunächst möchten wir auf die allgemeine Problemdarstellung eingehen. \\
 Gegeben: $f_1,\ldots,f_m \in \mathbb{K}[x_1,\ldots,x_n]$ \\
 Gesucht: Lösung $x$ für das System $f_1(x) = 0, f_2(x) = 0, \ldots f_m(x) = 0$ (wird auch geschrieben als $F(x) = 0$) \\
 Ziel ist es eine Lösung zu diesem System zu finden beziehungsweise zu zeigen, dass es keine Lösung gibt. \\
 \\
-Bevor wir nun das Theorem für den Hilbertschen Nullstellensatz einführen, möchten wir noch das Fredholm's Alternativtheorem betrachten.
+Bevor wir nun das Theorem für Hilbert's Nullstellensatz einführen, möchten wir noch das Fredholm's Alternativtheorem betrachten.
 
 \begin{theorem}[Fredholm's Alternativtheorem] \label{Fredi}
 Das Lineare Gleichungssystem (LGS) $Ax=b$ besitzt genau dann eine Lösung, wenn ein Vektor $y$ mit der Eigenschaft $y^TA=0^T$ und $y^Tb\neq 0^T$ existiert. 
 \end{theorem}
 
-\noindent Der Hilbertsche Nullstellensatz stellt eine strengere und weitreichendere Verallgemeinerung für nichtlineare Polynomialgleichungen dar.
+\noindent Hilbert's Nullstellensatz stellt eine strengere und weitreichendere Verallgemeinerung für nichtlineare Polynomialgleichungen dar.
 
-\begin{theorem}[Hilbert's Nullstellensatz] 
+\begin{theorem}[Hilbert's Nullstellensatz]
 Sei F = $\{f_1,\ldots,f_m\} \subseteq \mathbb{K}[x_1,\ldots,x_n]$.\\
 Die Varietät $\{x \in \overline{\mathbb{K}^n} : f_1(x)=0,\ldots,f_s(x)=0\}$ ist genau dann leer, wenn 1 zum Ideal $\left\langle F \right\rangle$, das aus F generiert wurde, gehört. Man beachte $1 \in \left\langle F \right\rangle$ bedeutet, dass Polynome $\beta_1,\ldots,\beta_m$ im Ring $\mathbb{K}[x_1,\ldots,x_n]$ existieren, sodass $1 = \sum_{i=1}^m \beta_i f_i$. Diese polynomielle Identität ist ein Nachweis für die Unlösbarkeit von $F(x) = 0$. 
 \end{theorem}
 
-\noindent Wir können leicht erkennen, dass das Fredholm's Theorem eine lineare Variante des Hilbertschen Nullstellensatzes mit linearen Polynomen und Konstanten $\beta_i$'s ist. \cite{Ausgangsartikel}
+\noindent Wir können leicht erkennen, dass das Fredholm's Theorem eine lineare Variante von Hilbert's Nullstellensatz mit linearen Polynomen und Konstanten $\beta_i$'s darstellt. \cite{Ausgangsartikel}
 
 \subsection{Relaxierungen mit Hilfe der Linearen Algebra}
 
 Die Hauptidee besteht darin, das gegebene System in eine Reihe Probleme der Linearen Algebra zu relaxieren und dann diese linearen Probleme zu lösen. \\
-Aus dem Hilbertschen Nullstellensatz lässt sich folgendes Korollar ableiten: 
+Aus Hilbert's Nullstellensatz lässt sich folgendes Korollar ableiten:
 \begin{corollary}
 Falls numerische Vektoren $\mu \in \mathbb{K}^m$ existieren, sodass $\sum_{i=1}^m \mu_i f_i = 1 \Rightarrow $ das polynomielle System $F(x) = 0$ ist unlösbar. 
 \end{corollary}
@@ -471,7 +471,7 @@ M_F := \bordermatrix{
 
 
 \noindent Leider, wie wir bereits im Beispiel \ref{ex1} gesehen haben, können wir keine Aussage über die Lösbarkeit von $F(x) = 0$ treffen, wenn
-$\mu M_F = (\textbf{0},1)^T \text{ unlösbar}$. Es besteht jedoch weiterhin die Möglichkeit, auf die Unlösbarkeit von $F(x) = 0$ zu kommen. Der Hilbertsche Nullstellensatz sagt aus, dass durch eine Erweiterung von F durch Polynome vom Ideal von F, das System $\mu M_F = (\textbf{0},1)^T$ lösbar werden kann. Dies erkennt man anhand folgendem Beispiel:
+$\mu M_F = (\textbf{0},1)^T \text{ unlösbar}$. Es besteht jedoch weiterhin die Möglichkeit, auf die Unlösbarkeit von $F(x) = 0$ zu kommen. Hilbert's Nullstellensatz sagt aus, dass durch eine Erweiterung von F durch Polynome vom Ideal von F, das System $\mu M_F = (\textbf{0},1)^T$ lösbar werden kann. Dies erkennt man anhand folgendem Beispiel:
 
 \begin{example}
 Das erweiterte System für F aus dem Beispiel \ref{ex1} könnte folgendermaßen aussehen:
@@ -983,7 +983,7 @@ Es existiert eine unendlich große Menge von Graphen $G_n$ mit n Knoten, so dass
 
 
 \noindent Zum Schluss können wir zusammenfassen, dass die Polynome, die zum Verifizieren des Nullstellensatzes dienen, sehr dicht sind, da alle quadratfreien Monome, welche Stable Sets darstellen, in ihnen vorkommen.
-Das stellt jedoch ein großes Hindernis für die Berechnung dar. In diesem Fall ist es so, dass die Berechnung von Hilberts Nullstellensatz zumindest so schwer ist wie das Zählen aller möglichen Stable Sets eines Graphen. Dieses Problem ist also bereits für Graphen mit geringen Knotengrad $\#P$--vollständig. \cite{Ausgangsartikel, Loera2009}
+Das stellt jedoch ein großes Hindernis für die Berechnung dar. In diesem Fall ist es so, dass die Berechnung von Hilbert's Nullstellensatz zumindest so schwer ist wie das Zählen aller möglichen Stable Sets eines Graphen. Dieses Problem ist also bereits für Graphen mit geringem Knotengrad $\#P$--vollständig. \cite{Ausgangsartikel, Loera2009}
 
 
 
@@ -1023,7 +1023,7 @@ Eine weiter Schwäche von Alon Tarsi ist, dass er im Test kein ungerades Rad mit
 
 \section{Beweis Nullstellensatz} \label{beweis}
 
-In diesem Kapitel möchten wir einen Beweis für Hilberts Nullstellensatz angeben.
+In diesem Kapitel möchten wir einen Beweis für Hilbert's Nullstellensatz angeben.
 Wenn wir an den bereits definierten Nullstellensatz denken, Theorem \ref{HilbertNull}, kann man unschwer erkennen, dass aus der Gleichung $1 = \sum_i \beta_if_i$ die Unlösbarkeit des Systems $F$ folgt. Was jedoch eine Schwierigkeit im Beweis des Satzes darstellt, ist es die Rückrichtung zu zeigen, also dass die Unlösbarkeit von $F$ eine Gleichung $1 = \sum_i \beta_if_i$ impliziert. \cite{Ausgangsartikel}
 
 \subsection{Beweis für Polynome in einer Variable}
@@ -1043,7 +1043,7 @@ ggT (f_1,f_2,\ldots,f_s) = ggT(f_1,ggT(f_2,\ldots,f_s)).
 Sei $h = ggT(f_1,f_2,\ldots,f_s)$. Es existieren Polynome $a_1,a_2,\ldots,a_s$ und es gilt: $h = a_1f_1+ \ldots + a_sf_s$
 \end{lemma}
 
-\noindent Mit den Lemmas \ref{gcd1} und \ref{gcd2} lässt sich nun folgendes Korollar aufstellen und beweisen. Dieses folgende Resultat liefert uns dann den Beweis für Hilberts Nullstellensatz für Polynome in einer Variablen:
+\noindent Mit den Lemmas \ref{gcd1} und \ref{gcd2} lässt sich nun folgendes Korollar aufstellen und beweisen. Dieses folgende Resultat liefert uns dann den Beweis für Hilbert's Nullstellensatz für Polynome in einer Variablen:
 
 \begin{corollary}
 Eine Menge univarianter Polynome $f_1(x)=0,\ldots,f_s(x)=0$ hat genau dann keine gemeinsame Nullstelle, wenn es möglich ist Polynome $a_1,\ldots, a_s$ zu finden, so dass $1 = a_1f_1+ \ldots + a_sf_s$ erfüllt ist. \cite{Ausgangsartikel}
@@ -1064,7 +1064,7 @@ Für einen beliebigen Körper $\mathbb{K}$ seien $f$ und $g$ Polynome ungleich d
 \noindent Mit diesem Lemma ist es nun ein Leichtes, die Resultante zu definieren.
 
 \begin{definition}
-Für zwei univariate Polynome $f = a_nx^n+a_{n-1}x^{n-1}+\ldots + a_0$ und $g = b_mx^m+b_{m-1}x^{m-1}+\ldots+b_0$ ungleich dem Nullpolynom mit Koeffizienten $a_i, b_j$ aus $\mathbb{K}$. Die \textcolor{blue}{Sylvestermatrix Syl(f,g)} ist eine $(m+n) \times (m+n)$ Matrix folgender Art:
+Gegeben seien zwei univariate Polynome $f = a_nx^n+a_{n-1}x^{n-1}+\ldots + a_0$ und $g = b_mx^m+b_{m-1}x^{m-1}+\ldots+b_0$ ungleich dem Nullpolynom mit Koeffizienten $a_i, b_j$ aus $\mathbb{K}$. Die \textcolor{blue}{Sylvestermatrix Syl(f,g)} ist eine $(m+n) \times (m+n)$ Matrix folgender Art:
 \begin{align*}
 \begin{pmatrix}
 a_n & 0 &\dots & 0 & b_m & 0 & \ldots & 0 \\
@@ -1081,11 +1081,11 @@ Die Determinante dieser Matrix ist die \textcolor{blue}{Resultante R(f,g)} von $
 \noindent Die Resultante ist also ein Polynom, dessen Variablen die Koeffizienten von $f$ und $g$ und dessen Koeffizienten ganze Zahlen sind.\\
 \noindent Mit diesem Wissen können wir nun ein erstes Theorem festhalten:
 
-\begin{theorem}
+\begin{theorem} \label{theorem1239}
 Zwei Polynome $f$ und $g$ haben genau dann einen gemeinsamen Faktor in $\mathbb{K}$, wenn $Res(f,g) = det(Syl(f,g)) = 0$. Außerdem existieren Polynome $\tilde{C},\tilde{D} \in \mathbb{K}$, so dass gilt $\tilde{C}f + \tilde{D}g = Res(f,g)$.
 \end{theorem}
 
-\noindent Die folgenden zwei Lemmas werden wir im Beweis zu Hilberts Nullstellensatz benötigen. Sie werden uns dabei helfen Polynome umzuschreiben, um sie dann leichter zu analysieren und anzuwenden.
+\noindent Die folgenden zwei Lemmas werden wir im Beweis zu Hilbert's Nullstellensatz benötigen. Sie werden uns dabei helfen Polynome umzuschreiben, um sie dann leichter zu analysieren und anzuwenden.
 
 \begin{lemma}
 Für einen Körper $\mathbb{K}$ sei $B(x_1,\ldots,x_n)\in \mathbb{K}[x_1,\ldots,x_n]$ ein Polynom vom Grad $d$ ungleich dem Nullpolynom. Es existieren $z_1,\ldots,z_n \in \mathbb{K}$ so dass $B(z_1,\ldots,z_n) \not = 0$.
@@ -1100,7 +1100,7 @@ x_n = y_n,
 Dann gilt: $B(y_1+\lambda_1y_n,\ldots,y_{n-1}+\lambda_{n-1}y_n,y_n) = P(y_1,\ldots,y_n)$ ist ein Polynom dessen Koeffizient von $y_n^d$ ist nicht null.
 \end{lemma}
 
-\noindent Diese Resultate reichen uns um Hilberts Nullstellensatz zu beweisen. Als nächstes werden wir Hilberts Nullstellensatz nochmal in der originalen Version aufstellen und anschließend werden wir ihn beweisen.
+\noindent Diese Resultate reichen uns um Hilbert's Nullstellensatz zu beweisen. Als nächstes werden wir Hilbert's Nullstellensatz nochmal in der originalen Version aufstellen und anschließend werden wir ihn beweisen.
 
 \begin{theorem}
 Sei $f_1 = 0, f_2 = 0, \ldots, f_s = 0$ ein System von Polynomgleichungen von $f_1,\ldots,f_s \in \mathbb{K}[x_1,\ldots,x_n]$ über dem algebraisch abgeschlossenen Körper $\mathbb{K}$. Es gibt genau dann keine gemeinsame Lösung über $\mathbb{K}^n$, wenn Polynome $\alpha_1,\alpha_2,\ldots,\alpha_s \in \mathbb{K}[x_1,\ldots,x_n]$ existieren, so dass:
@@ -1114,7 +1114,33 @@ Wir können sofort erkennen, dass das System keine Lösungen besitzt, wenn die G
 \begin{lemma}
 Sei $I$ ein echtes Ideal des Polynomrings $(1 \notin I)$, dann gibt es eine gemeinsame Lösung zum gegebenen System.
 \end{lemma}    
-\noindent Dieses Lemma beweisen wir durch Induktion über die Anzahl der Variablen. Durch die Eigenschaften des ggT ist die Aussage für $n = 1$ erfüllt. Angenommen die Aussage gilt für alle echten Ideale in $\mathbb{K}[x_1,\ldots,x_{n-1}]$. Wir beweisen die Aussage für das echte Ideal $I \subset \mathbb{K}[x_1,\ldots,x_n]$. Durch das Lemma \ref{lemma} wissen wir, dass für jedes nichtkonstante Polynom $f \in I$ ein äquivalentes Polynom, mit Koeffizienten von $x_n^d$ ungleich 0, existiert. Dadurch finden wir ein $g \in I$, das in $x_n$ normiert ist. Sei $I'$ ein echtes Ideal in $\mathbb{K}[x_1,\ldots,x_{n-1}]$ bestehend aus allen Polynomen aus $I$, die $x_n$ nicht enthalten. Aufgrund der Induktionsannahme existiert ein Punkt $(a_1,\ldots,a_{n-1})$, sodass $f(a_1,\ldots,a_{n-1})=0$ für alle $f \in I'$. Nun nehmen wir an, dass die Menge $J = \{f(a_1,\ldots,a_n,x_n)\}$ ein echtes Ideal von $\mathbb{K}[x_n]$ ist. Stimmt diese Annahme, dann ist J ein echtes Ideal von $\mathbb{K}[x_n]$, das durch das Polynom $h(x_n)$ erzeugt wird. Sei $h$ nichtkonstant, dann besitzt $h(x_n)$, durch die algebraische Abgeschlossenheit von $\mathbb{K}$, eine Wurzel $a_n$. Ähnliches gilt für das konstante Nullpolynom. In beiden Fällen gilt $f(a_1,\ldots,a_{n})=0$ für alle $f \in I$. Daher existiert für jedes echte Ideal $I \in \mathbb{K}[x_1,\ldots,x_{n}]$ ein Punkt $(a_1,\ldots,a_{n})$, sodass $f(a_1,\ldots,a_{n})=0$ für alle $f \in I$. Somit wäre der Beweis des Hilbertschen Nullstellensatz bewiesen. Allerdings müssen wir noch die obige Annahme beweisen. \cite{Ausgangsartikel}  
+\noindent Dieses Lemma beweisen wir durch Induktion über die Anzahl der Variablen. Durch die Eigenschaften des ggT ist die Aussage für $n = 1$ erfüllt. Angenommen die Aussage gilt für alle echten Ideale in $\mathbb{K}[x_1,\ldots,x_{n-1}]$. Wir beweisen die Aussage für das echte Ideal $I \subset \mathbb{K}[x_1,\ldots,x_n]$. Durch das Lemma \ref{lemma} wissen wir, dass für jedes nichtkonstante Polynom $f \in I$ ein äquivalentes Polynom, mit Koeffizienten von $x_n^d$ ungleich 0, existiert. Dadurch finden wir ein $g \in I$, das in $x_n$ normiert ist. Sei $I'$ ein echtes Ideal in $\mathbb{K}[x_1,\ldots,x_{n-1}]$ bestehend aus allen Polynomen aus $I$, die $x_n$ nicht enthalten. Aufgrund der Induktionsannahme existiert ein Punkt $(a_1,\ldots,a_{n-1})$, sodass $f(a_1,\ldots,a_{n-1})=0$ für alle $f \in I'$. Nun nehmen wir an, dass die Menge $J = \{f(a_1,\ldots,a_n,x_n)\}$ ein echtes Ideal von $\mathbb{K}[x_n]$ ist. Stimmt diese Annahme, dann ist J ein echtes Ideal von $\mathbb{K}[x_n]$, das durch das Polynom $h(x_n)$ erzeugt wird. Sei $h$ nichtkonstant, dann besitzt $h(x_n)$, durch die algebraische Abgeschlossenheit von $\mathbb{K}$, eine Wurzel $a_n$. Ähnliches gilt für das konstante Nullpolynom. In beiden Fällen gilt $f(a_1,\ldots,a_{n})=0$ für alle $f \in I$. Daher existiert für jedes echte Ideal $I \in \mathbb{K}[x_1,\ldots,x_{n}]$ ein Punkt $(a_1,\ldots,a_{n})$, sodass $f(a_1,\ldots,a_{n})=0$ für alle $f \in I$. Somit wäre der Beweis von Hilbert's Nullstellensatz beendet. Allerdings müssen wir noch die obige Annahme beweisen. Diese werden wir durch Widerspruch zeigen. Angenommen es existiert eine $f \in I$, sodass $f(a_1,\ldots,a_{n-1},x_n)=1$. Daraus folgt: 
+\begin{align*}
+&f = f_0 + f_1x_n +\ldots+ f_dx_n^d, \qquad f_i \in \mathbb{K}[x_1,\ldots,x_{n-1}] \\
+&f_1(a_1,\ldots,a_{n-1})=\ldots=f_n(a_1,\ldots,a_{n-1})=0, \qquad f_1(a_1,\ldots,a_{n-1})=0.
+\end{align*}
+Das normierte Polynom $g$ lässt sich folgend darstellen:
+\begin{align*}
+g=g_0+g_1x_n+\ldots+g_{e-1}x_n^{e-1}+x_n^e, \qquad g_j \in \mathbb{K}[x_1,\ldots,x_{n-1}], j = 0,\ldots,(e-1).
+\end{align*}
+Die Resultante $R$ von $f$ und $g$ in der Variable $x_n$ ist das Polynom in $\mathbb{K}[x_1,\ldots,x_{n-1}]$, das durch die Determinante der folgenden $(e+d)\times(e+d)$-Matrix gegeben ist: 
+\begin{align*}
+R = 
+\begin{vmatrix}
+f_0 & f_1 &\dots & \dots & \dots & f_d & 0 & \dots & \dots & 0 \\
+0   & f_0 & f_1 &\dots & \dots & f_{d-1} & f_d & 0 & \dots & 0\\
+\vdots &  & \ddots & \ddots & & & \ddots & \ddots & & \vdots \\
+\vdots &  &  & \ddots & \ddots & & & \ddots & \ddots & 0 \\
+0 & \dots & \dots & 0 & f_0 & f_1 & \dots & \dots & f_{d-1} & f_d \\
+g_0 & g_1 &\dots & \dots & g_{e-1} & 1 & 0 & \dots & \dots & 0 \\
+0  & g_0 & g_1 &\dots & \dots & g_{e-1} & 1 & 0 & \dots & 0\\
+\vdots &  & \ddots & \ddots & & & \ddots & \ddots & & \vdots \\
+\vdots &  &  & \ddots & \ddots & & & \ddots & \ddots & 0 \\
+0 & \dots & \dots & 0 & g_0 & g_1 & \dots & \dots & g_{e-1} & 1
+\end{vmatrix}
+\end{align*}
+Aus Theorem \ref{theorem1239} folgt, dass die Resultante $R \in I$. Außerdem $R \in \mathbb{K}[x_1,\ldots,x_{n-1}]$ und da $I'$ alle Polynome von $I$ ohne die Variable $x_n$ enthält, auch $R \in I'$. Wir wissen $R(a_1,\ldots,a_{n-1})$ ist äquivalent zur Determinante aller Polynome in $(a_1,\ldots,a_{n-1})$. Dies führt zu einer unteren Dreiecksmatrix, wo alle Diagonalelemente gleich 1 sind. Daraus folgt $R(a_1,\ldots,a_{n-1}) = 1$. Laut unserer Annahme verschwinden jedoch alle Polynome in $I'$ im Punkt $(a_1,\ldots,a_{n-1})$. Dadurch $R \notin I'$, was zu einem Widerspruch führt. Dadurch existiert kein Polynom $f \in J$, das identisch 1 ist und somit ist $J= \{f(a_1,\ldots,a_n,x_m):f\in I\}$ ein echtes Ideal von $\mathbb{K}[x_n]$.   
+\cite{Ausgangsartikel}  
 \end{proof} 
 
 %%% Local Variables: 
